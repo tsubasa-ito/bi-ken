@@ -5,11 +5,11 @@ import {
   ScrollView,
   TouchableOpacity,
   Switch,
-  useColorScheme,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Colors, Spacing, BorderRadius, FontSize } from '../../src/constants/colors';
 import { Fonts } from '../../src/constants/fonts';
 import { useState } from 'react';
@@ -24,9 +24,7 @@ interface SettingItemProps {
 }
 
 function SettingItem({ icon, title, subtitle, value, hasArrow = true, onPress }: SettingItemProps) {
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
-  const colors = isDark ? Colors.dark : Colors.light;
+  const colors = Colors.dark;
 
   return (
     <TouchableOpacity
@@ -37,7 +35,7 @@ function SettingItem({ icon, title, subtitle, value, hasArrow = true, onPress }:
         <Ionicons name={icon} size={20} color={Colors.primary} />
       </View>
       <View style={styles.settingContent}>
-        <Text style={[styles.settingTitle, { color: colors.text }]}>{title}</Text>
+        <Text style={styles.settingTitle}>{title}</Text>
         {subtitle && (
           <Text style={[styles.settingSubtitle, { color: Colors.primary }]}>{subtitle}</Text>
         )}
@@ -60,9 +58,7 @@ interface SettingSwitchProps {
 }
 
 function SettingSwitch({ icon, title, value, onValueChange }: SettingSwitchProps) {
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
-  const colors = isDark ? Colors.dark : Colors.light;
+  const colors = Colors.dark;
 
   return (
     <View style={[styles.settingItem, { backgroundColor: colors.surface }]}>
@@ -70,7 +66,7 @@ function SettingSwitch({ icon, title, value, onValueChange }: SettingSwitchProps
         <Ionicons name={icon} size={20} color={colors.textSecondary} />
       </View>
       <View style={styles.settingContent}>
-        <Text style={[styles.settingTitle, { color: colors.text }]}>{title}</Text>
+        <Text style={styles.settingTitle}>{title}</Text>
       </View>
       <Switch
         value={value}
@@ -84,123 +80,126 @@ function SettingSwitch({ icon, title, value, onValueChange }: SettingSwitchProps
 
 export default function SettingsScreen() {
   const router = useRouter();
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
-  const colors = isDark ? Colors.dark : Colors.light;
+  const colors = Colors.dark;
 
   const [dailyReminders, setDailyReminders] = useState(true);
-  const [darkMode, setDarkMode] = useState(isDark);
+  const [darkMode, setDarkMode] = useState(true);
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
-      {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => router.back()}>
-          <Ionicons name="chevron-back" size={28} color={colors.text} />
-        </TouchableOpacity>
-        <Text style={[styles.headerTitle, { color: colors.text }]}>設定</Text>
-        <View style={{ width: 28 }} />
-      </View>
-
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Account Section */}
-        <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.textSecondary }]}>
-            アカウント
-          </Text>
-          <View style={[styles.sectionCard, { backgroundColor: colors.surface }]}>
-            <SettingItem
-              icon="person"
-              title="山田 花子"
-              subtitle="プロフィールを編集"
-              hasArrow
-            />
-            <View style={[styles.divider, { backgroundColor: colors.border }]} />
-            <SettingItem
-              icon="star"
-              title="プラン"
-              subtitle="美術検定2級・プレミアム"
-              hasArrow
-            />
-          </View>
+    <LinearGradient colors={['#0D1117', '#161B22']} style={styles.container}>
+      <SafeAreaView style={styles.safeArea}>
+        {/* Header */}
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => router.back()}>
+            <Ionicons name="chevron-back" size={28} color="#fff" />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>設定</Text>
+          <View style={{ width: 28 }} />
         </View>
 
-        {/* Learning Preferences Section */}
-        <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.textSecondary }]}>
-            学習設定
-          </Text>
-          <View style={[styles.sectionCard, { backgroundColor: colors.surface }]}>
-            <SettingItem
-              icon="speedometer"
-              title="難易度レベル"
-              value="中級"
-              hasArrow
-            />
-            <View style={[styles.divider, { backgroundColor: colors.border }]} />
-            <SettingItem
-              icon="flag"
-              title="1日の目標"
-              value="20問"
-              hasArrow
-            />
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {/* Account Section */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>
+              アカウント
+            </Text>
+            <View style={[styles.sectionCard, { backgroundColor: colors.surface }]}>
+              <SettingItem
+                icon="person"
+                title="山田 花子"
+                subtitle="プロフィールを編集"
+                hasArrow
+              />
+              <View style={[styles.divider, { backgroundColor: colors.border }]} />
+              <SettingItem
+                icon="star"
+                title="プラン"
+                subtitle="美術検定2級・プレミアム"
+                hasArrow
+              />
+            </View>
           </View>
-        </View>
 
-        {/* App Appearance Section */}
-        <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.textSecondary }]}>
-            アプリの表示
-          </Text>
-          <View style={[styles.sectionCard, { backgroundColor: colors.surface }]}>
-            <SettingSwitch
-              icon="notifications"
-              title="学習リマインダー"
-              value={dailyReminders}
-              onValueChange={setDailyReminders}
-            />
-            <View style={[styles.divider, { backgroundColor: colors.border }]} />
-            <SettingSwitch
-              icon="moon"
-              title="ダークモード"
-              value={darkMode}
-              onValueChange={setDarkMode}
-            />
+          {/* Learning Preferences Section */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>
+              学習設定
+            </Text>
+            <View style={[styles.sectionCard, { backgroundColor: colors.surface }]}>
+              <SettingItem
+                icon="speedometer"
+                title="難易度レベル"
+                value="中級"
+                hasArrow
+              />
+              <View style={[styles.divider, { backgroundColor: colors.border }]} />
+              <SettingItem
+                icon="flag"
+                title="1日の目標"
+                value="20問"
+                hasArrow
+              />
+            </View>
           </View>
-        </View>
 
-        {/* Logout Button */}
-        <TouchableOpacity style={styles.logoutButton}>
-          <Text style={styles.logoutText}>ログアウト</Text>
-        </TouchableOpacity>
-
-        {/* Footer */}
-        <View style={styles.footer}>
-          <Text style={[styles.footerText, { color: colors.textSecondary }]}>
-            美術検定学習コンパニオン・v2.4.1
-          </Text>
-          <View style={styles.footerLinks}>
-            <TouchableOpacity>
-              <Text style={[styles.footerLink, { color: Colors.primary }]}>
-                プライバシーポリシー
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={[styles.footerLink, { color: Colors.primary }]}>
-                利用規約
-              </Text>
-            </TouchableOpacity>
+          {/* App Appearance Section */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>
+              アプリの表示
+            </Text>
+            <View style={[styles.sectionCard, { backgroundColor: colors.surface }]}>
+              <SettingSwitch
+                icon="notifications"
+                title="学習リマインダー"
+                value={dailyReminders}
+                onValueChange={setDailyReminders}
+              />
+              <View style={[styles.divider, { backgroundColor: colors.border }]} />
+              <SettingSwitch
+                icon="moon"
+                title="ダークモード"
+                value={darkMode}
+                onValueChange={setDarkMode}
+              />
+            </View>
           </View>
-        </View>
 
-        <View style={{ height: Spacing.xxl }} />
-      </ScrollView>
-    </SafeAreaView>
+          {/* Logout Button */}
+          <TouchableOpacity style={styles.logoutButton}>
+            <Text style={styles.logoutText}>ログアウト</Text>
+          </TouchableOpacity>
+
+          {/* Footer */}
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>
+              美術検定学習コンパニオン・v2.4.1
+            </Text>
+            <View style={styles.footerLinks}>
+              <TouchableOpacity>
+                <Text style={[styles.footerLink, { color: Colors.primary }]}>
+                  プライバシーポリシー
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text style={[styles.footerLink, { color: Colors.primary }]}>
+                  利用規約
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <View style={{ height: Spacing.xxl }} />
+        </ScrollView>
+      </SafeAreaView>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  safeArea: {
     flex: 1,
   },
   header: {
@@ -213,6 +212,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontFamily: Fonts.serifSemiBold,
     fontSize: FontSize.xl,
+    color: '#fff',
   },
   section: {
     paddingHorizontal: Spacing.lg,
@@ -223,6 +223,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.xs,
     letterSpacing: 1,
     marginBottom: Spacing.sm,
+    color: Colors.dark.textSecondary,
   },
   sectionCard: {
     borderRadius: BorderRadius.lg,
@@ -247,6 +248,7 @@ const styles = StyleSheet.create({
   settingTitle: {
     fontFamily: Fonts.sansMedium,
     fontSize: FontSize.md,
+    color: '#fff',
   },
   settingSubtitle: {
     fontFamily: Fonts.sansRegular,
@@ -283,6 +285,7 @@ const styles = StyleSheet.create({
   footerText: {
     fontFamily: Fonts.sansRegular,
     fontSize: FontSize.sm,
+    color: Colors.dark.textSecondary,
   },
   footerLinks: {
     flexDirection: 'row',

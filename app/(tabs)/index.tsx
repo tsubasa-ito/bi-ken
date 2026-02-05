@@ -6,7 +6,6 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
-  useColorScheme,
   Dimensions,
   ActivityIndicator,
 } from 'react-native';
@@ -25,9 +24,7 @@ const ERA_CARD_WIDTH = (width - Spacing.lg * 2 - Spacing.md) / 2;
 
 export default function HomeScreen() {
   const router = useRouter();
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
-  const colors = isDark ? Colors.dark : Colors.light;
+  const colors = Colors.dark;
 
   // APIから今日の作品を取得
   const { artworks: featuredArtworks, loading, error } = useArtworksByEra('all', 5);
@@ -47,185 +44,190 @@ export default function HomeScreen() {
   };
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Header */}
-        <View style={styles.header}>
-          <View style={styles.headerLeft}>
-            <View style={[styles.avatar, { backgroundColor: colors.surfaceSecondary }]}>
-              <Ionicons name="person" size={20} color={colors.textSecondary} />
-            </View>
-            <View>
-              <Text style={[styles.appTitle, { color: colors.text }]}>美術検定</Text>
-              <Text style={[styles.levelText, { color: Colors.primary }]}>
-                レベル {userProgress.level}　{userProgress.levelTitle}
-              </Text>
-            </View>
-          </View>
-          <TouchableOpacity>
-            <Ionicons name="search" size={24} color={colors.text} />
-          </TouchableOpacity>
-        </View>
-
-        {/* Daily Challenge */}
-        <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.text }]}>今日の一問</Text>
-          <View style={[styles.dailyCard, { backgroundColor: colors.surface }]}>
-            {loading ? (
-              <View style={styles.dailyLoading}>
-                <ActivityIndicator size="large" color={Colors.primary} />
-                <Text style={[styles.loadingText, { color: colors.textSecondary }]}>
-                  作品を読み込み中...
+    <LinearGradient colors={['#0D1117', '#161B22']} style={styles.container}>
+      <SafeAreaView style={styles.safeArea}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {/* Header */}
+          <View style={styles.header}>
+            <View style={styles.headerLeft}>
+              <View style={[styles.avatar, { backgroundColor: colors.surfaceSecondary }]}>
+                <Ionicons name="person" size={20} color="#fff" />
+              </View>
+              <View>
+                <Text style={styles.appTitle}>美術検定</Text>
+                <Text style={[styles.levelText, { color: Colors.primary }]}>
+                  レベル {userProgress.level}　{userProgress.levelTitle}
                 </Text>
               </View>
-            ) : error || !dailyArtwork ? (
-              <View style={styles.dailyLoading}>
-                <Ionicons name="alert-circle-outline" size={32} color={Colors.error} />
-                <Text style={[styles.loadingText, { color: colors.textSecondary }]}>
-                  読み込みに失敗しました
-                </Text>
-              </View>
-            ) : (
-              <>
-                <Image
-                  source={{ uri: dailyArtwork.imageUrl }}
-                  style={styles.dailyImage}
-                  resizeMode="cover"
-                />
-                <View style={styles.dailyContent}>
-                  <View style={styles.dailyHeader}>
-                    <View style={styles.dailyTitleContainer}>
-                      <Text style={[styles.dailyTitle, { color: colors.text }]} numberOfLines={1}>
-                        {dailyArtwork.title}
-                      </Text>
-                      <Text style={[styles.dailyArtist, { color: Colors.primary }]}>
-                        {dailyArtwork.artist}{dailyArtwork.year ? `、${dailyArtwork.year}年` : ''}
-                      </Text>
-                    </View>
-                    <View style={[styles.xpBadge, { backgroundColor: colors.surfaceSecondary }]}>
-                      <Text style={[styles.xpText, { color: colors.text }]}>50 XP</Text>
-                    </View>
-                  </View>
-                  <Text style={[styles.dailyDescription, { color: colors.textSecondary }]} numberOfLines={2}>
-                    この作品の作者を当ててみましょう。美術検定の基礎問題です。
-                  </Text>
-                  <View style={styles.dailyFooter}>
-                    <View style={styles.participants}>
-                      <View style={styles.participantDots}>
-                        {[0, 1, 2].map((i) => (
-                          <View
-                            key={i}
-                            style={[
-                              styles.participantDot,
-                              { backgroundColor: Colors.primary, marginLeft: i > 0 ? -8 : 0 },
-                            ]}
-                          />
-                        ))}
-                      </View>
-                      <Text style={[styles.participantText, { color: colors.textSecondary }]}>
-                        本日 1.2千人が挑戦中
-                      </Text>
-                    </View>
-                    <TouchableOpacity
-                      style={styles.startButton}
-                      onPress={() => handleStartQuiz('daily')}
-                    >
-                      <Text style={styles.startButtonText}>挑戦する</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </>
-            )}
-          </View>
-        </View>
-
-        {/* Study by Era */}
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={[styles.sectionTitle, { color: colors.text }]}>時代から学ぶ</Text>
+            </View>
             <TouchableOpacity>
-              <Text style={[styles.viewAll, { color: Colors.primary }]}>すべて見る</Text>
+              <Ionicons name="search" size={24} color="#fff" />
             </TouchableOpacity>
           </View>
-          <View style={styles.eraGrid}>
-            {eras.map((era) => (
-              <TouchableOpacity
-                key={era.id}
-                style={styles.eraCard}
-                onPress={() => handleStartQuiz(era.id)}
-              >
-                <Image source={{ uri: era.imageUrl }} style={styles.eraImage} />
-                <LinearGradient
-                  colors={['transparent', 'rgba(0,0,0,0.8)']}
-                  style={styles.eraGradient}
-                >
-                  <Text style={styles.eraName}>{era.name}</Text>
-                  <Text style={styles.eraPeriod}>{era.period}</Text>
-                </LinearGradient>
+
+          {/* Daily Challenge */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>今日の一問</Text>
+            <View style={[styles.dailyCard, { backgroundColor: colors.surface }]}>
+              {loading ? (
+                <View style={styles.dailyLoading}>
+                  <ActivityIndicator size="large" color={Colors.primary} />
+                  <Text style={styles.loadingText}>
+                    作品を読み込み中...
+                  </Text>
+                </View>
+              ) : error || !dailyArtwork ? (
+                <View style={styles.dailyLoading}>
+                  <Ionicons name="alert-circle-outline" size={32} color={Colors.error} />
+                  <Text style={styles.loadingText}>
+                    読み込みに失敗しました
+                  </Text>
+                </View>
+              ) : (
+                <>
+                  <Image
+                    source={{ uri: dailyArtwork.imageUrl }}
+                    style={styles.dailyImage}
+                    resizeMode="cover"
+                  />
+                  <View style={styles.dailyContent}>
+                    <View style={styles.dailyHeader}>
+                      <View style={styles.dailyTitleContainer}>
+                        <Text style={styles.dailyTitle} numberOfLines={1}>
+                          {dailyArtwork.title}
+                        </Text>
+                        <Text style={[styles.dailyArtist, { color: Colors.primary }]}>
+                          {dailyArtwork.artist}{dailyArtwork.year ? `、${dailyArtwork.year}年` : ''}
+                        </Text>
+                      </View>
+                      <View style={[styles.xpBadge, { backgroundColor: colors.surfaceSecondary }]}>
+                        <Text style={styles.xpText}>50 XP</Text>
+                      </View>
+                    </View>
+                    <Text style={styles.dailyDescription} numberOfLines={2}>
+                      この作品の作者を当ててみましょう。美術検定の基礎問題です。
+                    </Text>
+                    <View style={styles.dailyFooter}>
+                      <View style={styles.participants}>
+                        <View style={styles.participantDots}>
+                          {[0, 1, 2].map((i) => (
+                            <View
+                              key={i}
+                              style={[
+                                styles.participantDot,
+                                { backgroundColor: Colors.primary, marginLeft: i > 0 ? -8 : 0 },
+                              ]}
+                            />
+                          ))}
+                        </View>
+                        <Text style={styles.participantText}>
+                          本日 1.2千人が挑戦中
+                        </Text>
+                      </View>
+                      <TouchableOpacity
+                        style={styles.startButton}
+                        onPress={() => handleStartQuiz('daily')}
+                      >
+                        <Text style={styles.startButtonText}>挑戦する</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                </>
+              )}
+            </View>
+          </View>
+
+          {/* Study by Era */}
+          <View style={styles.section}>
+            <View style={styles.sectionHeader}>
+              <Text style={styles.sectionTitle}>時代から学ぶ</Text>
+              <TouchableOpacity>
+                <Text style={[styles.viewAll, { color: Colors.primary }]}>すべて見る</Text>
               </TouchableOpacity>
-            ))}
-          </View>
-        </View>
-
-        {/* Your Progress */}
-        <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.text }]}>学習の記録</Text>
-          <View style={[styles.progressCard, { backgroundColor: colors.surface }]}>
-            <View style={styles.progressHeader}>
-              <Text style={[styles.progressLabel, { color: colors.textSecondary }]}>
-                検定合格に向けて
-              </Text>
-              <Text style={[styles.progressPercent, { color: Colors.primary }]}>
-                {userProgress.masteryPercentage - 6}%
-              </Text>
             </View>
-            <View style={[styles.progressBar, { backgroundColor: colors.surfaceSecondary }]}>
-              <View
-                style={[
-                  styles.progressFill,
-                  { width: `${userProgress.masteryPercentage - 6}%` },
-                ]}
-              />
-            </View>
-            <View style={styles.statsRow}>
-              <View style={styles.statItem}>
-                <Text style={[styles.statValue, { color: colors.text }]}>
-                  {userProgress.currentStreak}
-                </Text>
-                <Text style={[styles.statLabel, { color: colors.textSecondary }]}>
-                  日連続
-                </Text>
-              </View>
-              <View style={[styles.statDivider, { backgroundColor: colors.border }]} />
-              <View style={styles.statItem}>
-                <Text style={[styles.statValue, { color: colors.text }]}>
-                  {userProgress.totalArtworksMet}
-                </Text>
-                <Text style={[styles.statLabel, { color: colors.textSecondary }]}>
-                  作品
-                </Text>
-              </View>
-              <View style={[styles.statDivider, { backgroundColor: colors.border }]} />
-              <View style={styles.statItem}>
-                <Text style={[styles.statValue, { color: colors.text }]}>
-                  {userProgress.totalCertificates}
-                </Text>
-                <Text style={[styles.statLabel, { color: colors.textSecondary }]}>
-                  認定証
-                </Text>
-              </View>
+            <View style={styles.eraGrid}>
+              {eras.map((era) => (
+                <TouchableOpacity
+                  key={era.id}
+                  style={styles.eraCard}
+                  onPress={() => handleStartQuiz(era.id)}
+                >
+                  <Image source={{ uri: era.imageUrl }} style={styles.eraImage} />
+                  <LinearGradient
+                    colors={['transparent', 'rgba(0,0,0,0.8)']}
+                    style={styles.eraGradient}
+                  >
+                    <Text style={styles.eraName}>{era.name}</Text>
+                    <Text style={styles.eraPeriod}>{era.period}</Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+              ))}
             </View>
           </View>
-        </View>
 
-        <View style={{ height: Spacing.xl }} />
-      </ScrollView>
-    </SafeAreaView>
+          {/* Your Progress */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>学習の記録</Text>
+            <View style={[styles.progressCard, { backgroundColor: colors.surface }]}>
+              <View style={styles.progressHeader}>
+                <Text style={styles.progressLabel}>
+                  検定合格に向けて
+                </Text>
+                <Text style={[styles.progressPercent, { color: Colors.primary }]}>
+                  {userProgress.masteryPercentage - 6}%
+                </Text>
+              </View>
+              <View style={[styles.progressBar, { backgroundColor: colors.surfaceSecondary }]}>
+                <View
+                  style={[
+                    styles.progressFill,
+                    { width: `${userProgress.masteryPercentage - 6}%` },
+                  ]}
+                />
+              </View>
+              <View style={styles.statsRow}>
+                <View style={styles.statItem}>
+                  <Text style={styles.statValue}>
+                    {userProgress.currentStreak}
+                  </Text>
+                  <Text style={styles.statLabel}>
+                    日連続
+                  </Text>
+                </View>
+                <View style={[styles.statDivider, { backgroundColor: colors.border }]} />
+                <View style={styles.statItem}>
+                  <Text style={styles.statValue}>
+                    {userProgress.totalArtworksMet}
+                  </Text>
+                  <Text style={styles.statLabel}>
+                    作品
+                  </Text>
+                </View>
+                <View style={[styles.statDivider, { backgroundColor: colors.border }]} />
+                <View style={styles.statItem}>
+                  <Text style={styles.statValue}>
+                    {userProgress.totalCertificates}
+                  </Text>
+                  <Text style={styles.statLabel}>
+                    認定証
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+
+          <View style={{ height: Spacing.xl }} />
+        </ScrollView>
+      </SafeAreaView>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+  },
+  safeArea: {
     flex: 1,
   },
   header: {
@@ -250,6 +252,7 @@ const styles = StyleSheet.create({
   appTitle: {
     fontFamily: Fonts.serifBold,
     fontSize: FontSize.xl,
+    color: '#fff',
   },
   levelText: {
     fontFamily: Fonts.sansMedium,
@@ -269,6 +272,7 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.serifSemiBold,
     fontSize: FontSize.xl,
     marginBottom: Spacing.md,
+    color: '#fff',
   },
   viewAll: {
     fontFamily: Fonts.sansMedium,
@@ -294,6 +298,7 @@ const styles = StyleSheet.create({
   loadingText: {
     fontFamily: Fonts.sansRegular,
     fontSize: FontSize.sm,
+    color: Colors.dark.textSecondary,
   },
   dailyImage: {
     width: '100%',
@@ -314,6 +319,7 @@ const styles = StyleSheet.create({
   dailyTitle: {
     fontFamily: Fonts.serifBold,
     fontSize: FontSize.lg,
+    color: '#fff',
   },
   dailyArtist: {
     fontFamily: Fonts.sansRegular,
@@ -328,12 +334,14 @@ const styles = StyleSheet.create({
   xpText: {
     fontFamily: Fonts.sansBold,
     fontSize: FontSize.xs,
+    color: '#fff',
   },
   dailyDescription: {
     fontFamily: Fonts.sansRegular,
     fontSize: FontSize.sm,
     lineHeight: 20,
     marginTop: Spacing.sm,
+    color: Colors.dark.textSecondary,
   },
   dailyFooter: {
     flexDirection: 'row',
@@ -359,6 +367,7 @@ const styles = StyleSheet.create({
   participantText: {
     fontFamily: Fonts.sansRegular,
     fontSize: FontSize.xs,
+    color: Colors.dark.textSecondary,
   },
   startButton: {
     backgroundColor: Colors.primary,
@@ -420,6 +429,7 @@ const styles = StyleSheet.create({
   progressLabel: {
     fontFamily: Fonts.sansRegular,
     fontSize: FontSize.sm,
+    color: Colors.dark.textSecondary,
   },
   progressPercent: {
     fontFamily: Fonts.sansBold,
@@ -447,11 +457,13 @@ const styles = StyleSheet.create({
   statValue: {
     fontFamily: Fonts.sansBold,
     fontSize: FontSize.xxl,
+    color: '#fff',
   },
   statLabel: {
     fontFamily: Fonts.sansRegular,
     fontSize: FontSize.xs,
     marginTop: 4,
+    color: Colors.dark.textSecondary,
   },
   statDivider: {
     width: 1,
