@@ -3,6 +3,8 @@
  * https://metmuseum.github.io/
  */
 
+import { artworkCache } from './cache';
+
 const BASE_URL = 'https://collectionapi.metmuseum.org/public/collection/v1';
 
 // Met APIのレスポンス型
@@ -68,18 +70,26 @@ export const RECOMMENDED_SEARCHES = {
 };
 
 /**
- * 作品詳細を取得
+ * 作品詳細を取得（キャッシュ対応）
  */
 export async function getArtwork(objectId: number): Promise<MetArtworkResponse> {
+  const cacheKey = `artwork-${objectId}`;
+  const cached = artworkCache.get<MetArtworkResponse>(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
   const response = await fetch(`${BASE_URL}/objects/${objectId}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch artwork: ${response.status}`);
   }
-  return response.json();
+  const data = await response.json();
+  artworkCache.set(cacheKey, data);
+  return data;
 }
 
 /**
- * キーワードで作品を検索
+ * キーワードで作品を検索（キャッシュ対応）
  */
 export async function searchArtworks(
   query: string,
@@ -97,15 +107,53 @@ export async function searchArtworks(
   if (options?.departmentId) params.append('departmentId', options.departmentId.toString());
   if (options?.isOnView) params.append('isOnView', 'true');
 
+  const cacheKey = `search-${params.toString()}`;
+  const cached = artworkCache.get<MetSearchResponse>(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
   const response = await fetch(`${BASE_URL}/search?${params}`);
   if (!response.ok) {
     throw new Error(`Failed to search artworks: ${response.status}`);
   }
-  return response.json();
+  const data = await response.json();
+  artworkCache.set(cacheKey, data);
+  return data;
 }
 
 /**
- * ハイライト作品を検索（美術検定向け有名作品）
+ * 複数の作品を並列取得（最適化版）
+ */
+async function fetchArtworksBatch(objectIds: number[]): Promise<(MetArtworkResponse | null)[]> {
+  // 並列で取得（10件ずつのバッチ処理）
+  const batchSize = 10;
+  const results: (MetArtworkResponse | null)[] = [];
+
+  for (let i = 0; i < objectIds.length; i += batchSize) {
+    const batch = objectIds.slice(i, i + batchSize);
+    const batchResults = await Promise.all(
+      batch.map(async (id) => {
+        try {
+          return await getArtwork(id);
+        } catch {
+          return null;
+        }
+      })
+    );
+    results.push(...batchResults);
+
+    // バッチ間で少し待機（レート制限対策、最小限に）
+    if (i + batchSize < objectIds.length) {
+      await new Promise(resolve => setTimeout(resolve, 20));
+    }
+  }
+
+  return results;
+}
+
+/**
+ * ハイライト作品を検索（美術検定向け有名作品）- 最適化版
  */
 export async function getHighlightArtworks(
   query: string,
@@ -120,31 +168,11 @@ export async function getHighlightArtworks(
     return [];
   }
 
-  // 指定数だけ取得（APIレート制限を考慮して控えめに）
-  const objectIds = searchResult.objectIDs.slice(0, Math.min(limit, 10));
+  // 指定数だけ取得
+  const objectIds = searchResult.objectIDs.slice(0, Math.min(limit, 15));
 
-  // バッチ処理で作品詳細を取得（5件ずつ）
-  const artworks: (MetArtworkResponse | null)[] = [];
-  const batchSize = 5;
-
-  for (let i = 0; i < objectIds.length; i += batchSize) {
-    const batch = objectIds.slice(i, i + batchSize);
-    const batchResults = await Promise.all(
-      batch.map(async (id) => {
-        try {
-          return await getArtwork(id);
-        } catch {
-          return null;
-        }
-      })
-    );
-    artworks.push(...batchResults);
-
-    // バッチ間で少し待機
-    if (i + batchSize < objectIds.length) {
-      await new Promise(resolve => setTimeout(resolve, 50));
-    }
-  }
+  // 並列でバッチ取得
+  const artworks = await fetchArtworksBatch(objectIds);
 
   // nullを除外し、画像があるもののみ返す
   return artworks.filter(
@@ -153,6 +181,22 @@ export async function getHighlightArtworks(
       artwork.primaryImage !== '' &&
       artwork.isPublicDomain
   );
+}
+
+/**
+ * 複数のクエリを並列実行して作品を取得（最適化版）
+ */
+export async function getArtworksByQueries(
+  queries: string[],
+  limitPerQuery: number = 10
+): Promise<MetArtworkResponse[]> {
+  // すべてのクエリを並列実行
+  const results = await Promise.all(
+    queries.map(query => getHighlightArtworks(query, limitPerQuery))
+  );
+
+  // 結果をフラット化
+  return results.flat();
 }
 
 /**
@@ -173,16 +217,7 @@ export async function getArtworksByDepartment(
   }
 
   const objectIds = searchResult.objectIDs.slice(0, limit);
-
-  const artworks = await Promise.all(
-    objectIds.map(async (id) => {
-      try {
-        return await getArtwork(id);
-      } catch {
-        return null;
-      }
-    })
-  );
+  const artworks = await fetchArtworksBatch(objectIds);
 
   return artworks.filter(
     (artwork): artwork is MetArtworkResponse =>
@@ -194,7 +229,7 @@ export async function getArtworksByDepartment(
 
 /**
  * 美術検定向けの作品セットを取得
- * 各ジャンルからバランスよく取得
+ * 各ジャンルからバランスよく取得（最適化版）
  */
 export async function getArtExamArtworks(limitPerCategory: number = 5): Promise<MetArtworkResponse[]> {
   const categories = [
@@ -205,19 +240,13 @@ export async function getArtExamArtworks(limitPerCategory: number = 5): Promise<
     { queries: RECOMMENDED_SEARCHES.MODERN, name: 'Modern' },
   ];
 
-  const allArtworks: MetArtworkResponse[] = [];
+  // 各カテゴリからランダムに1つのアーティストを選択
+  const selectedQueries = categories.map(
+    category => category.queries[Math.floor(Math.random() * category.queries.length)]
+  );
 
-  for (const category of categories) {
-    // 各カテゴリからランダムに1つのアーティストを選択
-    const randomQuery = category.queries[Math.floor(Math.random() * category.queries.length)];
-
-    try {
-      const artworks = await getHighlightArtworks(randomQuery, limitPerCategory);
-      allArtworks.push(...artworks);
-    } catch (error) {
-      console.warn(`Failed to fetch ${category.name} artworks:`, error);
-    }
-  }
+  // 並列で取得
+  const allArtworks = await getArtworksByQueries(selectedQueries, limitPerCategory);
 
   // シャッフルして返す
   return allArtworks.sort(() => Math.random() - 0.5);
@@ -227,10 +256,17 @@ export async function getArtExamArtworks(limitPerCategory: number = 5): Promise<
  * 部門一覧を取得
  */
 export async function getDepartments(): Promise<MetDepartment[]> {
+  const cacheKey = 'departments';
+  const cached = artworkCache.get<MetDepartment[]>(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
   const response = await fetch(`${BASE_URL}/departments`);
   if (!response.ok) {
     throw new Error(`Failed to fetch departments: ${response.status}`);
   }
   const data: MetDepartmentsResponse = await response.json();
+  artworkCache.set(cacheKey, data.departments);
   return data.departments;
 }

@@ -3,7 +3,7 @@ import { Artwork, QuizQuestion } from '../types';
 import {
   getHighlightArtworks,
   getArtExamArtworks,
-  searchArtworks,
+  getArtworksByQueries,
   getArtwork,
   RECOMMENDED_SEARCHES,
   MetArtworkResponse,
@@ -94,7 +94,31 @@ export function useSearchArtworks(query: string, limit: number = 20): UseArtwork
 }
 
 /**
- * 時代/カテゴリ別に作品を取得するフック
+ * 時代別クエリを取得
+ */
+function getQueriesForEra(era: string): string[] {
+  switch (era) {
+    case 'renaissance':
+      return RECOMMENDED_SEARCHES.RENAISSANCE;
+    case 'baroque':
+      return RECOMMENDED_SEARCHES.BAROQUE;
+    case 'impressionism':
+      return [...RECOMMENDED_SEARCHES.IMPRESSIONISM, ...RECOMMENDED_SEARCHES.POST_IMPRESSIONISM];
+    case 'modern':
+      return RECOMMENDED_SEARCHES.MODERN;
+    case 'japanese':
+      return RECOMMENDED_SEARCHES.JAPANESE;
+    default:
+      return [
+        ...RECOMMENDED_SEARCHES.RENAISSANCE.slice(0, 3),
+        ...RECOMMENDED_SEARCHES.IMPRESSIONISM.slice(0, 3),
+        ...RECOMMENDED_SEARCHES.BAROQUE.slice(0, 3),
+      ];
+  }
+}
+
+/**
+ * 時代/カテゴリ別に作品を取得するフック（最適化版）
  */
 export function useArtworksByEra(
   era: 'renaissance' | 'baroque' | 'impressionism' | 'modern' | 'japanese' | 'all',
@@ -109,46 +133,12 @@ export function useArtworksByEra(
     setError(null);
 
     try {
-      let queries: string[];
-
-      switch (era) {
-        case 'renaissance':
-          queries = RECOMMENDED_SEARCHES.RENAISSANCE;
-          break;
-        case 'baroque':
-          queries = RECOMMENDED_SEARCHES.BAROQUE;
-          break;
-        case 'impressionism':
-          queries = [...RECOMMENDED_SEARCHES.IMPRESSIONISM, ...RECOMMENDED_SEARCHES.POST_IMPRESSIONISM];
-          break;
-        case 'modern':
-          queries = RECOMMENDED_SEARCHES.MODERN;
-          break;
-        case 'japanese':
-          queries = RECOMMENDED_SEARCHES.JAPANESE;
-          break;
-        default:
-          queries = [
-            ...RECOMMENDED_SEARCHES.RENAISSANCE,
-            ...RECOMMENDED_SEARCHES.IMPRESSIONISM,
-            ...RECOMMENDED_SEARCHES.BAROQUE,
-          ];
-      }
-
-      // クエリを制限してAPI負荷を軽減（最大4クエリ）
+      const queries = getQueriesForEra(era);
+      // クエリを制限してAPI負荷を軽減（最大4クエリ、ランダム選択）
       const selectedQueries = queries.sort(() => Math.random() - 0.5).slice(0, 4);
-      const allArtworks: MetArtworkResponse[] = [];
 
-      for (const query of selectedQueries) {
-        try {
-          const results = await getHighlightArtworks(query, 15);
-          allArtworks.push(...results);
-          // APIレート制限を回避するため少し待機
-          await new Promise(resolve => setTimeout(resolve, 100));
-        } catch (e) {
-          console.warn(`Failed to fetch artworks for query: ${query}`);
-        }
-      }
+      // 並列で全クエリを実行
+      const allArtworks = await getArtworksByQueries(selectedQueries, 10);
 
       const converted = convertMetArtworks(allArtworks);
       // シャッフルして返す
@@ -169,7 +159,7 @@ export function useArtworksByEra(
 }
 
 /**
- * クイズ問題を生成するフック
+ * クイズ問題を生成するフック（最適化版）
  */
 export function useQuiz(
   era: 'renaissance' | 'baroque' | 'impressionism' | 'modern' | 'japanese' | 'all' = 'all',
@@ -184,47 +174,12 @@ export function useQuiz(
     setError(null);
 
     try {
-      let queries: string[];
-
-      switch (era) {
-        case 'renaissance':
-          queries = RECOMMENDED_SEARCHES.RENAISSANCE;
-          break;
-        case 'baroque':
-          queries = RECOMMENDED_SEARCHES.BAROQUE;
-          break;
-        case 'impressionism':
-          queries = [...RECOMMENDED_SEARCHES.IMPRESSIONISM, ...RECOMMENDED_SEARCHES.POST_IMPRESSIONISM];
-          break;
-        case 'modern':
-          queries = RECOMMENDED_SEARCHES.MODERN;
-          break;
-        case 'japanese':
-          queries = RECOMMENDED_SEARCHES.JAPANESE;
-          break;
-        default:
-          queries = [
-            ...RECOMMENDED_SEARCHES.RENAISSANCE.slice(0, 2),
-            ...RECOMMENDED_SEARCHES.IMPRESSIONISM.slice(0, 2),
-            ...RECOMMENDED_SEARCHES.BAROQUE.slice(0, 2),
-            ...RECOMMENDED_SEARCHES.JAPANESE.slice(0, 2),
-          ];
-      }
-
+      const queries = getQueriesForEra(era);
       // クエリを制限してAPI負荷を軽減（最大4クエリ）
       const selectedQueries = queries.slice(0, 4);
-      const allArtworks: MetArtworkResponse[] = [];
 
-      for (const query of selectedQueries) {
-        try {
-          const results = await getHighlightArtworks(query, 15);
-          allArtworks.push(...results);
-          // APIレート制限を回避するため少し待機
-          await new Promise(resolve => setTimeout(resolve, 100));
-        } catch (e) {
-          console.warn(`Failed to fetch artworks for query: ${query}`);
-        }
-      }
+      // 並列で全クエリを実行
+      const allArtworks = await getArtworksByQueries(selectedQueries, 10);
 
       const converted = convertMetArtworks(allArtworks);
 
