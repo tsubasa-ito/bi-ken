@@ -5,11 +5,9 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  useColorScheme,
   ActivityIndicator,
   ScrollView,
-  KeyboardAvoidingView,
-  Platform,
+  Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -18,14 +16,14 @@ import { Colors, Spacing, BorderRadius, FontSize } from '../../src/constants/col
 import { Fonts } from '../../src/constants/fonts';
 import { useQuiz } from '../../src/hooks/useArtworks';
 
+const { width } = Dimensions.get('window');
+const IMAGE_WIDTH = width - Spacing.lg * 2;
+
 type EraType = 'renaissance' | 'baroque' | 'impressionism' | 'modern' | 'japanese' | 'all';
 
 export default function QuizScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
-  const colors = isDark ? Colors.dark : Colors.light;
 
   // IDから時代を判定
   const getEraFromId = (quizId: string): EraType => {
@@ -80,40 +78,49 @@ export default function QuizScreen() {
   const getOptionStyle = (option: string) => {
     if (!showResult) {
       return selectedAnswer === option
-        ? { borderColor: Colors.primary, backgroundColor: 'rgba(74, 123, 247, 0.1)' }
-        : { borderColor: colors.border };
+        ? { borderColor: Colors.primary, backgroundColor: 'rgba(74, 123, 247, 0.08)' }
+        : { borderColor: '#E5E7EB' };
     }
 
     if (option === currentQuestion?.correctAnswer) {
-      return { borderColor: Colors.success, backgroundColor: 'rgba(76, 175, 80, 0.1)' };
+      return { borderColor: Colors.success, backgroundColor: 'rgba(76, 175, 80, 0.08)' };
     }
 
     if (selectedAnswer === option && option !== currentQuestion?.correctAnswer) {
-      return { borderColor: Colors.error, backgroundColor: 'rgba(255, 107, 107, 0.1)' };
+      return { borderColor: Colors.error, backgroundColor: 'rgba(255, 107, 107, 0.08)' };
     }
 
-    return { borderColor: colors.border };
+    return { borderColor: '#E5E7EB' };
+  };
+
+  const getOptionTextColor = (option: string) => {
+    if (!showResult) {
+      return selectedAnswer === option ? Colors.primary : '#374151';
+    }
+    if (option === currentQuestion?.correctAnswer) {
+      return Colors.success;
+    }
+    if (selectedAnswer === option && option !== currentQuestion?.correctAnswer) {
+      return Colors.error;
+    }
+    return '#374151';
   };
 
   // ローディング表示
   if (loading) {
     return (
-      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+      <SafeAreaView style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={handleClose}>
-            <Ionicons name="close" size={28} color={colors.text} />
+          <TouchableOpacity onPress={handleClose} style={styles.headerButton}>
+            <Ionicons name="close" size={24} color="#374151" />
           </TouchableOpacity>
-          <Text style={[styles.headerTitle, { color: colors.text }]}>美術検定</Text>
-          <View style={{ width: 28 }} />
+          <Text style={styles.headerTitle}>美術検定</Text>
+          <View style={styles.headerButton} />
         </View>
         <View style={styles.loading}>
           <ActivityIndicator size="large" color={Colors.primary} />
-          <Text style={[styles.loadingText, { color: colors.textSecondary }]}>
-            作品を読み込み中...
-          </Text>
-          <Text style={[styles.loadingSubtext, { color: colors.textTertiary }]}>
-            メトロポリタン美術館から取得しています
-          </Text>
+          <Text style={styles.loadingText}>作品を読み込み中...</Text>
+          <Text style={styles.loadingSubtext}>メトロポリタン美術館から取得しています</Text>
         </View>
       </SafeAreaView>
     );
@@ -122,19 +129,17 @@ export default function QuizScreen() {
   // エラー表示
   if (error || !currentQuestion) {
     return (
-      <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+      <SafeAreaView style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={handleClose}>
-            <Ionicons name="close" size={28} color={colors.text} />
+          <TouchableOpacity onPress={handleClose} style={styles.headerButton}>
+            <Ionicons name="close" size={24} color="#374151" />
           </TouchableOpacity>
-          <Text style={[styles.headerTitle, { color: colors.text }]}>美術検定</Text>
-          <View style={{ width: 28 }} />
+          <Text style={styles.headerTitle}>美術検定</Text>
+          <View style={styles.headerButton} />
         </View>
         <View style={styles.loading}>
           <Ionicons name="alert-circle-outline" size={48} color={Colors.error} />
-          <Text style={[styles.loadingText, { color: colors.text }]}>
-            読み込みに失敗しました
-          </Text>
+          <Text style={styles.loadingText}>読み込みに失敗しました</Text>
           <TouchableOpacity style={styles.retryButton} onPress={refetch}>
             <Text style={styles.retryButtonText}>再試行</Text>
           </TouchableOpacity>
@@ -144,19 +149,18 @@ export default function QuizScreen() {
   }
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+    <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={handleClose}>
-          <Ionicons name="close" size={28} color={colors.text} />
+        <TouchableOpacity onPress={handleClose} style={styles.headerButton}>
+          <Ionicons name="close" size={24} color="#374151" />
         </TouchableOpacity>
-        <Text style={[styles.headerTitle, { color: colors.text }]}>美術検定</Text>
-        <TouchableOpacity>
-          <Ionicons name="information-circle-outline" size={28} color={colors.text} />
+        <Text style={styles.headerTitle}>美術検定</Text>
+        <TouchableOpacity style={styles.headerButton}>
+          <Ionicons name="information-circle-outline" size={24} color="#374151" />
         </TouchableOpacity>
       </View>
 
-      {/* Scrollable Content */}
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
@@ -165,19 +169,19 @@ export default function QuizScreen() {
         {/* Progress */}
         <View style={styles.progressSection}>
           <View style={styles.progressHeader}>
-            <Text style={[styles.progressLabel, { color: colors.text }]}>進捗</Text>
-            <Text style={[styles.progressCount, { color: Colors.primary }]}>
+            <Text style={styles.progressLabel}>進捗</Text>
+            <Text style={styles.progressCount}>
               {currentIndex + 1} / {totalQuestions}
             </Text>
           </View>
-          <View style={[styles.progressBar, { backgroundColor: colors.surfaceSecondary }]}>
+          <View style={styles.progressBar}>
             <View style={[styles.progressFill, { width: `${progress}%` }]} />
           </View>
         </View>
 
-        {/* Artwork Image */}
-        <View style={styles.imageWrapper}>
-          <View style={[styles.imageContainer, { backgroundColor: colors.surfaceSecondary }]}>
+        {/* Artwork Image with Frame */}
+        <View style={styles.frameContainer}>
+          <View style={styles.frame}>
             <Image
               source={{ uri: currentQuestion.artwork.imageUrl }}
               style={styles.artworkImage}
@@ -190,19 +194,19 @@ export default function QuizScreen() {
         <View style={styles.questionSection}>
           {showResult ? (
             <>
-              <Text style={[styles.artworkTitle, { color: colors.text }]}>
+              <Text style={styles.artworkTitle}>
                 『{currentQuestion.artwork.title}』
               </Text>
-              <Text style={[styles.correctAnswerLabel, { color: Colors.primary }]}>
+              <Text style={styles.correctAnswerLabel}>
                 作者: {currentQuestion.correctAnswer}
               </Text>
             </>
           ) : (
             <>
-              <Text style={[styles.questionText, { color: colors.text }]}>
+              <Text style={styles.questionText}>
                 {currentQuestion.question}
               </Text>
-              <Text style={[styles.questionHint, { color: colors.textSecondary }]}>
+              <Text style={styles.questionHint}>
                 下の選択肢から正しい作者を選んでください
               </Text>
             </>
@@ -214,26 +218,18 @@ export default function QuizScreen() {
           {currentQuestion.options.map((option, index) => (
             <TouchableOpacity
               key={index}
-              style={[
-                styles.optionButton,
-                { backgroundColor: colors.surface },
-                getOptionStyle(option),
-              ]}
+              style={[styles.optionButton, getOptionStyle(option)]}
               onPress={() => handleSelectAnswer(option)}
               disabled={showResult}
             >
-              <Text style={[styles.optionText, { color: colors.text }]}>{option}</Text>
+              <Text style={[styles.optionText, { color: getOptionTextColor(option) }]}>
+                {option}
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
 
-        {/* Spacer for bottom content */}
-        <View style={{ height: Spacing.xl }} />
-      </ScrollView>
-
-      {/* Fixed Bottom Area */}
-      <View style={[styles.bottomArea, { backgroundColor: colors.background }]}>
-        {/* Next Button (shows after answering) */}
+        {/* Next Button */}
         {showResult && (
           <TouchableOpacity style={styles.nextButton} onPress={handleNext}>
             <Text style={styles.nextButtonText}>
@@ -243,21 +239,17 @@ export default function QuizScreen() {
           </TouchableOpacity>
         )}
 
-        {/* Footer */}
-        <View style={[styles.footer, { borderTopColor: colors.border }]}>
-          <TouchableOpacity style={styles.footerButton}>
-            <Ionicons name="bulb-outline" size={20} color={Colors.primary} />
-            <Text style={[styles.footerButtonText, { color: Colors.primary }]}>ヒント</Text>
-          </TouchableOpacity>
-          <View style={styles.footerRight}>
-            <TouchableOpacity style={styles.footerIcon}>
-              <Ionicons name="bookmark-outline" size={24} color={colors.textSecondary} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.footerIcon}>
-              <Ionicons name="share-outline" size={24} color={colors.textSecondary} />
-            </TouchableOpacity>
-          </View>
-        </View>
+        <View style={{ height: Spacing.xl }} />
+      </ScrollView>
+
+      {/* Footer */}
+      <View style={styles.footer}>
+        <TouchableOpacity style={styles.footerIcon}>
+          <Ionicons name="bookmark-outline" size={24} color="#9CA3AF" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.footerIcon}>
+          <Ionicons name="share-outline" size={24} color="#9CA3AF" />
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -266,15 +258,13 @@ export default function QuizScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#FFFFFF',
   },
   scrollView: {
     flex: 1,
   },
   scrollContent: {
     flexGrow: 1,
-  },
-  bottomArea: {
-    paddingBottom: Spacing.sm,
   },
   loading: {
     flex: 1,
@@ -285,11 +275,13 @@ const styles = StyleSheet.create({
   loadingText: {
     fontFamily: Fonts.sansMedium,
     fontSize: FontSize.lg,
+    color: '#374151',
     marginTop: Spacing.md,
   },
   loadingSubtext: {
     fontFamily: Fonts.sansRegular,
     fontSize: FontSize.sm,
+    color: '#9CA3AF',
   },
   retryButton: {
     marginTop: Spacing.lg,
@@ -307,35 +299,51 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: Spacing.lg,
-    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.sm,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F3F4F6',
+  },
+  headerButton: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   headerTitle: {
-    fontFamily: Fonts.serifSemiBold,
-    fontSize: FontSize.md,
+    fontFamily: Fonts.sansBold,
+    fontSize: FontSize.sm,
+    color: '#374151',
+    letterSpacing: 1,
+    textTransform: 'uppercase',
   },
   progressSection: {
     paddingHorizontal: Spacing.lg,
-    marginBottom: Spacing.md,
+    paddingTop: Spacing.md,
+    paddingBottom: Spacing.sm,
   },
   progressHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: Spacing.sm,
+    marginBottom: Spacing.xs,
   },
   progressLabel: {
-    fontFamily: Fonts.sansMedium,
+    fontFamily: Fonts.sansBold,
     fontSize: FontSize.xs,
+    color: '#6B7280',
     letterSpacing: 1,
+    textTransform: 'uppercase',
   },
   progressCount: {
     fontFamily: Fonts.sansBold,
     fontSize: FontSize.sm,
+    color: Colors.primary,
   },
   progressBar: {
     height: 6,
     borderRadius: 3,
+    backgroundColor: '#E5E7EB',
     overflow: 'hidden',
   },
   progressFill: {
@@ -343,87 +351,74 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     borderRadius: 3,
   },
-  imageWrapper: {
+  frameContainer: {
     paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.md,
     alignItems: 'center',
   },
-  imageContainer: {
-    width: '100%',
+  frame: {
+    width: IMAGE_WIDTH,
+    backgroundColor: '#F9FAFB',
     borderRadius: BorderRadius.lg,
-    overflow: 'hidden',
-    height: 220,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: Spacing.md,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
+    elevation: 2,
   },
   artworkImage: {
     width: '100%',
-    height: '100%',
+    height: 280,
+    borderRadius: BorderRadius.md,
   },
   questionSection: {
     paddingHorizontal: Spacing.lg,
-    marginTop: Spacing.md,
+    paddingVertical: Spacing.md,
+    alignItems: 'center',
   },
   questionText: {
     fontFamily: Fonts.serifBold,
     fontSize: FontSize.xl,
+    color: '#111827',
     textAlign: 'center',
   },
   questionHint: {
     fontFamily: Fonts.sansRegular,
     fontSize: FontSize.sm,
+    color: '#6B7280',
     textAlign: 'center',
-    marginTop: Spacing.sm,
+    marginTop: Spacing.xs,
+    fontStyle: 'italic',
   },
   artworkTitle: {
     fontFamily: Fonts.serifBold,
     fontSize: FontSize.xl,
+    color: '#111827',
     textAlign: 'center',
   },
   correctAnswerLabel: {
     fontFamily: Fonts.sansMedium,
     fontSize: FontSize.md,
+    color: Colors.primary,
     textAlign: 'center',
     marginTop: Spacing.sm,
   },
   optionsContainer: {
     paddingHorizontal: Spacing.lg,
-    marginTop: Spacing.md,
-    gap: Spacing.xs,
+    gap: Spacing.sm,
   },
   optionButton: {
     borderWidth: 2,
-    borderRadius: BorderRadius.lg,
-    paddingVertical: Spacing.sm,
-    paddingHorizontal: Spacing.md,
+    borderRadius: BorderRadius.full,
+    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.lg,
+    backgroundColor: '#FFFFFF',
   },
   optionText: {
     fontFamily: Fonts.sansMedium,
-    fontSize: FontSize.sm,
+    fontSize: FontSize.md,
     textAlign: 'center',
-  },
-  footer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: Spacing.lg,
-    paddingVertical: Spacing.md,
-    borderTopWidth: 1,
-  },
-  footerButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.xs,
-  },
-  footerButtonText: {
-    fontFamily: Fonts.sansMedium,
-    fontSize: FontSize.sm,
-  },
-  footerRight: {
-    flexDirection: 'row',
-    gap: Spacing.md,
-  },
-  footerIcon: {
-    padding: Spacing.xs,
   },
   nextButton: {
     flexDirection: 'row',
@@ -432,8 +427,7 @@ const styles = StyleSheet.create({
     gap: Spacing.sm,
     backgroundColor: Colors.primary,
     marginHorizontal: Spacing.lg,
-    marginTop: Spacing.sm,
-    marginBottom: Spacing.sm,
+    marginTop: Spacing.lg,
     paddingVertical: Spacing.md,
     borderRadius: BorderRadius.full,
   },
@@ -441,5 +435,19 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.sansBold,
     color: '#fff',
     fontSize: FontSize.md,
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    gap: Spacing.md,
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.md,
+    borderTopWidth: 1,
+    borderTopColor: '#F3F4F6',
+    backgroundColor: '#FFFFFF',
+  },
+  footerIcon: {
+    padding: Spacing.xs,
   },
 });

@@ -69,8 +69,8 @@ export default function RootLayout() {
         <Stack.Screen
           name="quiz/[id]"
           options={{
-            presentation: 'modal',
-            animation: 'slide_from_bottom',
+            presentation: 'card',
+            animation: 'slide_from_right',
           }}
         />
         <Stack.Screen
