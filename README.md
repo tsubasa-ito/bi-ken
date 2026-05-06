@@ -29,13 +29,20 @@
 
 ## 技術スタック
 
+### iOS ネイティブ（BiKenSwift/ - メイン開発）
+
+- **Language**: Swift 6
+- **UI Framework**: SwiftUI
+- **Architecture**: `@Observable` + `@MainActor` ViewModel
+- **Navigation**: NavigationStack + TabView
+- **Networking**: URLSession async/await
+- **Target**: iOS 17.0+
+
+### React Native（旧実装・参照用）
+
 - **Framework**: React Native + Expo (SDK 54)
 - **Navigation**: Expo Router
 - **Language**: TypeScript
-- **Styling**: React Native StyleSheet
-- **Fonts**: Noto Sans JP / Noto Serif JP (Google Fonts)
-- **Icons**: @expo/vector-icons (Ionicons)
-- **Graphics**: react-native-svg, expo-linear-gradient
 
 ## セットアップ
 
