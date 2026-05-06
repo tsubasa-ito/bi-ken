@@ -23,13 +23,10 @@
 
 ### 進捗管理
 - 習熟度をパーセンテージで可視化
-- 時代別の進捗グラフ
-- 連続学習日数、学習時間の記録
+- 連続学習日数・学習作品数の記録
 - 合格までの目安を表示
 
 ## 技術スタック
-
-### iOS ネイティブ（BiKenSwift/ - メイン開発）
 
 - **Language**: Swift 6
 - **UI Framework**: SwiftUI
@@ -38,121 +35,84 @@
 - **Networking**: URLSession async/await
 - **Target**: iOS 17.0+
 
-### React Native（旧実装・参照用）
-
-- **Framework**: React Native + Expo (SDK 54)
-- **Navigation**: Expo Router
-- **Language**: TypeScript
-
 ## セットアップ
 
 ### 前提条件
 
-- Node.js 18以上
-- npm または yarn
-- Expo Go アプリ（iOS/Android）またはシミュレーター
+- Xcode 16 以上
+- [xcodegen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`)
+- iOS 17 以上のシミュレーターまたは実機
 
-### インストール
+### ビルド方法
 
 ```bash
 # リポジトリをクローン
 git clone <repository-url>
 cd bi-ken
 
-# 依存関係をインストール
-npm install
+# Xcode プロジェクトを生成
+xcodegen generate
 
-# 開発サーバーを起動
-npm start
+# Xcode で開く
+open BiKen.xcodeproj
 ```
 
-### 実行方法
+### コマンドラインビルド
 
 ```bash
-# 開発サーバー起動（QRコード表示）
-npx expo start --ios --clear
+# ビルド（iOSシミュレーター向け）
+xcodebuild -target BiKen -sdk iphonesimulator -arch arm64 build SYMROOT=/tmp/biken-products
 
-# iOSシミュレーターで起動
-npm run ios
-
-# Androidエミュレーターで起動
-npm run android
-
-# Webブラウザで起動
-npm run web
+# シミュレーターにインストールして起動
+xcrun simctl install booted /tmp/biken-products/Debug-iphonesimulator/BiKen.app
+xcrun simctl launch booted com.tebasakin.biken
 ```
 
 ## プロジェクト構成
 
 ```
 bi-ken/
-├── app/                      # Expo Router ページ
-│   ├── (tabs)/              # タブナビゲーション
-│   │   ├── _layout.tsx      # タブレイアウト
-│   │   ├── index.tsx        # ホーム画面
-│   │   ├── collection.tsx   # コレクション画面
-│   │   ├── progress.tsx     # 進捗画面
-│   │   └── settings.tsx     # 設定画面
-│   ├── quiz/
-│   │   └── [id].tsx         # クイズ画面
-│   ├── artwork/
-│   │   └── [id].tsx         # 作品詳細画面
-│   └── _layout.tsx          # ルートレイアウト
-├── src/
-│   ├── constants/
-│   │   ├── colors.ts        # カラーパレット・スペーシング
-│   │   └── fonts.ts         # フォント定義
-│   ├── data/
-│   │   └── artworks.ts      # サンプル作品データ
-│   └── types/
-│       └── index.ts         # TypeScript型定義
-├── assets/                   # 画像・アイコン
-├── app.json                  # Expo設定
-├── package.json
-└── tsconfig.json
+├── BiKen/
+│   ├── App/
+│   │   └── BiKenApp.swift       # エントリーポイント
+│   ├── Models/                  # データモデル
+│   │   ├── Artwork.swift
+│   │   ├── Era.swift
+│   │   ├── QuizQuestion.swift
+│   │   └── UserProgress.swift
+│   ├── Services/                # APIサービス
+│   │   ├── MetMuseumAPIService.swift
+│   │   ├── ArtworkCache.swift
+│   │   └── ArtworkConverter.swift
+│   ├── ViewModels/              # @Observable ViewModel
+│   │   ├── HomeViewModel.swift
+│   │   ├── QuizViewModel.swift
+│   │   └── CollectionViewModel.swift
+│   ├── Views/                   # SwiftUI ビュー
+│   │   ├── Home/
+│   │   ├── Quiz/
+│   │   ├── Collection/
+│   │   ├── Artwork/
+│   │   └── ...
+│   └── Extensions/              # Color+Theme.swift 等
+├── project.yml                  # xcodegen 設定
+├── docs/                        # 参考資料
+└── bijutsu-kentei.pen           # デザインファイル
 ```
 
 ## 画面遷移
 
 ```
 ホーム
-├── 今日の一問 → クイズ → 解説 → (次の問題 / ホーム)
-├── 時代別学習 → クイズ → 解説 → (次の問題 / ホーム)
-└── 進捗サマリー
+├── 今日の一問 → クイズ → 結果 → (次の問題 / ホーム)
+└── 時代から学ぶ → クイズ → 結果
 
 コレクション
-└── 作品タップ → 作品詳細（解説アーカイブ）
+└── 作品タップ → 作品詳細
 
 進捗
-└── 習熟度・時代別グラフ表示
+└── 習熟度・連続日数・取得認定証
 
 設定
-└── アカウント・学習設定・表示設定
+└── 各種設定
 ```
-
-## カスタマイズ
-
-### 作品データの追加
-
-`src/data/artworks.ts` に作品を追加できます：
-
-```typescript
-{
-  id: '9',
-  title: '作品名',
-  artist: '作家名',
-  year: 1900,
-  medium: '技法',
-  movement: '様式',
-  era: 'Renaissance', // Renaissance | Baroque | Impressionism | Modern Art | Japanese Art | Contemporary
-  imageUrl: 'https://...',
-  description: '作品解説...',
-  examKeyPoint: '検定のポイント...',
-  difficulty: 'Easy', // Easy | Medium | Hard
-  correctRate: 75,
-}
-```
-
-### テーマカラーの変更
-
-`src/constants/colors.ts` でカラーパレットを変更できます。
