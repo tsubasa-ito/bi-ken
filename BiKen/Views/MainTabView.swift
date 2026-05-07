@@ -9,9 +9,6 @@ struct MainTabView: View {
             CollectionView()
                 .tabItem { Label("コレクション", systemImage: "photo.stack.fill") }
 
-            ProgressView_()
-                .tabItem { Label("学習記録", systemImage: "chart.bar.fill") }
-
             SettingsView()
                 .tabItem { Label("設定", systemImage: "gearshape.fill") }
         }
