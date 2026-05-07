@@ -3,30 +3,39 @@ import SwiftUI
 struct HomeView: View {
     @State private var vm = HomeViewModel()
     @State private var navigationPath = NavigationPath()
+    @State private var showEraSheet = false
+    private let progress = UserProgress.shared
 
     var body: some View {
         NavigationStack(path: $navigationPath) {
-            ZStack {
-                LinearGradient(colors: [Color(hex: "0D1117"), Color(hex: "161B22")],
-                               startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea()
+            ScrollView {
+                VStack(alignment: .leading, spacing: 0) {
+                    headerSection
+                    Divider().overlay(Color.appBorder).padding(.top, 8)
 
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 24) {
-                        headerView
-                        dailyChallengeSection
-                        eraSection
-                        progressSection
+                    VStack(alignment: .leading, spacing: 16) {
+                        streakBox
+                        ctaCard
+                        modeSection
                     }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 16)
                     .padding(.bottom, 32)
                 }
             }
+            .background(Color.appBackground.ignoresSafeArea())
             .navigationBarHidden(true)
-            .navigationDestination(for: String.self) { quizID in
-                QuizView(eraID: quizID)
+            .navigationDestination(for: QuizMode.self) { mode in
+                QuizView(mode: mode)
             }
             .navigationDestination(for: Artwork.self) { artwork in
                 ArtworkDetailView(artwork: artwork)
+            }
+            .sheet(isPresented: $showEraSheet) {
+                EraSelectionSheet { era in
+                    showEraSheet = false
+                    navigationPath.append(QuizMode.era(era))
+                }
             }
         }
         .task { await vm.load() }
@@ -34,245 +43,302 @@ struct HomeView: View {
 
     // MARK: Header
 
-    private var headerView: some View {
-        HStack {
-            HStack(spacing: 12) {
-                Circle()
-                    .fill(Color.appSurfaceSecondary)
-                    .frame(width: 40, height: 40)
-                    .overlay { Image(systemName: "person").foregroundStyle(.white) }
-
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("美術検定")
-                        .font(.title2.bold())
-                        .foregroundStyle(.white)
-                    Text("レベル \(UserProgress.shared.level)　\(UserProgress.shared.levelTitle)")
-                        .font(.caption)
-                        .foregroundStyle(.appPrimary)
-                }
+    private var headerSection: some View {
+        HStack(alignment: .bottom) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text("おかえりなさい")
+                    .font(.system(size: 12, weight: .regular))
+                    .foregroundStyle(.appTextSecondary)
+                Text("美術検定 4級")
+                    .font(.system(size: 22, weight: .bold, design: .serif))
+                    .foregroundStyle(.appText)
             }
             Spacer()
-            Image(systemName: "magnifyingglass")
-                .font(.title3)
-                .foregroundStyle(.white)
+            Circle()
+                .fill(Color.appCardBG)
+                .frame(width: 38, height: 38)
+                .overlay(
+                    Circle().stroke(Color.appBorder, lineWidth: 1.5)
+                )
+                .overlay(
+                    Text("U")
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundStyle(.appTextSecondary)
+                )
         }
         .padding(.horizontal, 20)
-        .padding(.top, 8)
+        .padding(.top, 52)
+        .padding(.bottom, 8)
     }
 
-    // MARK: Daily Challenge
+    // MARK: Streak Box
 
-    private var dailyChallengeSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("今日の一問")
-                .font(.title3.bold())
-                .foregroundStyle(.white)
-                .padding(.horizontal, 20)
-
-            if vm.isLoading {
-                loadingCard
-            } else if let artwork = vm.dailyArtwork {
-                dailyCard(artwork: artwork)
-            } else {
-                errorCard
-            }
-        }
-    }
-
-    private var loadingCard: some View {
-        RoundedRectangle(cornerRadius: 16)
-            .fill(Color.appSurface)
-            .frame(minHeight: 280)
-            .overlay {
-                VStack(spacing: 12) {
-                    ProgressView().tint(.appPrimary)
-                    Text("作品を読み込み中...").font(.caption).foregroundStyle(.appTextSecondary)
-                }
-            }
-            .padding(.horizontal, 20)
-    }
-
-    private var errorCard: some View {
-        RoundedRectangle(cornerRadius: 16)
-            .fill(Color.appSurface)
-            .frame(minHeight: 180)
-            .overlay {
-                VStack(spacing: 12) {
-                    Image(systemName: "exclamationmark.circle").font(.title).foregroundStyle(.appError)
-                    Text("読み込みに失敗しました").font(.caption).foregroundStyle(.appTextSecondary)
-                }
-            }
-            .padding(.horizontal, 20)
-    }
-
-    private func dailyCard(artwork: Artwork) -> some View {
-        VStack(alignment: .leading, spacing: 0) {
-            AsyncImage(url: artwork.imageURL) { image in
-                image.resizable().scaledToFill()
-            } placeholder: {
-                Color.appSurfaceSecondary
-            }
-            .frame(height: 180)
-            .clipped()
-
-            VStack(alignment: .leading, spacing: 8) {
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(artwork.displayTitle)
-                            .font(.headline.bold())
-                            .foregroundStyle(.white)
-                            .lineLimit(1)
-                        Text("\(artwork.displayArtist)\(artwork.year.map { "、\($0)年" } ?? "")")
-                            .font(.caption)
-                            .foregroundStyle(.appPrimary)
-                    }
-                    Spacer()
-                    Text("50 XP")
-                        .font(.caption.bold())
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(Color.appSurfaceSecondary, in: RoundedRectangle(cornerRadius: 6))
-                }
-
-                Text("この作品の作者を当ててみましょう。美術検定の基礎問題です。")
-                    .font(.caption)
+    private var streakBox: some View {
+        HStack(spacing: 0) {
+            Text("🔥")
+                .font(.system(size: 22))
+                .padding(.leading, 14)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("\(progress.currentStreak)日連続学習中！")
+                    .font(.system(size: 16, weight: .semibold, design: .serif))
+                    .foregroundStyle(.appText)
+                Text(dailyGoalText)
+                    .font(.system(size: 11))
                     .foregroundStyle(.appTextSecondary)
-                    .lineLimit(2)
-
-                HStack {
-                    HStack(spacing: -8) {
-                        ForEach(0..<3, id: \.self) { i in
-                            Circle()
-                                .fill(Color.appPrimary)
-                                .frame(width: 24, height: 24)
-                                .overlay { Circle().strokeBorder(.white, lineWidth: 2) }
-                        }
-                    }
-                    Text("本日 1.2千人が挑戦中")
-                        .font(.caption2)
-                        .foregroundStyle(.appTextSecondary)
-
-                    Spacer()
-
-                    Button {
-                        navigationPath.append("daily")
-                    } label: {
-                        Text("挑戦する")
-                            .font(.caption.bold())
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .background(Color.appPrimary, in: Capsule())
-                    }
-                }
             }
-            .padding(16)
-        }
-        .background(Color.appSurface, in: RoundedRectangle(cornerRadius: 16))
-        .padding(.horizontal, 20)
-    }
-
-    // MARK: Era Section
-
-    private var eraSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack {
-                Text("時代から学ぶ")
-                    .font(.title3.bold())
+            .padding(.leading, 10)
+            Spacer()
+            ZStack {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.appPrimary)
+                    .frame(width: 32, height: 32)
+                Text("\(progress.currentXP)")
+                    .font(.system(size: 11, weight: .bold))
                     .foregroundStyle(.white)
-                Spacer()
-                Text("すべて見る")
-                    .font(.caption)
-                    .foregroundStyle(.appPrimary)
             }
-            .padding(.horizontal, 20)
-
-            let columns = [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)]
-            LazyVGrid(columns: columns, spacing: 12) {
-                ForEach(Era.allCases, id: \.self) { era in
-                    Button { navigationPath.append(era.quizID) } label: {
-                        EraCardView(era: era)
-                    }
-                }
-            }
-            .padding(.horizontal, 20)
+            .padding(.trailing, 14)
         }
+        .frame(height: 64)
+        .background(Color.appStreakBG)
+        .clipShape(RoundedRectangle(cornerRadius: 6))
+        .overlay(
+            RoundedRectangle(cornerRadius: 6)
+                .stroke(Color.appBorder, lineWidth: 1.5)
+        )
     }
 
-    // MARK: Progress Section
+    private var dailyGoalText: String {
+        "あと1問で今日のノルマ達成"
+    }
 
-    private var progressSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("学習の記録")
-                .font(.title3.bold())
-                .foregroundStyle(.white)
-                .padding(.horizontal, 20)
+    // MARK: CTA Card
 
-            VStack(spacing: 16) {
-                HStack {
-                    Text("検定合格に向けて")
-                        .font(.caption)
-                        .foregroundStyle(.appTextSecondary)
+    private var ctaCard: some View {
+        Button {
+            navigationPath.append(QuizMode.random)
+        } label: {
+            ZStack(alignment: .topLeading) {
+                RoundedRectangle(cornerRadius: 6)
+                    .fill(Color.appPrimary)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color.appBorder, lineWidth: 1.5)
+                    )
+
+                HStack(alignment: .top) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("TODAY'S CHALLENGE")
+                            .font(.system(size: 10, weight: .medium))
+                            .foregroundStyle(.white.opacity(0.8))
+                            .padding(.top, 14)
+                        Text("今日の一問")
+                            .font(.system(size: 22, weight: .bold, design: .serif))
+                            .foregroundStyle(.white)
+                            .padding(.top, 2)
+                        Text("1分 · 10XP")
+                            .font(.system(size: 12))
+                            .foregroundStyle(.white.opacity(0.73))
+                            .padding(.top, 12)
+                        ctaButton
+                            .padding(.top, 8)
+                    }
+                    .padding(.leading, 16)
+
                     Spacer()
-                    Text("\(UserProgress.shared.masteryPercentage)%")
-                        .font(.caption.bold())
-                        .foregroundStyle(.appPrimary)
-                }
 
-                GeometryReader { geo in
-                    ZStack(alignment: .leading) {
-                        Capsule().fill(Color.appSurfaceSecondary).frame(height: 8)
-                        Capsule().fill(Color.appPrimary)
-                            .frame(width: geo.size.width * CGFloat(UserProgress.shared.masteryPercentage) / 100, height: 8)
-                    }
-                }
-                .frame(height: 8)
-
-                HStack {
-                    statItem(value: "\(UserProgress.shared.currentStreak)", label: "日連続")
-                    Divider().frame(height: 32).overlay(Color.appBorder)
-                    statItem(value: "\(UserProgress.shared.totalArtworksMet)", label: "作品")
-                    Divider().frame(height: 32).overlay(Color.appBorder)
-                    statItem(value: "\(UserProgress.shared.totalCertificates)", label: "認定証")
+                    artworkThumbnail
+                        .padding(.trailing, 14)
+                        .padding(.top, 14)
                 }
             }
-            .padding(16)
-            .background(Color.appSurface, in: RoundedRectangle(cornerRadius: 16))
-            .padding(.horizontal, 20)
+            .frame(height: 128)
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var ctaButton: some View {
+        HStack(spacing: 4) {
+            Text("挑戦する →")
+                .font(.system(size: 13, weight: .bold))
+                .foregroundStyle(.appText)
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
+        .background(Color.appAccent)
+        .clipShape(RoundedRectangle(cornerRadius: 18))
+        .overlay(
+            RoundedRectangle(cornerRadius: 18)
+                .stroke(Color.appBorder, lineWidth: 1.5)
+        )
+    }
+
+    private var artworkThumbnail: some View {
+        Group {
+            if let artwork = vm.dailyArtwork {
+                AsyncImage(url: artwork.imageURL) { image in
+                    image.resizable().scaledToFill()
+                } placeholder: {
+                    Color.white.opacity(0.13)
+                }
+                .frame(width: 80, height: 100)
+                .clipShape(RoundedRectangle(cornerRadius: 6))
+            } else {
+                RoundedRectangle(cornerRadius: 6)
+                    .fill(Color.white.opacity(0.13))
+                    .frame(width: 80, height: 100)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color.white.opacity(0.47), lineWidth: 1.5)
+                    )
+            }
         }
     }
 
-    private func statItem(value: String, label: String) -> some View {
-        VStack(spacing: 4) {
-            Text(value).font(.title2.bold()).foregroundStyle(.white)
-            Text(label).font(.caption2).foregroundStyle(.appTextSecondary)
+    // MARK: Mode Section
+
+    private var modeSection: some View {
+        VStack(spacing: 8) {
+            HStack {
+                Rectangle()
+                    .fill(Color.appTextTertiary.opacity(0.5))
+                    .frame(height: 0.5)
+                Text("学習モード")
+                    .font(.system(size: 11))
+                    .foregroundStyle(.appTextTertiary)
+                Rectangle()
+                    .fill(Color.appTextTertiary.opacity(0.5))
+                    .frame(height: 0.5)
+            }
+
+            modeRow(
+                title: "10問チャレンジ",
+                subtitle: "基本セット · 4択",
+                badgeText: "10",
+                badgeColor: Color.appCardBG,
+                bgColor: Color.appCardBG
+            ) {
+                navigationPath.append(QuizMode.random)
+            }
+
+            modeRow(
+                title: "時代別で学ぶ",
+                subtitle: "ルネサンス〜現代まで",
+                badgeText: "6",
+                badgeColor: Color.appCardBG,
+                bgColor: Color.appCardBG
+            ) {
+                showEraSheet = true
+            }
+
+            modeRow(
+                title: "間違えた問題を復習",
+                subtitle: progress.hasMissedQuestions
+                    ? "\(progress.wrongArtworkIDs.count)問が復習待ち"
+                    : "苦手を集中攻略",
+                badgeText: "\(progress.wrongArtworkIDs.count)",
+                badgeColor: Color.appAccent,
+                bgColor: Color.appStreakBG
+            ) {
+                if progress.hasMissedQuestions {
+                    navigationPath.append(QuizMode.review)
+                }
+            }
         }
-        .frame(maxWidth: .infinity)
+    }
+
+    private func modeRow(
+        title: String,
+        subtitle: String,
+        badgeText: String,
+        badgeColor: Color,
+        bgColor: Color,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            HStack(spacing: 0) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(badgeColor)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.appBorder, lineWidth: 1.5)
+                        )
+                        .frame(width: 32, height: 32)
+                    Text(badgeText)
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundStyle(.appText)
+                }
+                .padding(.leading, 14)
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(title)
+                        .font(.system(size: 16, weight: .semibold, design: .serif))
+                        .foregroundStyle(.appText)
+                    Text(subtitle)
+                        .font(.system(size: 11))
+                        .foregroundStyle(.appTextSecondary)
+                }
+                .padding(.leading, 12)
+
+                Spacer()
+
+                Text("›")
+                    .font(.system(size: 24))
+                    .foregroundStyle(.appTextTertiary)
+                    .padding(.trailing, 14)
+            }
+            .frame(height: 56)
+            .background(bgColor)
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+            .overlay(
+                RoundedRectangle(cornerRadius: 6)
+                    .stroke(Color.appBorder, lineWidth: 1.5)
+            )
+        }
+        .buttonStyle(.plain)
     }
 }
 
-struct EraCardView: View {
-    let era: Era
+// MARK: - Era Selection Sheet
+
+struct EraSelectionSheet: View {
+    let onSelect: (Era) -> Void
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
-            LinearGradient(
-                colors: [Color(hex: era.gradientStart), Color(hex: era.gradientEnd)],
-                startPoint: .topLeading, endPoint: .bottomTrailing
-            )
-            .frame(height: 140)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
-
-            VStack(alignment: .leading, spacing: 2) {
-                Text(era.japaneseName)
-                    .font(.headline.bold())
-                    .foregroundStyle(.white)
-                Text(era.period)
-                    .font(.caption2)
-                    .foregroundStyle(.white.opacity(0.7))
+        NavigationStack {
+            List(Era.allCases, id: \.self) { era in
+                Button {
+                    onSelect(era)
+                } label: {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(era.japaneseName)
+                                .font(.system(size: 16, weight: .semibold, design: .serif))
+                                .foregroundStyle(.appText)
+                            Text(era.period)
+                                .font(.system(size: 12))
+                                .foregroundStyle(.appTextSecondary)
+                        }
+                        Spacer()
+                        Text("›")
+                            .foregroundStyle(.appTextTertiary)
+                    }
+                    .padding(.vertical, 4)
+                }
+                .listRowBackground(Color.appCardBG)
             }
-            .padding(12)
+            .listStyle(.insetGrouped)
+            .scrollContentBackground(.hidden)
+            .background(Color.appBackground)
+            .navigationTitle("時代別で学ぶ")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("閉じる") { dismiss() }
+                        .foregroundStyle(.appPrimary)
+                }
+            }
         }
     }
 }

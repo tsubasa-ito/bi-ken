@@ -96,4 +96,17 @@ struct Artwork: Identifiable, Codable, Sendable, Equatable, Hashable {
 
     var displayTitle: String  { titleJa ?? title }
     var displayArtist: String { artistJa ?? artist }
+
+    var shortMediumJa: String {
+        let lower = medium.lowercased()
+        if lower.contains("oil")                              { return "油彩" }
+        if lower.contains("tempera")                          { return "テンペラ" }
+        if lower.contains("fresco")                           { return "フレスコ" }
+        if lower.contains("watercolor")                       { return "水彩" }
+        if lower.contains("woodblock") || lower.contains("woodcut") { return "木版画" }
+        if lower.contains("pastel")                           { return "パステル" }
+        if lower.contains("gouache")                          { return "グワッシュ" }
+        if lower.contains("ink")                              { return "墨画" }
+        return ""
+    }
 }

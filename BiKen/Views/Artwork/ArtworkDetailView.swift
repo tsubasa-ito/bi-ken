@@ -21,9 +21,10 @@ struct ArtworkDetailView: View {
             Button { dismiss() } label: {
                 Image(systemName: "chevron.left")
                     .font(.title3.bold())
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.appText)
                     .padding(12)
-                    .background(.ultraThinMaterial, in: Circle())
+                    .background(Color.appCardBG, in: Circle())
+                    .overlay(Circle().stroke(Color.appBorder, lineWidth: 1))
             }
             .padding(16)
             .padding(.top, 40)
@@ -34,19 +35,19 @@ struct ArtworkDetailView: View {
         AsyncImage(url: artwork.imageURL) { image in
             image.resizable().scaledToFit()
         } placeholder: {
-            Color.appSurfaceSecondary
+            Color.appCardBG
                 .frame(height: 300)
                 .overlay { ProgressView().tint(.appPrimary) }
         }
         .frame(maxWidth: .infinity)
-        .background(Color.appSurfaceSecondary)
+        .background(Color.appCardBG)
     }
 
     private var infoSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text(artwork.displayTitle)
                 .font(.title2.bold())
-                .foregroundStyle(.white)
+                .foregroundStyle(.appText)
 
             HStack {
                 Text(artwork.displayArtist)
@@ -54,7 +55,7 @@ struct ArtworkDetailView: View {
                     .foregroundStyle(.appPrimary)
                 Spacer()
                 if let year = artwork.year {
-                    Text("\(year)年")
+                    Text("\(year)年頃")
                         .font(.subheadline)
                         .foregroundStyle(.appTextSecondary)
                 }
@@ -62,20 +63,23 @@ struct ArtworkDetailView: View {
 
             HStack(spacing: 8) {
                 tagView(text: artwork.era.japaneseName, color: .appPrimary)
-                tagView(text: artwork.difficulty.rawValue, color: difficultyColor)
-                if !artwork.medium.isEmpty {
-                    tagView(text: japaneseMedium(artwork.medium), color: .appSurfaceSecondary)
+                let medJa = artwork.shortMediumJa
+                if !medJa.isEmpty {
+                    tagView(text: medJa, color: .appTextSecondary)
                 }
             }
         }
         .padding(20)
+        .background(Color.appBackground)
     }
 
     private var descriptionSection: some View {
         VStack(alignment: .leading, spacing: 12) {
+            Divider().overlay(Color.appBorder)
+
             Text("解説")
                 .font(.headline.bold())
-                .foregroundStyle(.white)
+                .foregroundStyle(.appText)
 
             Text(artwork.description)
                 .font(.body)
@@ -86,7 +90,7 @@ struct ArtworkDetailView: View {
                 Divider().overlay(Color.appBorder)
                 Text("作家について")
                     .font(.headline.bold())
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.appText)
                 Text(bio)
                     .font(.body)
                     .foregroundStyle(.appTextSecondary)
@@ -102,26 +106,7 @@ struct ArtworkDetailView: View {
             .foregroundStyle(color)
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
-            .background(color.opacity(0.15), in: Capsule())
+            .background(color.opacity(0.12), in: Capsule())
     }
 
-    private var difficultyColor: Color {
-        switch artwork.difficulty {
-        case .easy:   .appSuccess
-        case .medium: .orange
-        case .hard:   .appError
-        }
-    }
-
-    private func japaneseMedium(_ medium: String) -> String {
-        let lower = medium.lowercased()
-        if lower.contains("oil on canvas") { return "油彩・カンヴァス" }
-        if lower.contains("oil on panel") { return "油彩・板" }
-        if lower.contains("tempera") { return "テンペラ" }
-        if lower.contains("woodblock") || lower.contains("woodcut") { return "木版画" }
-        if lower.contains("watercolor") { return "水彩" }
-        if lower.contains("fresco") { return "フレスコ" }
-        if lower.contains("ink") { return "墨画" }
-        return medium
-    }
 }

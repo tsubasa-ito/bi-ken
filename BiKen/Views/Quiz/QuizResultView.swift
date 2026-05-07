@@ -3,34 +3,40 @@ import SwiftUI
 struct QuizResultView: View {
     let vm: QuizViewModel
     let onDismiss: () -> Void
-    @Environment(\.dismiss) private var dismiss
     @State private var didRecord = false
+    @State private var showReview = false
 
-    private let circleSize: CGFloat = 160
-    private let strokeWidth: CGFloat = 10
+    private var incorrectCount: Int { vm.answerRecords.filter { !$0.isCorrect }.count }
+    private var incorrectIDs: [String] {
+        vm.answerRecords.filter { !$0.isCorrect }.map { $0.question.artwork.id }
+    }
+    private var canShowReviewButton: Bool {
+        guard incorrectCount > 0 else { return false }
+        if case .specificIDs = vm.mode { return false }
+        return true
+    }
 
     var body: some View {
-        ZStack {
-            LinearGradient(colors: [Color(hex: "0D1117"), Color(hex: "161B22")],
-                           startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea()
+        VStack(spacing: 0) {
+            headerBar
+            headerBorder
 
-            VStack(spacing: 0) {
-                resultHeader
-
-                ScrollView {
-                    VStack(spacing: 24) {
-                        scoreCircle
-                        scoreMessage
-                        progressCard
-                        artworksSection
-                        actionButtons
-                    }
-                    .padding(.bottom, 40)
+            ScrollView {
+                VStack(spacing: 16) {
+                    congratsSection
+                    statsGrid
+                    resultGrid
+                    actionButtons
                 }
+                .padding(.horizontal, 20)
+                .padding(.bottom, 40)
             }
         }
+        .background(Color.appBackground.ignoresSafeArea())
         .navigationBarHidden(true)
+        .navigationDestination(isPresented: $showReview) {
+            QuizView(mode: .specificIDs(incorrectIDs))
+        }
         .onAppear {
             guard !didRecord else { return }
             didRecord = true
@@ -38,177 +44,193 @@ struct QuizResultView: View {
         }
     }
 
-    private var resultHeader: some View {
-        HStack {
-            Button(action: onDismiss) {
-                Image(systemName: "xmark").font(.title3).foregroundStyle(.white)
-                    .frame(width: 40, height: 40)
-            }
-            Spacer()
-            Text("結果を確認")
-                .font(.headline).foregroundStyle(.white)
-            Spacer()
-            Color.clear.frame(width: 40, height: 40)
-        }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
-        .overlay(alignment: .bottom) {
-            Divider().overlay(Color.appBorder)
-        }
-    }
+    // MARK: Header
 
-    private var scoreCircle: some View {
-        let pct = vm.totalQuestions > 0 ? Double(vm.correctCount) / Double(vm.totalQuestions) : 0
-        let radius = (circleSize - strokeWidth) / 2
-        let circumference = radius * 2 * .pi
-        let dashOffset = circumference * (1 - pct)
-
-        return ZStack {
-            Circle()
-                .stroke(Color.appSurfaceSecondary, lineWidth: strokeWidth)
-                .frame(width: circleSize, height: circleSize)
-
-            Circle()
-                .trim(from: 0, to: pct)
-                .stroke(Color.appPrimary, style: StrokeStyle(lineWidth: strokeWidth, lineCap: .round))
-                .frame(width: circleSize, height: circleSize)
-                .rotationEffect(.degrees(-90))
-                .animation(.easeOut(duration: 1.0), value: pct)
-
-            VStack(spacing: 2) {
-                HStack(alignment: .firstTextBaseline, spacing: 2) {
-                    Text("\(vm.correctCount)")
-                        .font(.system(size: 40, weight: .bold))
-                        .foregroundStyle(.white)
-                    Text("/\(vm.totalQuestions)")
-                        .font(.system(size: 28))
-                        .foregroundStyle(.appTextSecondary)
-                }
-                Text("スコア")
-                    .font(.caption2)
-                    .foregroundStyle(.appTextSecondary)
-                    .tracking(2)
-            }
-        }
-        .padding(.top, 24)
-    }
-
-    private var scoreMessage: some View {
-        let msg = vm.scoreMessage()
-        return VStack(spacing: 8) {
-            Text(msg.title)
-                .font(.largeTitle.bold())
-                .foregroundStyle(.white)
-            Text(msg.subtitle)
-                .font(.subheadline)
-                .foregroundStyle(.appTextSecondary)
-                .multilineTextAlignment(.center)
-        }
-        .padding(.horizontal, 20)
-    }
-
-    private var progressCard: some View {
-        VStack(spacing: 12) {
+    private var headerBar: some View {
+        ZStack {
+            Color.appBackground
             HStack {
-                Text("検定合格への進捗")
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(.white)
+                Button(action: onDismiss) {
+                    Text("×")
+                        .font(.system(size: 20))
+                        .foregroundStyle(.appText)
+                        .frame(width: 36, height: 36)
+                }
+                .padding(.leading, 12)
+
                 Spacer()
-                Text("レベル \(UserProgress.shared.level): \(UserProgress.shared.masteryPercentage)%")
-                    .font(.caption.bold())
-                    .foregroundStyle(.appPrimary)
-            }
 
-            GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    Capsule().fill(Color.appBorder).frame(height: 8)
-                    Capsule().fill(Color.appPrimary)
-                        .frame(width: geo.size.width * CGFloat(UserProgress.shared.masteryPercentage) / 100, height: 8)
-                }
-            }
-            .frame(height: 8)
+                Text("セット完了")
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundStyle(.appText)
 
-            Text("マスターレベルまであと\(100 - UserProgress.shared.masteryPercentage)ポイント")
-                .font(.caption)
-                .foregroundStyle(.appPrimary)
-        }
-        .padding(16)
-        .background(Color.appSurfaceSecondary, in: RoundedRectangle(cornerRadius: 16))
-        .padding(.horizontal, 20)
-    }
+                Spacer()
 
-    private var artworksSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("今回学んだ作品")
-                .font(.headline.bold())
-                .foregroundStyle(.white)
-                .padding(.horizontal, 20)
-            Text("コレクションに追加されました")
-                .font(.caption)
-                .foregroundStyle(.appTextSecondary)
-                .padding(.horizontal, 20)
-
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    ForEach(vm.answerRecords, id: \.question.id) { record in
-                        artworkCard(record: record)
-                    }
-                }
-                .padding(.horizontal, 20)
+                Color.clear.frame(width: 36, height: 36)
+                    .padding(.trailing, 12)
             }
         }
+        .frame(height: 104)
     }
 
-    private func artworkCard(record: AnswerRecord) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
-            ZStack(alignment: .topTrailing) {
-                AsyncImage(url: record.question.artwork.imageURL) { image in
-                    image.resizable().scaledToFill()
-                } placeholder: {
-                    Color.appSurfaceSecondary
-                }
-                .frame(width: 140, height: 140)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+    private var headerBorder: some View {
+        Rectangle()
+            .fill(Color.appBorder)
+            .frame(height: 1.5)
+    }
 
-                Image(systemName: record.isCorrect ? "checkmark" : "xmark")
-                    .font(.caption.bold())
-                    .foregroundStyle(.white)
-                    .padding(6)
-                    .background(record.isCorrect ? Color.appSuccess : Color.appError, in: Circle())
-                    .padding(8)
+    // MARK: Congrats
+
+    private var congratsSection: some View {
+        VStack(spacing: 4) {
+            Text("おつかれさま！")
+                .font(.system(size: 26, weight: .bold, design: .serif))
+                .foregroundStyle(.appText)
+                .padding(.top, 16)
+
+            HStack(alignment: .firstTextBaseline, spacing: 4) {
+                Text("\(vm.correctCount)")
+                    .font(.system(size: 72, weight: .bold, design: .serif))
+                    .foregroundStyle(.appText)
+                Text("/ \(vm.totalQuestions)")
+                    .font(.system(size: 28, design: .serif))
+                    .foregroundStyle(.appTextTertiary)
             }
 
-            Text(record.question.artwork.displayArtist)
-                .font(.caption.weight(.medium))
-                .foregroundStyle(.white)
-                .lineLimit(1)
-            Text(record.question.artwork.era.japaneseName)
-                .font(.caption2)
+            let pct = vm.totalQuestions > 0
+                ? Int(Double(vm.correctCount) / Double(vm.totalQuestions) * 100)
+                : 0
+            Text("正答率 \(pct)%")
+                .font(.system(size: 13))
                 .foregroundStyle(.appTextSecondary)
         }
-        .frame(width: 140)
     }
+
+    // MARK: Stats Grid
+
+    private var statsGrid: some View {
+        HStack(spacing: 12) {
+            statCard(
+                value: "\(vm.correctCount)問",
+                label: "正解",
+                bg: Color.appCardBG
+            )
+            statCard(
+                value: "🔥 \(UserProgress.shared.currentStreak)日",
+                label: "本日のストリーク",
+                bg: Color.appStreakBG
+            )
+        }
+    }
+
+    private func statCard(value: String, label: String, bg: Color) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(value)
+                .font(.system(size: 18, weight: .bold, design: .serif))
+                .foregroundStyle(.appText)
+            Text(label)
+                .font(.system(size: 11))
+                .foregroundStyle(.appTextSecondary)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(12)
+        .background(bg)
+        .clipShape(RoundedRectangle(cornerRadius: 6))
+        .overlay(
+            RoundedRectangle(cornerRadius: 6)
+                .stroke(Color.appBorder, lineWidth: 1.5)
+        )
+    }
+
+    // MARK: Result Grid
+
+    private var resultGrid: some View {
+        VStack(spacing: 8) {
+            HStack {
+                Rectangle().fill(Color.appTextTertiary.opacity(0.5)).frame(height: 0.5)
+                Text("結果一覧")
+                    .font(.system(size: 11))
+                    .foregroundStyle(.appTextTertiary)
+                Rectangle().fill(Color.appTextTertiary.opacity(0.5)).frame(height: 0.5)
+            }
+
+            let columns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 5)
+            LazyVGrid(columns: columns, spacing: 8) {
+                ForEach(vm.answerRecords.indices, id: \.self) { i in
+                    let record = vm.answerRecords[i]
+                    resultCell(isCorrect: record.isCorrect)
+                }
+            }
+        }
+    }
+
+    private func resultCell(isCorrect: Bool) -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 6)
+                .fill(isCorrect ? Color.appCorrectBG : Color.appIncorrectBG)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 6)
+                        .stroke(Color.appBorder, lineWidth: 1.5)
+                )
+            Text(isCorrect ? "○" : "×")
+                .font(.system(size: 24, weight: .bold))
+                .foregroundStyle(isCorrect ? Color.appCorrect : Color.appIncorrect)
+        }
+        .frame(height: 50)
+    }
+
+    // MARK: Action Buttons
 
     private var actionButtons: some View {
         VStack(spacing: 12) {
-            Button(action: onDismiss) {
-                Text("ホームに戻る")
-                    .font(.subheadline.bold())
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 14)
-                    .background(Color.appPrimary, in: Capsule())
+            if canShowReviewButton {
+                Button { showReview = true } label: {
+                    Text("間違えた\(incorrectCount)問を復習する")
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundStyle(.appText)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .background(Color.appAccent)
+                        .clipShape(RoundedRectangle(cornerRadius: 25))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 25)
+                                .stroke(Color.appBorder, lineWidth: 1.5)
+                        )
+                }
+                .buttonStyle(.plain)
             }
 
-            Button(action: onDismiss) {
-                Text("もう一度挑戦する")
-                    .font(.subheadline.bold())
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 14)
-                    .overlay(Capsule().stroke(Color.appBorder, lineWidth: 2))
+            HStack(spacing: 12) {
+                Button(action: onDismiss) {
+                    Text("もう一度")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundStyle(.appText)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .background(Color.appCardBG)
+                        .clipShape(RoundedRectangle(cornerRadius: 25))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 25)
+                                .stroke(Color.appBorder, lineWidth: 1.5)
+                        )
+                }
+                .buttonStyle(.plain)
+
+                Button(action: onDismiss) {
+                    Text("ホームへ")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .background(Color.appPrimary)
+                        .clipShape(RoundedRectangle(cornerRadius: 25))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 25)
+                                .stroke(Color.appBorder, lineWidth: 1.5)
+                        )
+                }
+                .buttonStyle(.plain)
             }
         }
-        .padding(.horizontal, 20)
     }
 }
