@@ -19,6 +19,12 @@ final class UserProgress {
     private(set) var todayArtworksMet: Int
     private(set) var todayDateString: String
 
+    private static let dateFormatter: ISO8601DateFormatter = {
+        let f = ISO8601DateFormatter()
+        f.formatOptions = [.withFullDate]
+        return f
+    }()
+
     var hasMissedQuestions: Bool { !wrongArtworkIDs.isEmpty }
 
     // XP within current level (0–99)
@@ -65,9 +71,7 @@ final class UserProgress {
     }
 
     func recordQuizResult(correct: Int, total: Int) {
-        let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [.withFullDate]
-        let today = formatter.string(from: Date())
+        let today = UserProgress.dateFormatter.string(from: Date())
         if todayDateString == today {
             todayArtworksMet += total
         } else {
@@ -140,9 +144,7 @@ final class UserProgress {
     }
 
     private func recordStudyDate() {
-        let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [.withFullDate]
-        let todayStr = formatter.string(from: Date())
+        let todayStr = UserProgress.dateFormatter.string(from: Date())
         guard !studyDateStrings.contains(todayStr) else { return }
         studyDateStrings.append(todayStr)
         if studyDateStrings.count > 28 {
