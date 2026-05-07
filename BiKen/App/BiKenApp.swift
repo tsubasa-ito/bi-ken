@@ -10,7 +10,7 @@ struct BiKenApp: App {
     var body: some Scene {
         WindowGroup {
             MainTabView()
-                .preferredColorScheme(.dark)
+                .preferredColorScheme(.light)
         }
     }
 }

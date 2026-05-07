@@ -21,6 +21,7 @@
 		931B38E9C0EF59ADD1781478 /* BiKenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5161800DFA4652FBA51CBCC6 /* BiKenApp.swift */; };
 		A8B3574863EC9A814CAB0C85 /* UserProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B43373202C266AEB917E1B6 /* UserProgress.swift */; };
 		BDABB414695DEB41680A2AD1 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B127CDC53F621D0D4A3649 /* QuizViewModel.swift */; };
+		D5D73A063690026615D768C1 /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AC92471F8C3DB55342777 /* Array+Safe.swift */; };
 		EA3BFB7C428C9AA864F3296B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BB8277351E158F751038E8 /* HomeView.swift */; };
 		F7E8FD457841BE70C89DBBC3 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D032FB31E3119E02900AAD /* Color+Theme.swift */; };
 		F86DF46E09056F1BEC0659CB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2617EAF49D72A81D96C206C8 /* HomeViewModel.swift */; };
@@ -49,6 +50,7 @@
 		D2D032FB31E3119E02900AAD /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
 		E7F997193D4D31D96BDC16A6 /* ProgressView_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView_.swift; sourceTree = "<group>"; };
 		EB86BF64CED65129C617A207 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
+		F96AC92471F8C3DB55342777 /* Array+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Safe.swift"; sourceTree = "<group>"; };
 		F9D3694A9AF8CE0C6B588B7D /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +90,7 @@
 		71323E58B3F449810F764EEA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F96AC92471F8C3DB55342777 /* Array+Safe.swift */,
 				D2D032FB31E3119E02900AAD /* Color+Theme.swift */,
 			);
 			path = Extensions;
@@ -247,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5D73A063690026615D768C1 /* Array+Safe.swift in Sources */,
 				39C28A33C68B34B26F0EA4BB /* Artwork.swift in Sources */,
 				3FA78CBFA7DE13C94F3BA279 /* ArtworkCache.swift in Sources */,
 				FE1333D23CD696C766465B65 /* ArtworkConverter.swift in Sources */,

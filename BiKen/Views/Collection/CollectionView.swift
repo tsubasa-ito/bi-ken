@@ -6,37 +6,37 @@ struct CollectionView: View {
 
     var body: some View {
         NavigationStack {
-            ZStack {
-                Color.appBackground.ignoresSafeArea()
+            VStack(spacing: 0) {
+                customHeader
 
-                VStack(spacing: 0) {
-                    eraFilter
+                Rectangle()
+                    .fill(Color.appBorder)
+                    .frame(height: 1.5)
 
-                    if vm.isLoading {
-                        Spacer()
-                        ProgressView().tint(.appPrimary)
-                        Spacer()
-                    } else if let errorMsg = vm.error {
-                        Spacer()
-                        VStack(spacing: 12) {
-                            Image(systemName: "exclamationmark.circle").font(.title).foregroundStyle(.appError)
-                            Text(errorMsg).foregroundStyle(.appTextSecondary).multilineTextAlignment(.center)
-                            Button("再試行") { Task { await vm.load(era: selectedEra) } }
-                                .buttonStyle(.borderedProminent).tint(.appPrimary)
-                        }
-                        Spacer()
-                    } else if vm.artworks.isEmpty {
-                        Spacer()
-                        Text("作品が見つかりませんでした").foregroundStyle(.appTextSecondary)
-                        Spacer()
-                    } else {
-                        artworkGrid
+                if vm.isLoading {
+                    Spacer()
+                    ProgressView().tint(.appPrimary)
+                    Spacer()
+                } else if let errorMsg = vm.error {
+                    Spacer()
+                    VStack(spacing: 12) {
+                        Image(systemName: "exclamationmark.circle").font(.title).foregroundStyle(.appIncorrect)
+                        Text(errorMsg).foregroundStyle(.appTextSecondary).multilineTextAlignment(.center)
+                        Button("再試行") { Task { await vm.load(era: selectedEra) } }
+                            .buttonStyle(.borderedProminent).tint(.appPrimary)
                     }
+                    Spacer()
+                } else if vm.artworks.isEmpty {
+                    Spacer()
+                    Text("作品が見つかりませんでした").foregroundStyle(.appTextSecondary)
+                    Spacer()
+                } else {
+                    eraFilter
+                    artworkGrid
                 }
             }
-            .navigationTitle("コレクション")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbarColorScheme(.dark, for: .navigationBar)
+            .background(Color.appBackground.ignoresSafeArea())
+            .navigationBarHidden(true)
             .navigationDestination(for: Artwork.self) { artwork in
                 ArtworkDetailView(artwork: artwork)
             }
@@ -45,6 +45,16 @@ struct CollectionView: View {
         .onChange(of: selectedEra) { _, new in
             Task { await vm.load(era: new) }
         }
+    }
+
+    private var customHeader: some View {
+        ZStack {
+            Color.appBackground
+            Text("コレクション")
+                .font(.system(size: 18, weight: .semibold, design: .serif))
+                .foregroundStyle(.appText)
+        }
+        .frame(height: 104)
     }
 
     private var eraFilter: some View {
@@ -70,7 +80,7 @@ struct CollectionView: View {
                 .padding(.horizontal, 14)
                 .padding(.vertical, 7)
                 .background(
-                    selectedEra == era ? Color.appPrimary : Color.appSurfaceSecondary,
+                    selectedEra == era ? Color.appPrimary : Color.appCardBG,
                     in: Capsule()
                 )
         }
@@ -94,7 +104,7 @@ struct CollectionView: View {
             AsyncImage(url: artwork.imageURL) { image in
                 image.resizable().scaledToFill()
             } placeholder: {
-                Color.appSurfaceSecondary
+                Color.appCardBG
             }
             .frame(height: 200)
             .clipped()

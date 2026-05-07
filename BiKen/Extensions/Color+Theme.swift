@@ -1,27 +1,44 @@
 import SwiftUI
 
 extension Color {
-    static let appPrimary = Color(hex: "4A7BF7")
-    static let appBackground = Color(hex: "0D1117")
-    static let appSurface = Color(hex: "161B22")
-    static let appSurfaceSecondary = Color(hex: "21262D")
-    static let appBorder = Color(hex: "30363D")
-    static let appTextSecondary = Color(hex: "8B949E")
-    static let appError = Color(hex: "FF6B6B")
-    static let appSuccess = Color(hex: "4CAF50")
-
+    static let appBackground     = Color(hex: "FAFAF7")
+    static let appPrimary        = Color(hex: "3B5BDB")
+    static let appAccent         = Color(hex: "F5C518")
+    static let appText           = Color(hex: "1a1a1a")
+    static let appTextSecondary  = Color(hex: "4a4a4a")
+    static let appTextTertiary   = Color(hex: "8a8a8a")
+    static let appCardBG         = Color(hex: "F2F1EC")
+    static let appStreakBG       = Color(hex: "FFFBE8")
+    static let appBorder         = Color(hex: "1a1a1a")
+    static let appCorrect        = Color(hex: "2D6A2D")
+    static let appCorrectBG      = Color(hex: "E7F4E7")
+    static let appIncorrect      = Color(hex: "B23A3A")
+    static let appIncorrectBG    = Color(hex: "FBEAEA")
+    // Legacy aliases
+    static let appSurface            = Color(hex: "F2F1EC")
+    static let appSurfaceSecondary   = Color(hex: "FFFBE8")
+    static let appError              = Color(hex: "B23A3A")
+    static let appSuccess            = Color(hex: "2D6A2D")
 }
 
-// Enables dot-syntax in .foregroundStyle(.appPrimary) etc.
 extension ShapeStyle where Self == Color {
-    static var appPrimary: Color         { Color(hex: "4A7BF7") }
-    static var appBackground: Color      { Color(hex: "0D1117") }
-    static var appSurface: Color         { Color(hex: "161B22") }
-    static var appSurfaceSecondary: Color{ Color(hex: "21262D") }
-    static var appBorder: Color          { Color(hex: "30363D") }
-    static var appTextSecondary: Color   { Color(hex: "8B949E") }
-    static var appError: Color           { Color(hex: "FF6B6B") }
-    static var appSuccess: Color         { Color(hex: "4CAF50") }
+    static var appBackground: Color     { Color(hex: "FAFAF7") }
+    static var appPrimary: Color        { Color(hex: "3B5BDB") }
+    static var appAccent: Color         { Color(hex: "F5C518") }
+    static var appText: Color           { Color(hex: "1a1a1a") }
+    static var appTextSecondary: Color  { Color(hex: "4a4a4a") }
+    static var appTextTertiary: Color   { Color(hex: "8a8a8a") }
+    static var appCardBG: Color         { Color(hex: "F2F1EC") }
+    static var appStreakBG: Color       { Color(hex: "FFFBE8") }
+    static var appBorder: Color         { Color(hex: "1a1a1a") }
+    static var appCorrect: Color        { Color(hex: "2D6A2D") }
+    static var appCorrectBG: Color      { Color(hex: "E7F4E7") }
+    static var appIncorrect: Color      { Color(hex: "B23A3A") }
+    static var appIncorrectBG: Color    { Color(hex: "FBEAEA") }
+    static var appSurface: Color        { Color(hex: "F2F1EC") }
+    static var appSurfaceSecondary: Color { Color(hex: "FFFBE8") }
+    static var appError: Color          { Color(hex: "B23A3A") }
+    static var appSuccess: Color        { Color(hex: "2D6A2D") }
 }
 
 extension Color {
