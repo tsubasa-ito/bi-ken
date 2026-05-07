@@ -68,6 +68,14 @@ final class UserProgress {
         dailyGoal            = (ud.value(forKey: "dailyGoal")            as? Int) ?? 10
         todayArtworksMet     = (ud.value(forKey: "todayArtworksMet")     as? Int) ?? 0
         todayDateString      = ud.string(forKey: "todayDateString") ?? ""
+
+        let today = UserProgress.dateFormatter.string(from: Date())
+        if todayDateString != today {
+            todayArtworksMet = 0
+            todayDateString = today
+            ud.set(0, forKey: "todayArtworksMet")
+            ud.set(today, forKey: "todayDateString")
+        }
     }
 
     func recordQuizResult(correct: Int, total: Int) {
