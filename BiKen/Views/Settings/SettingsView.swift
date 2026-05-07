@@ -1,6 +1,11 @@
 import SwiftUI
+import StoreKit
 
 struct SettingsView: View {
+    private let progress = UserProgress.shared
+    @State private var showResetConfirmation = false
+    @Environment(\.requestReview) private var requestReview
+
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
@@ -12,22 +17,54 @@ struct SettingsView: View {
 
                 List {
                     Section("アカウント") {
-                        settingsRow(icon: "person.circle.fill", title: "プロフィール", color: .appPrimary)
-                        settingsRow(icon: "bell.fill", title: "通知", color: .orange)
+                        NavigationLink {
+                            ProfileSettingsView()
+                        } label: {
+                            settingsRow(icon: "person.circle.fill", title: "プロフィール", color: .appPrimary)
+                        }
+                        NavigationLink {
+                            NotificationSettingsView()
+                        } label: {
+                            settingsRow(icon: "bell.fill", title: "通知", color: .orange)
+                        }
                     }
                     .listRowBackground(Color.appCardBG)
 
                     Section("学習") {
-                        settingsRow(icon: "target", title: "日標設定", color: .appCorrect)
-                        settingsRow(icon: "clock.fill", title: "学習リマインダー", color: .purple)
-                        settingsRow(icon: "arrow.clockwise", title: "進捗をリセット", color: .appIncorrect)
+                        NavigationLink {
+                            GoalSettingsView()
+                        } label: {
+                            settingsRow(icon: "target", title: "目標設定", color: .appCorrect)
+                        }
+                        NavigationLink {
+                            ReminderSettingsView()
+                        } label: {
+                            settingsRow(icon: "clock.fill", title: "学習リマインダー", color: .purple)
+                        }
+                        Button {
+                            showResetConfirmation = true
+                        } label: {
+                            settingsRow(icon: "arrow.clockwise", title: "進捗をリセット", color: .appIncorrect)
+                        }
                     }
                     .listRowBackground(Color.appCardBG)
 
                     Section("アプリ") {
-                        settingsRow(icon: "info.circle.fill", title: "アプリについて", color: .appTextSecondary)
-                        settingsRow(icon: "star.fill", title: "レビューを書く", color: .yellow)
-                        settingsRow(icon: "questionmark.circle.fill", title: "ヘルプ", color: .cyan)
+                        NavigationLink {
+                            AboutView()
+                        } label: {
+                            settingsRow(icon: "info.circle.fill", title: "アプリについて", color: .appTextSecondary)
+                        }
+                        Button {
+                            requestReview()
+                        } label: {
+                            settingsRow(icon: "star.fill", title: "レビューを書く", color: .yellow)
+                        }
+                        NavigationLink {
+                            HelpView()
+                        } label: {
+                            settingsRow(icon: "questionmark.circle.fill", title: "ヘルプ", color: .cyan)
+                        }
                     }
                     .listRowBackground(Color.appCardBG)
 
@@ -53,6 +90,18 @@ struct SettingsView: View {
             }
             .background(Color.appBackground.ignoresSafeArea())
             .navigationBarHidden(true)
+            .confirmationDialog(
+                "進捗をリセット",
+                isPresented: $showResetConfirmation,
+                titleVisibility: .visible
+            ) {
+                Button("リセットする", role: .destructive) {
+                    progress.reset()
+                }
+                Button("キャンセル", role: .cancel) {}
+            } message: {
+                Text("すべての学習履歴、XP、レベルがリセットされます。この操作は元に戻せません。")
+            }
         }
     }
 
@@ -77,10 +126,6 @@ struct SettingsView: View {
                 .foregroundStyle(.appText)
 
             Spacer()
-
-            Image(systemName: "chevron.right")
-                .font(.caption.bold())
-                .foregroundStyle(.appTextTertiary)
         }
         .padding(.vertical, 4)
     }

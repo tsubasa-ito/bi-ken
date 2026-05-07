@@ -61,7 +61,7 @@ struct HomeView: View {
                     Circle().stroke(Color.appBorder, lineWidth: 1.5)
                 )
                 .overlay(
-                    Text("U")
+                    Text(avatarInitial)
                         .font(.system(size: 16, weight: .medium))
                         .foregroundStyle(.appTextSecondary)
                 )
@@ -107,8 +107,20 @@ struct HomeView: View {
         )
     }
 
+    private var avatarInitial: String {
+        let name = progress.userName.trimmingCharacters(in: .whitespaces)
+        guard let first = name.first else { return "U" }
+        return String(first)
+    }
+
     private var dailyGoalText: String {
-        "あと1問で今日のノルマ達成"
+        let goal = progress.dailyGoal
+        let done = progress.todayArtworksMet
+        let remaining = goal - done
+        if remaining <= 0 {
+            return "今日の目標 \(goal)問 達成！"
+        }
+        return "あと\(remaining)問で今日の目標 \(goal)問 達成"
     }
 
     // MARK: CTA Card

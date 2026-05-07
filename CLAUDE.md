@@ -56,6 +56,17 @@ Met Museum API → MetMuseumAPIService.swift → ArtworkConverter.swift → View
 - `HomeView` → `QuizView(mode: QuizMode)` / `ArtworkDetailView(artwork:)`
 - `CollectionView` → `ArtworkDetailView(artwork:)`
 - `QuizResultView` → `QuizView(mode: .specificIDs([String]))` で復習クイズへ遷移
+- `SettingsView` → 各サブ設定画面（`NavigationLink` で遷移）
+
+### Settings Views（BiKen/Views/Settings/）
+
+- `SettingsView`: 設定トップ。`confirmationDialog` で進捗リセット確認、`@Environment(\.requestReview)` でレビューリクエスト
+- `ProfileSettingsView`: ユーザー名編集（`@FocusState` でキーボード制御）
+- `NotificationSettingsView`: `UNAuthorizationStatus` 表示と許可リクエスト。`didBecomeActiveNotification` で状態を再取得
+- `ReminderSettingsView`: 毎日リマインダーのオン/オフと時刻選択（`UNCalendarNotificationTrigger`）
+- `GoalSettingsView`: 1日の目標問題数選択（5/10/15/20/30問）
+- `AboutView`: アプリ情報・機能紹介
+- `HelpView`: FAQ アコーディオン（`expandedItem: String?` で展開状態管理）
 
 ### QuizMode（BiKen/ViewModels/QuizViewModel.swift）
 
@@ -76,6 +87,10 @@ enum QuizMode: Equatable, Hashable {
   - `currentXP: Int` — 0–99、100で自動レベルアップ（`totalCertificates += 1`）
   - `wrongArtworkIDs: [String]` — 間違えた作品IDのリスト（重複なし）
   - `studyDateStrings: [String]` — ISO8601日付文字列、最大28件
+  - `userName: String` — プロフィール設定で変更可能
+  - `dailyGoal: Int` — 1日の目標問題数（デフォルト10）
+  - `todayArtworksMet: Int` — 当日回答済み問題数（日付変更でリセット）
+  - `todayDateString: String` — 当日の日付文字列（`todayArtworksMet` のリセット判定用）
 
 ### コーディングルール
 

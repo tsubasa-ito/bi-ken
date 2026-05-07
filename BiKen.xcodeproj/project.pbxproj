@@ -7,20 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00771B3568F9FCA04CAF8C04 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42338D85089B8FC74E029230 /* AboutView.swift */; };
 		0AC51F94957A9306240E09C2 /* ProgressView_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F997193D4D31D96BDC16A6 /* ProgressView_.swift */; };
 		11B3445C8609B381A4DB5689 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00318B4C7FFB80FBE847D91B /* CollectionView.swift */; };
 		11D5B72CE81858F128BCC745 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB86BF64CED65129C617A207 /* CollectionViewModel.swift */; };
 		1D1E10FD2FBE2BFFFF595846 /* ArtworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599CC0F77C05E422E367FF7E /* ArtworkDetailView.swift */; };
+		2353A8DFBF2F2484885E5444 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0D03F552917FE492B99194 /* HelpView.swift */; };
 		2C23C5B65ECC41942C2868CB /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3694A9AF8CE0C6B588B7D /* QuizQuestion.swift */; };
 		360CD355A2923B4A05E97FAD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCAA3666CFEC76DB8C0FB67 /* SettingsView.swift */; };
+		387C5A8EBBF029FF49C26A85 /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065C709B9444710709AE4F40 /* ProfileSettingsView.swift */; };
 		39C28A33C68B34B26F0EA4BB /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D7D75A0E9F523C207126BA /* Artwork.swift */; };
 		3FA78CBFA7DE13C94F3BA279 /* ArtworkCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A2A84CFD2A1F7732A3B9E0 /* ArtworkCache.swift */; };
+		455E6755F3D7178BDA610FD2 /* GoalSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026A0BC6B92D214B73EC35B2 /* GoalSettingsView.swift */; };
 		62FA98A3AFD8F73A1C83499D /* QuizResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4A90CB80E482DA7DB48308 /* QuizResultView.swift */; };
 		640A3BFAEF4292BDB44D0C4C /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7575B70DABC9FE54ECE1DE5 /* MainTabView.swift */; };
 		8EA9FBA556F7A0D2CB26A6A9 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E4242CA0C7D18B561EA10C /* QuizView.swift */; };
 		931B38E9C0EF59ADD1781478 /* BiKenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5161800DFA4652FBA51CBCC6 /* BiKenApp.swift */; };
 		A8B3574863EC9A814CAB0C85 /* UserProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B43373202C266AEB917E1B6 /* UserProgress.swift */; };
 		BDABB414695DEB41680A2AD1 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B127CDC53F621D0D4A3649 /* QuizViewModel.swift */; };
+		C1D4483BDD082481E5E98F42 /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75B3FB58EA339433D66E59 /* NotificationSettingsView.swift */; };
+		CAE70AF1931A9A6D6B5BFE6B /* ReminderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDA91FB692A30184AA7FCDC /* ReminderSettingsView.swift */; };
 		D5D73A063690026615D768C1 /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AC92471F8C3DB55342777 /* Array+Safe.swift */; };
 		EA3BFB7C428C9AA864F3296B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BB8277351E158F751038E8 /* HomeView.swift */; };
 		F7E8FD457841BE70C89DBBC3 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D032FB31E3119E02900AAD /* Color+Theme.swift */; };
@@ -31,8 +37,12 @@
 
 /* Begin PBXFileReference section */
 		00318B4C7FFB80FBE847D91B /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		026A0BC6B92D214B73EC35B2 /* GoalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSettingsView.swift; sourceTree = "<group>"; };
+		065C709B9444710709AE4F40 /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
+		1BDA91FB692A30184AA7FCDC /* ReminderSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSettingsView.swift; sourceTree = "<group>"; };
 		24B127CDC53F621D0D4A3649 /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		2617EAF49D72A81D96C206C8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		42338D85089B8FC74E029230 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		43D7D75A0E9F523C207126BA /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		50E4242CA0C7D18B561EA10C /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		5161800DFA4652FBA51CBCC6 /* BiKenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiKenApp.swift; sourceTree = "<group>"; };
@@ -41,9 +51,11 @@
 		64A2A84CFD2A1F7732A3B9E0 /* ArtworkCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkCache.swift; sourceTree = "<group>"; };
 		69BB8277351E158F751038E8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		6B43373202C266AEB917E1B6 /* UserProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProgress.swift; sourceTree = "<group>"; };
+		8D75B3FB58EA339433D66E59 /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
 		9FCAA3666CFEC76DB8C0FB67 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A33E3019BFCECCDB21DE9DD3 /* MetMuseumAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetMuseumAPIService.swift; sourceTree = "<group>"; };
 		A99DA8814EC0391E4CBC5797 /* ArtworkConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkConverter.swift; sourceTree = "<group>"; };
+		AC0D03F552917FE492B99194 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		C06E37D258CAB6ECF24C592F /* BiKen.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BiKen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7575B70DABC9FE54ECE1DE5 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		D1A841F1C3EED8CCBB67B0F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -66,6 +78,12 @@
 		3E80C720083D99A3F71F10A5 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				42338D85089B8FC74E029230 /* AboutView.swift */,
+				026A0BC6B92D214B73EC35B2 /* GoalSettingsView.swift */,
+				AC0D03F552917FE492B99194 /* HelpView.swift */,
+				8D75B3FB58EA339433D66E59 /* NotificationSettingsView.swift */,
+				065C709B9444710709AE4F40 /* ProfileSettingsView.swift */,
+				1BDA91FB692A30184AA7FCDC /* ReminderSettingsView.swift */,
 				9FCAA3666CFEC76DB8C0FB67 /* SettingsView.swift */,
 			);
 			path = Settings;
@@ -250,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00771B3568F9FCA04CAF8C04 /* AboutView.swift in Sources */,
 				D5D73A063690026615D768C1 /* Array+Safe.swift in Sources */,
 				39C28A33C68B34B26F0EA4BB /* Artwork.swift in Sources */,
 				3FA78CBFA7DE13C94F3BA279 /* ArtworkCache.swift in Sources */,
@@ -259,15 +278,20 @@
 				11B3445C8609B381A4DB5689 /* CollectionView.swift in Sources */,
 				11D5B72CE81858F128BCC745 /* CollectionViewModel.swift in Sources */,
 				F7E8FD457841BE70C89DBBC3 /* Color+Theme.swift in Sources */,
+				455E6755F3D7178BDA610FD2 /* GoalSettingsView.swift in Sources */,
+				2353A8DFBF2F2484885E5444 /* HelpView.swift in Sources */,
 				EA3BFB7C428C9AA864F3296B /* HomeView.swift in Sources */,
 				F86DF46E09056F1BEC0659CB /* HomeViewModel.swift in Sources */,
 				640A3BFAEF4292BDB44D0C4C /* MainTabView.swift in Sources */,
 				F8BABBF5F69533483D70768C /* MetMuseumAPIService.swift in Sources */,
+				C1D4483BDD082481E5E98F42 /* NotificationSettingsView.swift in Sources */,
+				387C5A8EBBF029FF49C26A85 /* ProfileSettingsView.swift in Sources */,
 				0AC51F94957A9306240E09C2 /* ProgressView_.swift in Sources */,
 				2C23C5B65ECC41942C2868CB /* QuizQuestion.swift in Sources */,
 				62FA98A3AFD8F73A1C83499D /* QuizResultView.swift in Sources */,
 				8EA9FBA556F7A0D2CB26A6A9 /* QuizView.swift in Sources */,
 				BDABB414695DEB41680A2AD1 /* QuizViewModel.swift in Sources */,
+				CAE70AF1931A9A6D6B5BFE6B /* ReminderSettingsView.swift in Sources */,
 				360CD355A2923B4A05E97FAD /* SettingsView.swift in Sources */,
 				A8B3574863EC9A814CAB0C85 /* UserProgress.swift in Sources */,
 			);
