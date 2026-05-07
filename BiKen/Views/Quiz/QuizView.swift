@@ -212,7 +212,7 @@ struct QuizView: View {
         HStack {
             Spacer()
             let yearStr = question.artwork.year.map { "c.\($0)" } ?? ""
-            let mediumStr = shortMedium(question.artwork.medium)
+            let mediumStr = question.artwork.shortMediumJa
             let hint = [yearStr, mediumStr].filter { !$0.isEmpty }.joined(separator: " / ")
             if !hint.isEmpty {
                 Text(hint)
@@ -221,19 +221,6 @@ struct QuizView: View {
                     .padding(.trailing, 20)
             }
         }
-    }
-
-    private func shortMedium(_ medium: String) -> String {
-        let lower = medium.lowercased()
-        if lower.contains("oil") { return "油彩" }
-        if lower.contains("tempera") { return "テンペラ" }
-        if lower.contains("fresco") { return "フレスコ" }
-        if lower.contains("watercolor") { return "水彩" }
-        if lower.contains("woodblock") || lower.contains("woodcut") { return "木版画" }
-        if lower.contains("pastel") { return "パステル" }
-        if lower.contains("gouache") { return "グワッシュ" }
-        if lower.contains("ink") { return "墨画" }
-        return ""
     }
 
     // MARK: Options
@@ -353,7 +340,7 @@ struct QuizView: View {
 
     private func shortDescription(_ artwork: Artwork) -> String {
         let era = artwork.era.japaneseName
-        let medium = shortMedium(artwork.medium)
+        let medium = artwork.shortMediumJa
         var parts: [String] = []
         if !medium.isEmpty { parts.append("\(medium)で描かれた") }
         parts.append("\(era)の代表的な作品")

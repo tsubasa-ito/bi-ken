@@ -63,8 +63,9 @@ struct ArtworkDetailView: View {
 
             HStack(spacing: 8) {
                 tagView(text: artwork.era.japaneseName, color: .appPrimary)
-                if !artwork.medium.isEmpty, let med = shortMedium(artwork.medium) {
-                    tagView(text: med, color: .appTextSecondary)
+                let medJa = artwork.shortMediumJa
+                if !medJa.isEmpty {
+                    tagView(text: medJa, color: .appTextSecondary)
                 }
             }
         }
@@ -108,15 +109,4 @@ struct ArtworkDetailView: View {
             .background(color.opacity(0.12), in: Capsule())
     }
 
-    private func shortMedium(_ medium: String) -> String? {
-        let lower = medium.lowercased()
-        if lower.contains("oil") { return "油彩" }
-        if lower.contains("tempera") { return "テンペラ" }
-        if lower.contains("fresco") { return "フレスコ" }
-        if lower.contains("watercolor") { return "水彩" }
-        if lower.contains("woodblock") || lower.contains("woodcut") { return "木版画" }
-        if lower.contains("pastel") { return "パステル" }
-        if lower.contains("ink") { return "墨画" }
-        return medium.isEmpty ? nil : medium
-    }
 }
