@@ -9,6 +9,7 @@ final class UserProgress {
     private(set) var level: Int
     private(set) var currentXP: Int
     private(set) var totalArtworksMet: Int
+    private(set) var totalCorrectAnswers: Int
     private(set) var totalCertificates: Int
     private(set) var currentStreak: Int
     private(set) var wrongArtworkIDs: [String]
@@ -45,25 +46,26 @@ final class UserProgress {
 
     private init() {
         let ud = UserDefaults.standard
-        level             = (ud.value(forKey: "level")           as? Int) ?? 1
-        currentXP         = (ud.value(forKey: "currentXP")       as? Int) ?? 0
-        totalArtworksMet  = (ud.value(forKey: "totalArtworksMet") as? Int) ?? 0
-        totalCertificates = (ud.value(forKey: "totalCertificates") as? Int) ?? 0
-        currentStreak     = (ud.value(forKey: "currentStreak")   as? Int) ?? 0
-        wrongArtworkIDs   = ud.stringArray(forKey: "wrongArtworkIDs") ?? []
-        studyDateStrings  = ud.stringArray(forKey: "studyDateStrings") ?? []
+        level                = (ud.value(forKey: "level")                as? Int) ?? 1
+        currentXP            = (ud.value(forKey: "currentXP")            as? Int) ?? 0
+        totalArtworksMet     = (ud.value(forKey: "totalArtworksMet")     as? Int) ?? 0
+        totalCorrectAnswers  = (ud.value(forKey: "totalCorrectAnswers")  as? Int) ?? 0
+        totalCertificates    = (ud.value(forKey: "totalCertificates")    as? Int) ?? 0
+        currentStreak        = (ud.value(forKey: "currentStreak")        as? Int) ?? 0
+        wrongArtworkIDs      = ud.stringArray(forKey: "wrongArtworkIDs") ?? []
+        studyDateStrings     = ud.stringArray(forKey: "studyDateStrings") ?? []
     }
 
     func recordQuizResult(correct: Int, total: Int) {
         totalArtworksMet += total
+        totalCorrectAnswers += correct
         let rawXP = currentXP + correct * 5
-        if rawXP >= 100 {
-            level += 1
-            currentXP = max(0, rawXP - 100)
-            totalCertificates += 1
-        } else {
-            currentXP = rawXP
+        let levelsGained = rawXP / 100
+        if levelsGained > 0 {
+            level += levelsGained
+            totalCertificates += levelsGained
         }
+        currentXP = rawXP % 100
         updateStreak()
         recordStudyDate()
         save()
@@ -108,12 +110,13 @@ final class UserProgress {
 
     private func save() {
         let ud = UserDefaults.standard
-        ud.set(level,             forKey: "level")
-        ud.set(currentXP,         forKey: "currentXP")
-        ud.set(totalArtworksMet,  forKey: "totalArtworksMet")
-        ud.set(totalCertificates, forKey: "totalCertificates")
-        ud.set(currentStreak,     forKey: "currentStreak")
-        ud.set(wrongArtworkIDs,   forKey: "wrongArtworkIDs")
-        ud.set(studyDateStrings,  forKey: "studyDateStrings")
+        ud.set(level,               forKey: "level")
+        ud.set(currentXP,           forKey: "currentXP")
+        ud.set(totalArtworksMet,    forKey: "totalArtworksMet")
+        ud.set(totalCorrectAnswers, forKey: "totalCorrectAnswers")
+        ud.set(totalCertificates,   forKey: "totalCertificates")
+        ud.set(currentStreak,       forKey: "currentStreak")
+        ud.set(wrongArtworkIDs,     forKey: "wrongArtworkIDs")
+        ud.set(studyDateStrings,    forKey: "studyDateStrings")
     }
 }
