@@ -50,14 +50,14 @@ final class QuizViewModel {
                     self.error = "間違えた問題はありません。すべて正解済みです！"
                     return
                 }
-                raw = try await fetchByIDs(ids)
+                raw = await fetchByIDs(ids)
 
             case .specificIDs(let ids):
                 guard !ids.isEmpty else {
                     self.error = "復習する問題がありません"
                     return
                 }
-                raw = try await fetchByIDs(ids)
+                raw = await fetchByIDs(ids)
             }
 
             let artworks = convertArtworks(raw)
@@ -113,15 +113,15 @@ final class QuizViewModel {
         }
     }
 
-    private func fetchByIDs(_ ids: [String]) async throws -> [MetArtworkResponse] {
+    private func fetchByIDs(_ ids: [String]) async -> [MetArtworkResponse] {
         let intIDs = ids.compactMap { Int($0) }
         assert(intIDs.count == ids.count, "wrongArtworkIDs に非数値IDが含まれています")
-        return try await withThrowingTaskGroup(of: MetArtworkResponse?.self) { group in
+        return await withTaskGroup(of: MetArtworkResponse?.self) { group in
             for id in intIDs.prefix(20) {
-                group.addTask { try await MetMuseumAPIService.artwork(id: id) }
+                group.addTask { try? await MetMuseumAPIService.artwork(id: id) }
             }
             var results: [MetArtworkResponse] = []
-            for try await item in group {
+            for await item in group {
                 if let r = item { results.append(r) }
             }
             return results
