@@ -358,7 +358,7 @@ struct HomeView: View {
             }
         }
         .padding(14)
-        .background(Color.white)
+        .background(Color.appCardBG)
         .clipShape(RoundedRectangle(cornerRadius: 6))
         .overlay(
             RoundedRectangle(cornerRadius: 6)
@@ -370,16 +370,16 @@ struct HomeView: View {
 
     private var statsRow: some View {
         HStack(spacing: 8) {
-            statCell(value: "\(progress.currentStreak)", label: "連続日数", bg: Color.appStreakBG)
             statCell(value: "\(progress.totalArtworksMet)", label: "解いた問題", bg: Color.appCardBG)
             statCell(value: accuracyText, label: "正答率", bg: Color.appCardBG)
+            statCell(value: "\(progress.totalCertificates)", label: "証書", bg: Color.appStreakBG)
         }
     }
 
     private var accuracyText: String {
         guard progress.totalArtworksMet > 0 else { return "—" }
         let pct = progress.totalCorrectAnswers * 100 / progress.totalArtworksMet
-        return "\(min(100, pct))%"
+        return "\(max(0, min(100, pct)))%"
     }
 
     private func statCell(value: String, label: String, bg: Color) -> some View {
@@ -414,7 +414,7 @@ struct HomeView: View {
             }
 
             let dates = last28Days()
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: 28), spacing: 4) {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: 7), spacing: 4) {
                 ForEach(dates, id: \.self) { dateStr in
                     heatCell(dateStr: dateStr)
                 }
@@ -434,8 +434,12 @@ struct HomeView: View {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withFullDate]
         let today = Date()
-        return (0..<28).reversed().compactMap { offset in
-            Calendar.current.date(byAdding: .day, value: -offset, to: today).map { formatter.string(from: $0) }
+        return (0..<28).reversed().compactMap { offset -> String? in
+            guard let date = Calendar.current.date(byAdding: .day, value: -offset, to: today) else {
+                assertionFailure("Calendar.date(byAdding:) returned nil for offset \(offset)")
+                return nil
+            }
+            return formatter.string(from: date)
         }
     }
 }
