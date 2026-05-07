@@ -110,18 +110,15 @@ bi-ken/
 
 ```
 ホーム
+├── レベルカード（Lv. / XP進捗バー）
+├── 統計行（解いた問題数・正答率・証書数）
 ├── 10問チャレンジ → QuizView(.random) → 結果 → [復習] QuizView(.specificIDs)
 ├── 時代から学ぶ → EraSelectionSheet → QuizView(.era(Era))
-└── 復習する → QuizView(.review)
+├── 復習する → QuizView(.review)
+└── 学習ヒートマップ（直近4週間・週単位）
 
 コレクション
 └── 作品タップ → 作品詳細
-
-学習記録
-├── XPバー・レベル表示
-├── 時代別進捗バー
-├── 28日学習ヒートマップ
-└── 学習を続ける → QuizView(.random)
 
 設定
 ├── プロフィール → 名前変更
