@@ -108,7 +108,11 @@ struct ProgressView_: View {
         }
     }
 
-    private var accuracyText: String { "—" }
+    private var accuracyText: String {
+        guard progress.totalArtworksMet > 0 else { return "—" }
+        let pct = progress.totalCorrectAnswers * 100 / progress.totalArtworksMet
+        return "\(min(100, pct))%"
+    }
 
     private func statCell(value: String, label: String, bg: Color) -> some View {
         VStack(spacing: 4) {
