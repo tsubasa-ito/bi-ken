@@ -53,21 +53,38 @@ Met Museum API → MetMuseumAPIService.swift → ArtworkConverter.swift → View
 ### Navigation
 
 `NavigationStack` + `TabView`:
-- `HomeView` → `QuizView(eraID:)` / `ArtworkDetailView(artwork:)`
+- `HomeView` → `QuizView(mode: QuizMode)` / `ArtworkDetailView(artwork:)`
 - `CollectionView` → `ArtworkDetailView(artwork:)`
+- `QuizResultView` → `QuizView(mode: .specificIDs([String]))` で復習クイズへ遷移
+
+### QuizMode（BiKen/ViewModels/QuizViewModel.swift）
+
+```swift
+enum QuizMode: Equatable, Hashable {
+    case random           // 全時代シャッフルの10問チャレンジ
+    case era(Era)         // 時代別クイズ
+    case review           // UserProgress.wrongArtworkIDs を使った復習
+    case specificIDs([String]) // 結果画面から選んだ間違い問題を復習
+}
+```
 
 ### Type Definitions（BiKen/Models/）
 
 - `Artwork`: `artistOriginal`（英語名）を保持、`year` は `Int?`
 - `QuizQuestion`: `init` で `options.contains(correctAnswer)` を `precondition` チェック
 - `UserProgress`: 全プロパティ `private(set)`、`levelTitle` は computed
+  - `currentXP: Int` — 0–99、100で自動レベルアップ（`totalCertificates += 1`）
+  - `wrongArtworkIDs: [String]` — 間違えた作品IDのリスト（重複なし）
+  - `studyDateStrings: [String]` — ISO8601日付文字列、最大28件
 
 ### コーディングルール
 
 - Swift 6 / `@Observable` + `@MainActor` ViewModel
 - `ShapeStyle where Self == Color` extension でドット構文カラーを使用
 - `withTaskGroup`（non-throwing）でAPI並列取得
+- `withThrowingTaskGroup` を `fetchByIDs` など throws 伝搬が必要な箇所で使用
 - `@Environment(\.dismiss)` でナビゲーション dismiss
+- `Array[safe: index]` は `BiKen/Extensions/Array+Safe.swift` で定義（重複定義禁止）
 
 ## Important Patterns
 
