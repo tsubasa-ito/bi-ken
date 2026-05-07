@@ -14,6 +14,10 @@ final class UserProgress {
     private(set) var currentStreak: Int
     private(set) var wrongArtworkIDs: [String]
     private(set) var studyDateStrings: [String]
+    private(set) var userName: String
+    private(set) var dailyGoal: Int
+    private(set) var todayArtworksMet: Int
+    private(set) var todayDateString: String
 
     var hasMissedQuestions: Bool { !wrongArtworkIDs.isEmpty }
 
@@ -54,9 +58,22 @@ final class UserProgress {
         currentStreak        = (ud.value(forKey: "currentStreak")        as? Int) ?? 0
         wrongArtworkIDs      = ud.stringArray(forKey: "wrongArtworkIDs") ?? []
         studyDateStrings     = ud.stringArray(forKey: "studyDateStrings") ?? []
+        userName             = ud.string(forKey: "userName") ?? ""
+        dailyGoal            = (ud.value(forKey: "dailyGoal")            as? Int) ?? 10
+        todayArtworksMet     = (ud.value(forKey: "todayArtworksMet")     as? Int) ?? 0
+        todayDateString      = ud.string(forKey: "todayDateString") ?? ""
     }
 
     func recordQuizResult(correct: Int, total: Int) {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withFullDate]
+        let today = formatter.string(from: Date())
+        if todayDateString == today {
+            todayArtworksMet += total
+        } else {
+            todayArtworksMet = total
+            todayDateString = today
+        }
         totalArtworksMet += total
         totalCorrectAnswers += correct
         let rawXP = currentXP + correct * 5
@@ -74,6 +91,31 @@ final class UserProgress {
     func recordWrongAnswer(artworkID: String) {
         guard !wrongArtworkIDs.contains(artworkID) else { return }
         wrongArtworkIDs.append(artworkID)
+        save()
+    }
+
+    func updateUserName(_ name: String) {
+        userName = name
+        save()
+    }
+
+    func updateDailyGoal(_ goal: Int) {
+        dailyGoal = goal
+        save()
+    }
+
+    func reset() {
+        level = 1
+        currentXP = 0
+        totalArtworksMet = 0
+        totalCorrectAnswers = 0
+        totalCertificates = 0
+        currentStreak = 0
+        wrongArtworkIDs = []
+        studyDateStrings = []
+        todayArtworksMet = 0
+        todayDateString = ""
+        UserDefaults.standard.removeObject(forKey: "lastStudyDate")
         save()
     }
 
@@ -118,5 +160,9 @@ final class UserProgress {
         ud.set(currentStreak,       forKey: "currentStreak")
         ud.set(wrongArtworkIDs,     forKey: "wrongArtworkIDs")
         ud.set(studyDateStrings,    forKey: "studyDateStrings")
+        ud.set(userName,            forKey: "userName")
+        ud.set(dailyGoal,           forKey: "dailyGoal")
+        ud.set(todayArtworksMet,    forKey: "todayArtworksMet")
+        ud.set(todayDateString,     forKey: "todayDateString")
     }
 }
