@@ -110,8 +110,8 @@ struct ProfileSettingsView: View {
                 .foregroundStyle(.appTextSecondary)
                 .padding(.top, 4)
                 .padding(.bottom, 16)
-
         }
+        .frame(maxWidth: .infinity)
     }
 
     private func save() {
