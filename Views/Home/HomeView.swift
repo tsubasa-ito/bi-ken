@@ -285,9 +285,7 @@ struct HomeView: View {
                 badgeColor: Color.appCardBG,
                 bgColor: Color.appCardBG
             ) {
-                if progress.hasBookmarks {
-                    navigationPath.append(QuizMode.bookmark)
-                }
+                navigationPath.append(QuizMode.bookmark)
             }
 
         }
