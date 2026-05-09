@@ -27,9 +27,15 @@ targets:
     platform: iOS
     deploymentTarget: "17.0"
     sources:
-      - BiKen
+      - App
+      - Data
+      - Extensions
+      - Models
+      - Services
+      - ViewModels
+      - Views
     info:
-      path: BiKen/Info.plist
+      path: Info.plist
       properties:
         CFBundleDisplayName: 美術検定
         UILaunchScreen: {}

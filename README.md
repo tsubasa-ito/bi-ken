@@ -78,31 +78,30 @@ xcrun simctl launch booted com.tebasakin.biken
 
 ```
 bi-ken/
-├── BiKen/
-│   ├── App/
-│   │   └── BiKenApp.swift           # エントリーポイント
-│   ├── Data/
-│   │   └── TextbookArtworkData.swift # 美術検定テキスト掲載100作品
-│   ├── Models/                      # データモデル
-│   │   ├── Artwork.swift
-│   │   ├── Era.swift
-│   │   ├── QuizQuestion.swift
-│   │   └── UserProgress.swift
-│   ├── Services/                    # サービス
-│   │   ├── WikipediaImageService.swift  # Wikipedia画像取得（actor）
-│   │   ├── ImageCache.swift            # 画像キャッシュ
-│   │   └── ArtworkConverter.swift      # クイズ生成ロジック
-│   ├── ViewModels/                  # @Observable ViewModel
-│   │   ├── HomeViewModel.swift
-│   │   ├── QuizViewModel.swift
-│   │   └── CollectionViewModel.swift
-│   ├── Views/                       # SwiftUI ビュー
-│   │   ├── Home/
-│   │   ├── Quiz/
-│   │   ├── Collection/
-│   │   ├── Artwork/
-│   │   └── ...
-│   └── Extensions/                  # Color+Theme.swift 等
+├── App/
+│   └── BiKenApp.swift               # エントリーポイント
+├── Data/
+│   └── TextbookArtworkData.swift    # 美術検定テキスト掲載100作品
+├── Models/                          # データモデル
+│   ├── Artwork.swift
+│   ├── QuizQuestion.swift
+│   └── UserProgress.swift
+├── Services/                        # サービス
+│   ├── WikipediaImageService.swift  # Wikipedia画像取得（actor）
+│   ├── ImageCache.swift             # 画像キャッシュ
+│   ├── ArtworkCache.swift           # 作品データキャッシュ
+│   └── ArtworkConverter.swift       # クイズ生成ロジック
+├── ViewModels/                      # @Observable ViewModel
+│   ├── HomeViewModel.swift
+│   ├── QuizViewModel.swift
+│   └── CollectionViewModel.swift
+├── Views/                           # SwiftUI ビュー
+│   ├── Home/
+│   ├── Quiz/
+│   ├── Collection/
+│   ├── Artwork/
+│   └── ...
+├── Extensions/                      # Color+Theme.swift 等
 ├── project.yml                      # xcodegen 設定
 ├── docs/                            # 参考資料
 └── bijutsu-kentei.pen               # デザインファイル

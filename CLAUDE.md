@@ -29,13 +29,13 @@ TextbookArtworkData.swift → ViewModels + WikipediaImageService.swift → Swift
 
 ### Key Data Source
 
-**BiKen/Data/TextbookArtworkData.swift**
+**Data/TextbookArtworkData.swift**
 - 美術検定テキスト掲載の名作100点をハードコード（`TextbookArtworkData.all: [TextbookArtwork]`）
 - `TextbookArtwork`: `id`（`"textbook-001"`形式）、`wikiTitle: String?`、`wikiLang: String`（`"en"` or `"ja"`）を保持
 - `var era: Era`: `periodJa` 文字列から `Era` enum に変換（exhaustive マッピング）
 - `func asArtwork(imageURL: URL?) -> Artwork`: `TextbookArtwork` → `Artwork` 変換
 
-**BiKen/Services/WikipediaImageService.swift**
+**Services/WikipediaImageService.swift**
 - `actor WikipediaImageService` - Wikipedia Action API（`/w/api.php?prop=pageimages`）から作品画像を取得
 - `inFlight: [String: Task<URL?, Never>]` で並行リクエストの重複防止（actor再入バグ対策）
 - `completed: [String: URL?]` でリクエスト結果をキャッシュ（成功・失敗ともに記録）
@@ -55,7 +55,7 @@ TextbookArtworkData.swift → ViewModels + WikipediaImageService.swift → Swift
 - `QuizResultView` → `QuizView(mode: .specificIDs([String]))` で復習クイズへ遷移
 - `SettingsView` → 各サブ設定画面（`NavigationLink` で遷移）
 
-### Settings Views（BiKen/Views/Settings/）
+### Settings Views（Views/Settings/）
 
 - `SettingsView`: 設定トップ。`confirmationDialog` で進捗リセット確認、`@Environment(\.requestReview)` でレビューリクエスト
 - `ProfileSettingsView`: ユーザー名編集（`@FocusState`）+ 推し作品設定。`@AppStorage("oshiArtworkData")` に `Artwork` を JSON エンコードして永続化。`@State + onChange(initial: true)` でデコードキャッシュ
@@ -66,7 +66,7 @@ TextbookArtworkData.swift → ViewModels + WikipediaImageService.swift → Swift
 - `AboutView`: アプリ情報・機能紹介
 - `HelpView`: FAQ アコーディオン（`expandedItem: String?` で展開状態管理）
 
-### QuizMode（BiKen/ViewModels/QuizViewModel.swift）
+### QuizMode（ViewModels/QuizViewModel.swift）
 
 ```swift
 enum QuizMode: Equatable, Hashable {
@@ -77,7 +77,7 @@ enum QuizMode: Equatable, Hashable {
 }
 ```
 
-### Type Definitions（BiKen/Models/）
+### Type Definitions（Models/）
 
 - `Artwork`: `artistOriginal`（英語名）を保持、`year` は `Int?`、`imageURL` は `URL?`（Wikipedia画像が取得できない作品は nil）
 - `QuizQuestion`: `init` で `options.contains(correctAnswer)` を `precondition` チェック
@@ -97,7 +97,7 @@ enum QuizMode: Equatable, Hashable {
 - `withTaskGroup`（non-throwing）でAPI並列取得
 - `withThrowingTaskGroup` を `fetchByIDs` など throws 伝搬が必要な箇所で使用
 - `@Environment(\.dismiss)` でナビゲーション dismiss
-- `Array[safe: index]` は `BiKen/Extensions/Array+Safe.swift` で定義（重複定義禁止）
+- `Array[safe: index]` は `Extensions/Array+Safe.swift` で定義（重複定義禁止）
 
 ## Important Patterns
 
