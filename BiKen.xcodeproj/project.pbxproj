@@ -10,7 +10,6 @@
 		0A283063F3C7B974D90D1002 /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85699C924959A97004BCE570 /* Array+Safe.swift */; };
 		2433BA5BBAA61B0E96770A81 /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3388FE3B98938BD4F1C12922 /* NotificationSettingsView.swift */; };
 		254681A0E34461D22E0CF4B0 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC78CDE96C01267C75C38D5 /* HelpView.swift */; };
-		2560E277AA6AFA656B046B65 /* GoalSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6939C3FF055EA4CCB8A9195 /* GoalSettingsView.swift */; };
 		27194D04473D101018DD34E3 /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28B00B8B6AFDED407D9AC9C /* ProfileSettingsView.swift */; };
 		2F61801C1F545617A90ABC6A /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3296DFD92CD7C92B1BC0A107 /* MainTabView.swift */; };
 		3984394409537211A02AEDD0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D18837FB157690468B37D6 /* HomeViewModel.swift */; };
@@ -33,7 +32,6 @@
 		AD673BF0CD2EFF34B395BB0A /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6910390820D86A38BFD7E7EB /* CollectionViewModel.swift */; };
 		D29BB5CD0A14EC09EED93FCE /* ArtworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA2F1CC7A94B679D07E0449 /* ArtworkDetailView.swift */; };
 		D7B2EBFFF2A65334F7FFD2B5 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958109806ECAE38F2E47CFD4 /* CollectionView.swift */; };
-		DF414878CF233180333A5E59 /* ReminderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F796256349CA937417915 /* ReminderSettingsView.swift */; };
 		E726769AD93CD30E9378B400 /* OshiArtworkPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E207F81AF3DC2D93E5422151 /* OshiArtworkPickerView.swift */; };
 		F1E300F42B7871DA098142BF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436BCF75D474D537EB8DB93 /* HomeView.swift */; };
 		F986207F1E35B392C959700C /* QuizResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7E7F0F32F1B2422056F553 /* QuizResultView.swift */; };
@@ -61,15 +59,13 @@
 		9D91100584F210495B75AA74 /* ArtworkConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkConverter.swift; sourceTree = "<group>"; };
 		A28B00B8B6AFDED407D9AC9C /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
 		AEE59327EC1E3D94A707D6C9 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
-		B6939C3FF055EA4CCB8A9195 /* GoalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSettingsView.swift; sourceTree = "<group>"; };
 		BF2E8BD1D64190B943296127 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
-		C06E37D258CAB6ECF24C592F /* BiKen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiKen.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C06E37D258CAB6ECF24C592F /* BiKen.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BiKen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4D18837FB157690468B37D6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E207F81AF3DC2D93E5422151 /* OshiArtworkPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshiArtworkPickerView.swift; sourceTree = "<group>"; };
 		E555A4B198F51ACBAB4B9696 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E58FFE94344196D985D64969 /* BiKenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiKenApp.swift; sourceTree = "<group>"; };
 		F1C97A13FE12DBD88C166171 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
-		FA2F796256349CA937417915 /* ReminderSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSettingsView.swift; sourceTree = "<group>"; };
 		FFA2F1CC7A94B679D07E0449 /* ArtworkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,12 +200,10 @@
 			isa = PBXGroup;
 			children = (
 				BF2E8BD1D64190B943296127 /* AboutView.swift */,
-				B6939C3FF055EA4CCB8A9195 /* GoalSettingsView.swift */,
 				6DC78CDE96C01267C75C38D5 /* HelpView.swift */,
 				3388FE3B98938BD4F1C12922 /* NotificationSettingsView.swift */,
 				E207F81AF3DC2D93E5422151 /* OshiArtworkPickerView.swift */,
 				A28B00B8B6AFDED407D9AC9C /* ProfileSettingsView.swift */,
-				FA2F796256349CA937417915 /* ReminderSettingsView.swift */,
 				E555A4B198F51ACBAB4B9696 /* SettingsView.swift */,
 			);
 			path = Settings;
@@ -251,6 +245,8 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
 			};
 			buildConfigurationList = 173D26EE15FD71C64DC475BF /* Build configuration list for PBXProject "BiKen" */;
 			developmentRegion = en;
@@ -287,7 +283,6 @@
 				D7B2EBFFF2A65334F7FFD2B5 /* CollectionView.swift in Sources */,
 				AD673BF0CD2EFF34B395BB0A /* CollectionViewModel.swift in Sources */,
 				4394CD719B65A18E2C4901AC /* Color+Theme.swift in Sources */,
-				2560E277AA6AFA656B046B65 /* GoalSettingsView.swift in Sources */,
 				254681A0E34461D22E0CF4B0 /* HelpView.swift in Sources */,
 				F1E300F42B7871DA098142BF /* HomeView.swift in Sources */,
 				3984394409537211A02AEDD0 /* HomeViewModel.swift in Sources */,
@@ -301,7 +296,6 @@
 				F986207F1E35B392C959700C /* QuizResultView.swift in Sources */,
 				7CE323C0CD1226F437F11DBA /* QuizView.swift in Sources */,
 				5675A79C496231F1510C9481 /* QuizViewModel.swift in Sources */,
-				DF414878CF233180333A5E59 /* ReminderSettingsView.swift in Sources */,
 				7FA2FBE034F7D07D02549FAF /* SettingsView.swift in Sources */,
 				A3ABDF01D36453C168D1B504 /* TextbookArtworkData.swift in Sources */,
 				A3C0E9FD0AD41AF0A69891BA /* UserProgress.swift in Sources */,
@@ -437,7 +431,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6CGGS6SX69;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -459,7 +452,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6CGGS6SX69;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (

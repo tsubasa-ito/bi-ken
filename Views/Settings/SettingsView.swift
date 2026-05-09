@@ -31,16 +31,6 @@ struct SettingsView: View {
                     .listRowBackground(Color.appCardBG)
 
                     Section("学習") {
-                        NavigationLink {
-                            GoalSettingsView()
-                        } label: {
-                            settingsRow(icon: "target", title: "目標設定", color: .appCorrect)
-                        }
-                        NavigationLink {
-                            ReminderSettingsView()
-                        } label: {
-                            settingsRow(icon: "clock.fill", title: "学習リマインダー", color: .purple)
-                        }
                         Button {
                             showResetConfirmation = true
                         } label: {

@@ -13,14 +13,6 @@ struct NotificationSettingsView: View {
 
             Section("通知の設定") {
                 statusRow
-                if authStatus == .authorized {
-                    NavigationLink {
-                        ReminderSettingsView()
-                    } label: {
-                        Label("学習リマインダー", systemImage: "clock.fill")
-                            .foregroundStyle(.appText)
-                    }
-                }
             }
             .listRowBackground(Color.appCardBG)
 
