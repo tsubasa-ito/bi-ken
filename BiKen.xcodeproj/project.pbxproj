@@ -7,87 +7,110 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00771B3568F9FCA04CAF8C04 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42338D85089B8FC74E029230 /* AboutView.swift */; };
-		11B3445C8609B381A4DB5689 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00318B4C7FFB80FBE847D91B /* CollectionView.swift */; };
-		11D5B72CE81858F128BCC745 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB86BF64CED65129C617A207 /* CollectionViewModel.swift */; };
-		121EF5AE87FA12CB9FDC211A /* TextbookArtworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC9E623DE4CC453C8CBE4E2 /* TextbookArtworkData.swift */; };
-		1D1E10FD2FBE2BFFFF595846 /* ArtworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599CC0F77C05E422E367FF7E /* ArtworkDetailView.swift */; };
-		2353A8DFBF2F2484885E5444 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0D03F552917FE492B99194 /* HelpView.swift */; };
-		2BF88C8F9D7223610BA2C025 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46564208C928406260A7C3BC /* CachedAsyncImage.swift */; };
-		2C23C5B65ECC41942C2868CB /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3694A9AF8CE0C6B588B7D /* QuizQuestion.swift */; };
-		360CD355A2923B4A05E97FAD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCAA3666CFEC76DB8C0FB67 /* SettingsView.swift */; };
-		387C5A8EBBF029FF49C26A85 /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065C709B9444710709AE4F40 /* ProfileSettingsView.swift */; };
-		39C28A33C68B34B26F0EA4BB /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D7D75A0E9F523C207126BA /* Artwork.swift */; };
-		3FA78CBFA7DE13C94F3BA279 /* ArtworkCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A2A84CFD2A1F7732A3B9E0 /* ArtworkCache.swift */; };
-		455E6755F3D7178BDA610FD2 /* GoalSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026A0BC6B92D214B73EC35B2 /* GoalSettingsView.swift */; };
-		4CDFED25BE341EEC0DB7F2E0 /* OshiArtworkPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759B34A4ADBEE3CDB8991DDF /* OshiArtworkPickerView.swift */; };
-		62FA98A3AFD8F73A1C83499D /* QuizResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4A90CB80E482DA7DB48308 /* QuizResultView.swift */; };
-		640A3BFAEF4292BDB44D0C4C /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7575B70DABC9FE54ECE1DE5 /* MainTabView.swift */; };
-		8EA9FBA556F7A0D2CB26A6A9 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E4242CA0C7D18B561EA10C /* QuizView.swift */; };
-		931B38E9C0EF59ADD1781478 /* BiKenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5161800DFA4652FBA51CBCC6 /* BiKenApp.swift */; };
-		9B485C092E64FC91DD16AC48 /* WikipediaImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360FA1F46C2C70C19D58E586 /* WikipediaImageService.swift */; };
-		A8B3574863EC9A814CAB0C85 /* UserProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B43373202C266AEB917E1B6 /* UserProgress.swift */; };
-		BDABB414695DEB41680A2AD1 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B127CDC53F621D0D4A3649 /* QuizViewModel.swift */; };
-		C1D4483BDD082481E5E98F42 /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75B3FB58EA339433D66E59 /* NotificationSettingsView.swift */; };
-		CAE70AF1931A9A6D6B5BFE6B /* ReminderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDA91FB692A30184AA7FCDC /* ReminderSettingsView.swift */; };
-		D5D73A063690026615D768C1 /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AC92471F8C3DB55342777 /* Array+Safe.swift */; };
-		EA3BFB7C428C9AA864F3296B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BB8277351E158F751038E8 /* HomeView.swift */; };
-		F331CB48BC9D88995108DAE5 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3A4FB985BF6A5895CF0B5B /* ImageCache.swift */; };
-		F7E8FD457841BE70C89DBBC3 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D032FB31E3119E02900AAD /* Color+Theme.swift */; };
-		F86DF46E09056F1BEC0659CB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2617EAF49D72A81D96C206C8 /* HomeViewModel.swift */; };
-		F8BABBF5F69533483D70768C /* MetMuseumAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E3019BFCECCDB21DE9DD3 /* MetMuseumAPIService.swift */; };
-		FE1333D23CD696C766465B65 /* ArtworkConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99DA8814EC0391E4CBC5797 /* ArtworkConverter.swift */; };
+		0A283063F3C7B974D90D1002 /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85699C924959A97004BCE570 /* Array+Safe.swift */; };
+		2433BA5BBAA61B0E96770A81 /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3388FE3B98938BD4F1C12922 /* NotificationSettingsView.swift */; };
+		254681A0E34461D22E0CF4B0 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC78CDE96C01267C75C38D5 /* HelpView.swift */; };
+		2560E277AA6AFA656B046B65 /* GoalSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6939C3FF055EA4CCB8A9195 /* GoalSettingsView.swift */; };
+		27194D04473D101018DD34E3 /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28B00B8B6AFDED407D9AC9C /* ProfileSettingsView.swift */; };
+		2F61801C1F545617A90ABC6A /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3296DFD92CD7C92B1BC0A107 /* MainTabView.swift */; };
+		3984394409537211A02AEDD0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D18837FB157690468B37D6 /* HomeViewModel.swift */; };
+		3E9271FB09408534574F919A /* MetMuseumAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6EFDD8CCB106956FC3FE75 /* MetMuseumAPIService.swift */; };
+		4394CD719B65A18E2C4901AC /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445AEBCFD0E78A0D71B78AB3 /* Color+Theme.swift */; };
+		4ECF9D44B1E1A067FC4157AF /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7B2C0FDF8D65B45F84450D /* QuizQuestion.swift */; };
+		4EDE752BAE3D142F50466088 /* WikipediaImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDDC8E13B8667D42B4CC95 /* WikipediaImageService.swift */; };
+		5675A79C496231F1510C9481 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345A715D3E6D10D31B88DE58 /* QuizViewModel.swift */; };
+		584D6DED12CBB86A003F913D /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C97A13FE12DBD88C166171 /* CachedAsyncImage.swift */; };
+		743745D1D5E714C8FCAFA57E /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870EDA85B4D13C155271F316 /* ImageCache.swift */; };
+		74EB336835D9797AE08C5BF5 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B48925BFAEDB6E988E9FC5 /* Artwork.swift */; };
+		754DBF5A184EC6B1E1A89517 /* BiKenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FFE94344196D985D64969 /* BiKenApp.swift */; };
+		760330EE9CE2C6602FFD8005 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2E8BD1D64190B943296127 /* AboutView.swift */; };
+		7CE323C0CD1226F437F11DBA /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE59327EC1E3D94A707D6C9 /* QuizView.swift */; };
+		7FA2FBE034F7D07D02549FAF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E555A4B198F51ACBAB4B9696 /* SettingsView.swift */; };
+		9F0DFCD2D84EC15D594412D0 /* ArtworkConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D91100584F210495B75AA74 /* ArtworkConverter.swift */; };
+		A3ABDF01D36453C168D1B504 /* TextbookArtworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B43A51AFD85974E7B1C8949 /* TextbookArtworkData.swift */; };
+		A3C0E9FD0AD41AF0A69891BA /* UserProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FF9F0D4BCEBED32FB3A745 /* UserProgress.swift */; };
+		AC1D4BC2565BDEE7EF63E292 /* ArtworkCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B42662B5E0F6D57B75CC942 /* ArtworkCache.swift */; };
+		AD673BF0CD2EFF34B395BB0A /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6910390820D86A38BFD7E7EB /* CollectionViewModel.swift */; };
+		D29BB5CD0A14EC09EED93FCE /* ArtworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA2F1CC7A94B679D07E0449 /* ArtworkDetailView.swift */; };
+		D7B2EBFFF2A65334F7FFD2B5 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958109806ECAE38F2E47CFD4 /* CollectionView.swift */; };
+		DF414878CF233180333A5E59 /* ReminderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F796256349CA937417915 /* ReminderSettingsView.swift */; };
+		E726769AD93CD30E9378B400 /* OshiArtworkPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E207F81AF3DC2D93E5422151 /* OshiArtworkPickerView.swift */; };
+		F1E300F42B7871DA098142BF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436BCF75D474D537EB8DB93 /* HomeView.swift */; };
+		F986207F1E35B392C959700C /* QuizResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7E7F0F32F1B2422056F553 /* QuizResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		00318B4C7FFB80FBE847D91B /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
-		026A0BC6B92D214B73EC35B2 /* GoalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSettingsView.swift; sourceTree = "<group>"; };
-		065C709B9444710709AE4F40 /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
-		1BC9E623DE4CC453C8CBE4E2 /* TextbookArtworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextbookArtworkData.swift; sourceTree = "<group>"; };
-		1BDA91FB692A30184AA7FCDC /* ReminderSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSettingsView.swift; sourceTree = "<group>"; };
-		24B127CDC53F621D0D4A3649 /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
-		2617EAF49D72A81D96C206C8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		360FA1F46C2C70C19D58E586 /* WikipediaImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaImageService.swift; sourceTree = "<group>"; };
-		42338D85089B8FC74E029230 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
-		43D7D75A0E9F523C207126BA /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
-		46564208C928406260A7C3BC /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
-		50E4242CA0C7D18B561EA10C /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
-		5161800DFA4652FBA51CBCC6 /* BiKenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiKenApp.swift; sourceTree = "<group>"; };
-		599CC0F77C05E422E367FF7E /* ArtworkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkDetailView.swift; sourceTree = "<group>"; };
-		5D4A90CB80E482DA7DB48308 /* QuizResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultView.swift; sourceTree = "<group>"; };
-		64A2A84CFD2A1F7732A3B9E0 /* ArtworkCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkCache.swift; sourceTree = "<group>"; };
-		69BB8277351E158F751038E8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		6B43373202C266AEB917E1B6 /* UserProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProgress.swift; sourceTree = "<group>"; };
-		759B34A4ADBEE3CDB8991DDF /* OshiArtworkPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshiArtworkPickerView.swift; sourceTree = "<group>"; };
-		8D75B3FB58EA339433D66E59 /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
-		9C3A4FB985BF6A5895CF0B5B /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
-		9FCAA3666CFEC76DB8C0FB67 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		A33E3019BFCECCDB21DE9DD3 /* MetMuseumAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetMuseumAPIService.swift; sourceTree = "<group>"; };
-		A99DA8814EC0391E4CBC5797 /* ArtworkConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkConverter.swift; sourceTree = "<group>"; };
-		AC0D03F552917FE492B99194 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		1436BCF75D474D537EB8DB93 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		1D7B2C0FDF8D65B45F84450D /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
+		3296DFD92CD7C92B1BC0A107 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		3388FE3B98938BD4F1C12922 /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
+		345A715D3E6D10D31B88DE58 /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
+		3C7E7F0F32F1B2422056F553 /* QuizResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultView.swift; sourceTree = "<group>"; };
+		445AEBCFD0E78A0D71B78AB3 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
+		4FFDDC8E13B8667D42B4CC95 /* WikipediaImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaImageService.swift; sourceTree = "<group>"; };
+		6910390820D86A38BFD7E7EB /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
+		6B43A51AFD85974E7B1C8949 /* TextbookArtworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextbookArtworkData.swift; sourceTree = "<group>"; };
+		6D6EFDD8CCB106956FC3FE75 /* MetMuseumAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetMuseumAPIService.swift; sourceTree = "<group>"; };
+		6DC78CDE96C01267C75C38D5 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
+		73FF9F0D4BCEBED32FB3A745 /* UserProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProgress.swift; sourceTree = "<group>"; };
+		74B48925BFAEDB6E988E9FC5 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
+		85699C924959A97004BCE570 /* Array+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Safe.swift"; sourceTree = "<group>"; };
+		870EDA85B4D13C155271F316 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		958109806ECAE38F2E47CFD4 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		9B42662B5E0F6D57B75CC942 /* ArtworkCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkCache.swift; sourceTree = "<group>"; };
+		9D91100584F210495B75AA74 /* ArtworkConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkConverter.swift; sourceTree = "<group>"; };
+		A28B00B8B6AFDED407D9AC9C /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
+		AEE59327EC1E3D94A707D6C9 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		B6939C3FF055EA4CCB8A9195 /* GoalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSettingsView.swift; sourceTree = "<group>"; };
+		BF2E8BD1D64190B943296127 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		C06E37D258CAB6ECF24C592F /* BiKen.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BiKen.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7575B70DABC9FE54ECE1DE5 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-		D1A841F1C3EED8CCBB67B0F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		D2D032FB31E3119E02900AAD /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
-		EB86BF64CED65129C617A207 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
-		F96AC92471F8C3DB55342777 /* Array+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Safe.swift"; sourceTree = "<group>"; };
-		F9D3694A9AF8CE0C6B588B7D /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
+		C4D18837FB157690468B37D6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		E207F81AF3DC2D93E5422151 /* OshiArtworkPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshiArtworkPickerView.swift; sourceTree = "<group>"; };
+		E555A4B198F51ACBAB4B9696 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E58FFE94344196D985D64969 /* BiKenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiKenApp.swift; sourceTree = "<group>"; };
+		F1C97A13FE12DBD88C166171 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
+		FA2F796256349CA937417915 /* ReminderSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSettingsView.swift; sourceTree = "<group>"; };
+		FFA2F1CC7A94B679D07E0449 /* ArtworkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		3E80C720083D99A3F71F10A5 /* Settings */ = {
+		15C8BF4C96EB683646D1D1F2 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				42338D85089B8FC74E029230 /* AboutView.swift */,
-				026A0BC6B92D214B73EC35B2 /* GoalSettingsView.swift */,
-				AC0D03F552917FE492B99194 /* HelpView.swift */,
-				8D75B3FB58EA339433D66E59 /* NotificationSettingsView.swift */,
-				759B34A4ADBEE3CDB8991DDF /* OshiArtworkPickerView.swift */,
-				065C709B9444710709AE4F40 /* ProfileSettingsView.swift */,
-				1BDA91FB692A30184AA7FCDC /* ReminderSettingsView.swift */,
-				9FCAA3666CFEC76DB8C0FB67 /* SettingsView.swift */,
+				E58FFE94344196D985D64969 /* BiKenApp.swift */,
 			);
-			path = Settings;
+			path = App;
+			sourceTree = "<group>";
+		};
+		19FDD7B534AFC713AB39F85F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				6B43A51AFD85974E7B1C8949 /* TextbookArtworkData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		1DB02D97EA39D480AE018628 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				85699C924959A97004BCE570 /* Array+Safe.swift */,
+				445AEBCFD0E78A0D71B78AB3 /* Color+Theme.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		285289B841EE6A3CBBD9C088 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3296DFD92CD7C92B1BC0A107 /* MainTabView.swift */,
+				86B004BEA6E220002D48ED5D /* Artwork */,
+				863317CA8CBD86786904869C /* Collection */,
+				FE07E885866BF2636159461A /* Components */,
+				A2DB410C6D5094C4DDC9F2AC /* Home */,
+				DAF937DDF766B3511C00FFFC /* Quiz */,
+				EDDCE0CB20526B70A91C6051 /* Settings */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		5E32489225D63D293C6D830B /* Products */ = {
@@ -98,139 +121,106 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		675E18C679C9B017DBAFBE68 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				69BB8277351E158F751038E8 /* HomeView.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		71323E58B3F449810F764EEA /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				F96AC92471F8C3DB55342777 /* Array+Safe.swift */,
-				D2D032FB31E3119E02900AAD /* Color+Theme.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		727ED6BA24189D607BDF9A75 = {
 			isa = PBXGroup;
 			children = (
-				A98D2770BB4DAC94A017353C /* BiKen */,
+				15C8BF4C96EB683646D1D1F2 /* App */,
+				19FDD7B534AFC713AB39F85F /* Data */,
+				1DB02D97EA39D480AE018628 /* Extensions */,
+				D0F2F5AB3832651DD8EF9127 /* Models */,
+				D52F9159CD7FB6DF3A8D57E3 /* Services */,
+				D7ABBDF04AF25A4282484AF9 /* ViewModels */,
+				285289B841EE6A3CBBD9C088 /* Views */,
 				5E32489225D63D293C6D830B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		7684C84C3591D235F40257E7 /* Quiz */ = {
+		863317CA8CBD86786904869C /* Collection */ = {
 			isa = PBXGroup;
 			children = (
-				5D4A90CB80E482DA7DB48308 /* QuizResultView.swift */,
-				50E4242CA0C7D18B561EA10C /* QuizView.swift */,
-			);
-			path = Quiz;
-			sourceTree = "<group>";
-		};
-		7D85F2450AD4583AC0485EFA /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				46564208C928406260A7C3BC /* CachedAsyncImage.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		8C29ABF781B56B722FD3DCF6 /* Collection */ = {
-			isa = PBXGroup;
-			children = (
-				00318B4C7FFB80FBE847D91B /* CollectionView.swift */,
+				958109806ECAE38F2E47CFD4 /* CollectionView.swift */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
 		};
-		8F83029761A00D0400082196 /* Views */ = {
+		86B004BEA6E220002D48ED5D /* Artwork */ = {
 			isa = PBXGroup;
 			children = (
-				C7575B70DABC9FE54ECE1DE5 /* MainTabView.swift */,
-				EF97D8C0A4738CFCF1563634 /* Artwork */,
-				8C29ABF781B56B722FD3DCF6 /* Collection */,
-				7D85F2450AD4583AC0485EFA /* Components */,
-				675E18C679C9B017DBAFBE68 /* Home */,
-				7684C84C3591D235F40257E7 /* Quiz */,
-				3E80C720083D99A3F71F10A5 /* Settings */,
+				FFA2F1CC7A94B679D07E0449 /* ArtworkDetailView.swift */,
 			);
-			path = Views;
+			path = Artwork;
 			sourceTree = "<group>";
 		};
-		99BEEC89CF86772182A0BB3B /* Data */ = {
+		A2DB410C6D5094C4DDC9F2AC /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				1BC9E623DE4CC453C8CBE4E2 /* TextbookArtworkData.swift */,
+				1436BCF75D474D537EB8DB93 /* HomeView.swift */,
 			);
-			path = Data;
+			path = Home;
 			sourceTree = "<group>";
 		};
-		9A619FF7EBD12221B35C2F50 /* Services */ = {
+		D0F2F5AB3832651DD8EF9127 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				64A2A84CFD2A1F7732A3B9E0 /* ArtworkCache.swift */,
-				A99DA8814EC0391E4CBC5797 /* ArtworkConverter.swift */,
-				9C3A4FB985BF6A5895CF0B5B /* ImageCache.swift */,
-				A33E3019BFCECCDB21DE9DD3 /* MetMuseumAPIService.swift */,
-				360FA1F46C2C70C19D58E586 /* WikipediaImageService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		A98D2770BB4DAC94A017353C /* BiKen */ = {
-			isa = PBXGroup;
-			children = (
-				D1A841F1C3EED8CCBB67B0F7 /* Info.plist */,
-				EEEDA86D5793FDFA79019C3A /* App */,
-				99BEEC89CF86772182A0BB3B /* Data */,
-				71323E58B3F449810F764EEA /* Extensions */,
-				C1C43DE87843F656C121E098 /* Models */,
-				9A619FF7EBD12221B35C2F50 /* Services */,
-				CEECD2F388F838327EBA23CA /* ViewModels */,
-				8F83029761A00D0400082196 /* Views */,
-			);
-			path = BiKen;
-			sourceTree = "<group>";
-		};
-		C1C43DE87843F656C121E098 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				43D7D75A0E9F523C207126BA /* Artwork.swift */,
-				F9D3694A9AF8CE0C6B588B7D /* QuizQuestion.swift */,
-				6B43373202C266AEB917E1B6 /* UserProgress.swift */,
+				74B48925BFAEDB6E988E9FC5 /* Artwork.swift */,
+				1D7B2C0FDF8D65B45F84450D /* QuizQuestion.swift */,
+				73FF9F0D4BCEBED32FB3A745 /* UserProgress.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		CEECD2F388F838327EBA23CA /* ViewModels */ = {
+		D52F9159CD7FB6DF3A8D57E3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				EB86BF64CED65129C617A207 /* CollectionViewModel.swift */,
-				2617EAF49D72A81D96C206C8 /* HomeViewModel.swift */,
-				24B127CDC53F621D0D4A3649 /* QuizViewModel.swift */,
+				9B42662B5E0F6D57B75CC942 /* ArtworkCache.swift */,
+				9D91100584F210495B75AA74 /* ArtworkConverter.swift */,
+				870EDA85B4D13C155271F316 /* ImageCache.swift */,
+				6D6EFDD8CCB106956FC3FE75 /* MetMuseumAPIService.swift */,
+				4FFDDC8E13B8667D42B4CC95 /* WikipediaImageService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D7ABBDF04AF25A4282484AF9 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				6910390820D86A38BFD7E7EB /* CollectionViewModel.swift */,
+				C4D18837FB157690468B37D6 /* HomeViewModel.swift */,
+				345A715D3E6D10D31B88DE58 /* QuizViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		EEEDA86D5793FDFA79019C3A /* App */ = {
+		DAF937DDF766B3511C00FFFC /* Quiz */ = {
 			isa = PBXGroup;
 			children = (
-				5161800DFA4652FBA51CBCC6 /* BiKenApp.swift */,
+				3C7E7F0F32F1B2422056F553 /* QuizResultView.swift */,
+				AEE59327EC1E3D94A707D6C9 /* QuizView.swift */,
 			);
-			path = App;
+			path = Quiz;
 			sourceTree = "<group>";
 		};
-		EF97D8C0A4738CFCF1563634 /* Artwork */ = {
+		EDDCE0CB20526B70A91C6051 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				599CC0F77C05E422E367FF7E /* ArtworkDetailView.swift */,
+				BF2E8BD1D64190B943296127 /* AboutView.swift */,
+				B6939C3FF055EA4CCB8A9195 /* GoalSettingsView.swift */,
+				6DC78CDE96C01267C75C38D5 /* HelpView.swift */,
+				3388FE3B98938BD4F1C12922 /* NotificationSettingsView.swift */,
+				E207F81AF3DC2D93E5422151 /* OshiArtworkPickerView.swift */,
+				A28B00B8B6AFDED407D9AC9C /* ProfileSettingsView.swift */,
+				FA2F796256349CA937417915 /* ReminderSettingsView.swift */,
+				E555A4B198F51ACBAB4B9696 /* SettingsView.swift */,
 			);
-			path = Artwork;
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		FE07E885866BF2636159461A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F1C97A13FE12DBD88C166171 /* CachedAsyncImage.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,36 +278,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00771B3568F9FCA04CAF8C04 /* AboutView.swift in Sources */,
-				D5D73A063690026615D768C1 /* Array+Safe.swift in Sources */,
-				39C28A33C68B34B26F0EA4BB /* Artwork.swift in Sources */,
-				3FA78CBFA7DE13C94F3BA279 /* ArtworkCache.swift in Sources */,
-				FE1333D23CD696C766465B65 /* ArtworkConverter.swift in Sources */,
-				1D1E10FD2FBE2BFFFF595846 /* ArtworkDetailView.swift in Sources */,
-				931B38E9C0EF59ADD1781478 /* BiKenApp.swift in Sources */,
-				2BF88C8F9D7223610BA2C025 /* CachedAsyncImage.swift in Sources */,
-				11B3445C8609B381A4DB5689 /* CollectionView.swift in Sources */,
-				11D5B72CE81858F128BCC745 /* CollectionViewModel.swift in Sources */,
-				F7E8FD457841BE70C89DBBC3 /* Color+Theme.swift in Sources */,
-				455E6755F3D7178BDA610FD2 /* GoalSettingsView.swift in Sources */,
-				2353A8DFBF2F2484885E5444 /* HelpView.swift in Sources */,
-				EA3BFB7C428C9AA864F3296B /* HomeView.swift in Sources */,
-				F86DF46E09056F1BEC0659CB /* HomeViewModel.swift in Sources */,
-				F331CB48BC9D88995108DAE5 /* ImageCache.swift in Sources */,
-				640A3BFAEF4292BDB44D0C4C /* MainTabView.swift in Sources */,
-				F8BABBF5F69533483D70768C /* MetMuseumAPIService.swift in Sources */,
-				C1D4483BDD082481E5E98F42 /* NotificationSettingsView.swift in Sources */,
-				4CDFED25BE341EEC0DB7F2E0 /* OshiArtworkPickerView.swift in Sources */,
-				387C5A8EBBF029FF49C26A85 /* ProfileSettingsView.swift in Sources */,
-				2C23C5B65ECC41942C2868CB /* QuizQuestion.swift in Sources */,
-				62FA98A3AFD8F73A1C83499D /* QuizResultView.swift in Sources */,
-				8EA9FBA556F7A0D2CB26A6A9 /* QuizView.swift in Sources */,
-				BDABB414695DEB41680A2AD1 /* QuizViewModel.swift in Sources */,
-				CAE70AF1931A9A6D6B5BFE6B /* ReminderSettingsView.swift in Sources */,
-				360CD355A2923B4A05E97FAD /* SettingsView.swift in Sources */,
-				121EF5AE87FA12CB9FDC211A /* TextbookArtworkData.swift in Sources */,
-				A8B3574863EC9A814CAB0C85 /* UserProgress.swift in Sources */,
-				9B485C092E64FC91DD16AC48 /* WikipediaImageService.swift in Sources */,
+				760330EE9CE2C6602FFD8005 /* AboutView.swift in Sources */,
+				0A283063F3C7B974D90D1002 /* Array+Safe.swift in Sources */,
+				74EB336835D9797AE08C5BF5 /* Artwork.swift in Sources */,
+				AC1D4BC2565BDEE7EF63E292 /* ArtworkCache.swift in Sources */,
+				9F0DFCD2D84EC15D594412D0 /* ArtworkConverter.swift in Sources */,
+				D29BB5CD0A14EC09EED93FCE /* ArtworkDetailView.swift in Sources */,
+				754DBF5A184EC6B1E1A89517 /* BiKenApp.swift in Sources */,
+				584D6DED12CBB86A003F913D /* CachedAsyncImage.swift in Sources */,
+				D7B2EBFFF2A65334F7FFD2B5 /* CollectionView.swift in Sources */,
+				AD673BF0CD2EFF34B395BB0A /* CollectionViewModel.swift in Sources */,
+				4394CD719B65A18E2C4901AC /* Color+Theme.swift in Sources */,
+				2560E277AA6AFA656B046B65 /* GoalSettingsView.swift in Sources */,
+				254681A0E34461D22E0CF4B0 /* HelpView.swift in Sources */,
+				F1E300F42B7871DA098142BF /* HomeView.swift in Sources */,
+				3984394409537211A02AEDD0 /* HomeViewModel.swift in Sources */,
+				743745D1D5E714C8FCAFA57E /* ImageCache.swift in Sources */,
+				2F61801C1F545617A90ABC6A /* MainTabView.swift in Sources */,
+				3E9271FB09408534574F919A /* MetMuseumAPIService.swift in Sources */,
+				2433BA5BBAA61B0E96770A81 /* NotificationSettingsView.swift in Sources */,
+				E726769AD93CD30E9378B400 /* OshiArtworkPickerView.swift in Sources */,
+				27194D04473D101018DD34E3 /* ProfileSettingsView.swift in Sources */,
+				4ECF9D44B1E1A067FC4157AF /* QuizQuestion.swift in Sources */,
+				F986207F1E35B392C959700C /* QuizResultView.swift in Sources */,
+				7CE323C0CD1226F437F11DBA /* QuizView.swift in Sources */,
+				5675A79C496231F1510C9481 /* QuizViewModel.swift in Sources */,
+				DF414878CF233180333A5E59 /* ReminderSettingsView.swift in Sources */,
+				7FA2FBE034F7D07D02549FAF /* SettingsView.swift in Sources */,
+				A3ABDF01D36453C168D1B504 /* TextbookArtworkData.swift in Sources */,
+				A3C0E9FD0AD41AF0A69891BA /* UserProgress.swift in Sources */,
+				4EDE752BAE3D142F50466088 /* WikipediaImageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +439,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = BiKen/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -470,7 +460,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = BiKen/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
