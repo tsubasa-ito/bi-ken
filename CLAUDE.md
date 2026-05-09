@@ -68,7 +68,7 @@ TextbookArtworkData.swift → ViewModels + WikipediaImageService.swift → Swift
 
 ```swift
 enum QuizMode: Equatable, Hashable {
-    case random           // 全時代シャッフルの10問チャレンジ
+    case random(Int)      // 指定数のランダムクイズ（5/10/20/全問）
     case era(Era)         // 時代別クイズ
     case review           // UserProgress.wrongArtworkIDs を使った復習
     case specificIDs([String]) // 結果画面から選んだ間違い問題を復習
