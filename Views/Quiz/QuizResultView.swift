@@ -16,10 +16,6 @@ struct QuizResultView: View {
         return true
     }
 
-    private var bookmarkedInSession: [AnswerRecord] {
-        vm.answerRecords.filter { UserProgress.shared.isBookmarked($0.question.artwork.id) }
-    }
-
     var body: some View {
         VStack(spacing: 0) {
             headerBar
@@ -32,7 +28,6 @@ struct QuizResultView: View {
                     resultGrid
                     actionButtons
                 }
-                .animation(.easeInOut(duration: 0.2), value: bookmarkedInSession.count)
                 .padding(.horizontal, 20)
                 .padding(.bottom, 40)
             }
