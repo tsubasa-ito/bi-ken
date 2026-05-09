@@ -58,8 +58,8 @@ struct ProfileSettingsView: View {
     }
 
     private var oshiArtworkHeader: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            ZStack(alignment: .bottomLeading) {
+        VStack(alignment: .center, spacing: 0) {
+            ZStack {
                 if let artwork = oshiArtwork {
                     AsyncImage(url: artwork.imageURL) { image in
                         image.resizable().scaledToFill()
@@ -67,64 +67,50 @@ struct ProfileSettingsView: View {
                         Color.appCardBG
                             .overlay(ProgressView().tint(.appPrimary))
                     }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 200)
-                    .clipped()
-
-                    LinearGradient(
-                        colors: [.clear, .black.opacity(0.8)],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(artwork.displayArtist)
-                            .font(.subheadline.bold())
-                            .foregroundStyle(.white)
-                        Text(artwork.displayTitle)
-                            .font(.caption)
-                            .foregroundStyle(.white.opacity(0.85))
-                    }
-                    .padding(16)
+                    .frame(width: 96, height: 96)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.appBorder, lineWidth: 1.5))
                 } else {
-                    Color.appCardBG
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 200)
+                    Circle()
+                        .fill(Color.appCardBG)
+                        .frame(width: 96, height: 96)
+                        .overlay(Circle().stroke(Color.appBorder, lineWidth: 1.5))
                         .overlay(
-                            VStack(spacing: 12) {
-                                Image(systemName: "photo.on.rectangle.angled")
-                                    .font(.system(size: 40))
-                                    .foregroundStyle(.appTextSecondary)
-                                Text("推し作品を選んでプロフィールに飾ろう")
-                                    .font(.subheadline)
-                                    .foregroundStyle(.appTextSecondary)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.horizontal, 24)
-                            }
+                            Image(systemName: "photo.badge.plus")
+                                .font(.system(size: 28))
+                                .foregroundStyle(.appTextSecondary)
                         )
                 }
             }
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding(.horizontal, 16)
-            .padding(.top, 16)
+            .padding(.top, 24)
 
-            HStack {
-                Text(progress.levelTitle)
-                    .font(.system(size: 13))
-                    .foregroundStyle(.appTextSecondary)
-
-                Spacer()
-
-                Button {
-                    showOshiPicker = true
-                } label: {
-                    Label("変更", systemImage: "photo.badge.plus")
-                        .font(.subheadline)
-                        .foregroundStyle(.appPrimary)
+            if let artwork = oshiArtwork {
+                VStack(spacing: 2) {
+                    Text(artwork.displayArtist)
+                        .font(.subheadline.bold())
+                        .foregroundStyle(.appText)
+                    Text(artwork.displayTitle)
+                        .font(.caption)
+                        .foregroundStyle(.appTextSecondary)
                 }
+                .padding(.top, 8)
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+
+            Button {
+                showOshiPicker = true
+            } label: {
+                Label("変更", systemImage: "photo.badge.plus")
+                    .font(.subheadline)
+                    .foregroundStyle(.appPrimary)
+            }
+            .padding(.top, 10)
+
+            Text(progress.levelTitle)
+                .font(.system(size: 13))
+                .foregroundStyle(.appTextSecondary)
+                .padding(.top, 4)
+                .padding(.bottom, 16)
+
         }
     }
 
