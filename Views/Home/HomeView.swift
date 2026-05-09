@@ -276,6 +276,20 @@ struct HomeView: View {
                 }
             }
 
+            modeRow(
+                title: "ブックマーク問題",
+                subtitle: progress.hasBookmarks
+                    ? "\(progress.bookmarkedArtworkIDs.count)作品をブックマーク済み"
+                    : "気になる作品を保存して復習",
+                badgeText: "🔖",
+                badgeColor: Color.appCardBG,
+                bgColor: Color.appCardBG
+            ) {
+                if progress.hasBookmarks {
+                    navigationPath.append(QuizMode.bookmark)
+                }
+            }
+
         }
     }
 

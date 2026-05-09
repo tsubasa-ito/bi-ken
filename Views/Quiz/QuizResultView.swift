@@ -16,6 +16,10 @@ struct QuizResultView: View {
         return true
     }
 
+    private var bookmarkedInSession: [AnswerRecord] {
+        vm.answerRecords.filter { UserProgress.shared.isBookmarked($0.question.artwork.id) }
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             headerBar
@@ -28,6 +32,7 @@ struct QuizResultView: View {
                     resultGrid
                     actionButtons
                 }
+                .animation(.easeInOut(duration: 0.2), value: bookmarkedInSession.count)
                 .padding(.horizontal, 20)
                 .padding(.bottom, 40)
             }
@@ -154,29 +159,52 @@ struct QuizResultView: View {
                 Rectangle().fill(Color.appTextTertiary.opacity(0.5)).frame(height: 0.5)
             }
 
-            let columns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 5)
-            LazyVGrid(columns: columns, spacing: 8) {
-                ForEach(vm.answerRecords.indices, id: \.self) { i in
-                    let record = vm.answerRecords[i]
-                    resultCell(isCorrect: record.isCorrect)
-                }
+            ForEach(vm.answerRecords.indices, id: \.self) { i in
+                resultRow(record: vm.answerRecords[i])
             }
         }
     }
 
-    private func resultCell(isCorrect: Bool) -> some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 6)
-                .fill(isCorrect ? Color.appCorrectBG : Color.appIncorrectBG)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 6)
-                        .stroke(Color.appBorder, lineWidth: 1.5)
-                )
-            Text(isCorrect ? "○" : "×")
-                .font(.system(size: 24, weight: .bold))
-                .foregroundStyle(isCorrect ? Color.appCorrect : Color.appIncorrect)
+    private func resultRow(record: AnswerRecord) -> some View {
+        let artwork = record.question.artwork
+        let bookmarked = UserProgress.shared.isBookmarked(artwork.id)
+        return HStack(spacing: 12) {
+            Text(record.isCorrect ? "○" : "×")
+                .font(.system(size: 18, weight: .bold))
+                .foregroundStyle(record.isCorrect ? Color.appCorrect : Color.appIncorrect)
+                .frame(width: 24)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(artwork.displayTitle)
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundStyle(.appText)
+                    .lineLimit(1)
+                Text(artwork.displayArtist)
+                    .font(.system(size: 11))
+                    .foregroundStyle(.appTextSecondary)
+                    .lineLimit(1)
+            }
+
+            Spacer()
+
+            Button {
+                UserProgress.shared.toggleBookmark(artworkID: artwork.id)
+            } label: {
+                Image(systemName: bookmarked ? "bookmark.fill" : "bookmark")
+                    .font(.system(size: 16))
+                    .foregroundStyle(bookmarked ? Color.appPrimary : Color.appTextSecondary)
+                    .frame(width: 36, height: 36)
+            }
+            .buttonStyle(.plain)
         }
-        .frame(height: 50)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(record.isCorrect ? Color.appCorrectBG : Color.appIncorrectBG)
+        .clipShape(RoundedRectangle(cornerRadius: 6))
+        .overlay(
+            RoundedRectangle(cornerRadius: 6)
+                .stroke(Color.appBorder, lineWidth: 1.5)
+        )
     }
 
     // MARK: Action Buttons

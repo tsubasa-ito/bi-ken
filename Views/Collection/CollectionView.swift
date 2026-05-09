@@ -3,6 +3,13 @@ import SwiftUI
 struct CollectionView: View {
     @State private var vm = CollectionViewModel()
     @State private var selectedEra: Era?
+    @State private var showBookmarksOnly = false
+
+    private var displayedArtworks: [Artwork] {
+        guard showBookmarksOnly else { return vm.artworks }
+        let ids = Set(UserProgress.shared.bookmarkedArtworkIDs)
+        return vm.artworks.filter { ids.contains($0.id) }
+    }
 
     var body: some View {
         NavigationStack {
@@ -26,9 +33,10 @@ struct CollectionView: View {
                             .buttonStyle(.borderedProminent).tint(.appPrimary)
                     }
                     Spacer()
-                } else if vm.artworks.isEmpty {
+                } else if displayedArtworks.isEmpty {
                     Spacer()
-                    Text("作品が見つかりませんでした").foregroundStyle(.appTextSecondary)
+                    Text(showBookmarksOnly ? "ブックマークした作品がありません" : "作品が見つかりませんでした")
+                        .foregroundStyle(.appTextSecondary)
                     Spacer()
                 } else {
                     eraFilter
@@ -60,6 +68,7 @@ struct CollectionView: View {
     private var eraFilter: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
+                bookmarkChip
                 filterChip(title: "すべて", era: nil)
                 ForEach(Era.allCases, id: \.self) { era in
                     filterChip(title: era.japaneseName, era: era)
@@ -70,17 +79,36 @@ struct CollectionView: View {
         }
     }
 
+    private var bookmarkChip: some View {
+        Button {
+            showBookmarksOnly.toggle()
+            if showBookmarksOnly { selectedEra = nil }
+        } label: {
+            HStack(spacing: 4) {
+                Image(systemName: showBookmarksOnly ? "bookmark.fill" : "bookmark")
+                    .font(.system(size: 11))
+                Text("ブックマーク")
+                    .font(.caption.weight(.medium))
+            }
+            .foregroundStyle(showBookmarksOnly ? .white : Color.appTextSecondary)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 7)
+            .background(showBookmarksOnly ? Color.appPrimary : Color.appCardBG, in: Capsule())
+        }
+    }
+
     private func filterChip(title: String, era: Era?) -> some View {
         Button {
             selectedEra = era
+            showBookmarksOnly = false
         } label: {
             Text(title)
                 .font(.caption.weight(.medium))
-                .foregroundStyle(selectedEra == era ? .white : .appTextSecondary)
+                .foregroundStyle(!showBookmarksOnly && selectedEra == era ? .white : Color.appTextSecondary)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 7)
                 .background(
-                    selectedEra == era ? Color.appPrimary : Color.appCardBG,
+                    !showBookmarksOnly && selectedEra == era ? Color.appPrimary : Color.appCardBG,
                     in: Capsule()
                 )
         }
@@ -90,7 +118,7 @@ struct CollectionView: View {
         let columns = [GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)]
         return ScrollView {
             LazyVGrid(columns: columns, spacing: 2) {
-                ForEach(vm.artworks) { artwork in
+                ForEach(displayedArtworks) { artwork in
                     NavigationLink(value: artwork) {
                         artworkCell(artwork: artwork)
                     }
@@ -100,7 +128,8 @@ struct CollectionView: View {
     }
 
     private func artworkCell(artwork: Artwork) -> some View {
-        ZStack(alignment: .bottomLeading) {
+        let bookmarked = UserProgress.shared.isBookmarked(artwork.id)
+        return ZStack(alignment: .bottomLeading) {
             if let imageURL = artwork.imageURL {
                 CachedAsyncImage(url: imageURL) { image in
                     image.resizable().scaledToFill()
@@ -139,6 +168,16 @@ struct CollectionView: View {
                     .foregroundStyle(.white.opacity(0.7))
             }
             .padding(10)
+
+            if bookmarked {
+                Image(systemName: "bookmark.fill")
+                    .font(.system(size: 13))
+                    .foregroundStyle(.white)
+                    .padding(6)
+                    .background(Color.appPrimary, in: Circle())
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                    .padding(8)
+            }
         }
         .frame(height: 200)
         .clipped()
