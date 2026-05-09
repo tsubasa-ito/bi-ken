@@ -187,21 +187,25 @@ struct QuizView: View {
                         .stroke(Color.appBorder, lineWidth: 1.5)
                 )
 
-            CachedAsyncImage(url: question.artwork.imageURL) { image in
-                image.resizable().scaledToFit()
-            } placeholder: {
-                Color.appCardBG
-                    .overlay(
-                        Text("作品画像")
-                            .font(.system(size: 12))
-                            .foregroundStyle(.appTextSecondary)
-                    )
+            if let imageURL = question.artwork.imageURL {
+                CachedAsyncImage(url: imageURL) { image in
+                    image.resizable().scaledToFit()
+                } placeholder: {
+                    ProgressView().tint(.appPrimary)
+                }
+                .frame(height: vm.showResult ? 180 : 240)
+                .clipShape(RoundedRectangle(cornerRadius: 4))
+                .padding(10)
+            } else {
+                Text("『\(question.artwork.displayTitle)』")
+                    .font(.system(size: 22, weight: .semibold, design: .serif))
+                    .foregroundStyle(.appText)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 32)
             }
-            .frame(height: vm.showResult ? 180 : 240)
-            .clipShape(RoundedRectangle(cornerRadius: 4))
-            .padding(10)
         }
-        .frame(height: vm.showResult ? 200 : 260)
+        .frame(minHeight: vm.showResult ? 160 : 220)
         .padding(.horizontal, 20)
         .animation(.easeInOut(duration: 0.3), value: vm.showResult)
     }

@@ -101,15 +101,33 @@ struct CollectionView: View {
 
     private func artworkCell(artwork: Artwork) -> some View {
         ZStack(alignment: .bottomLeading) {
-            CachedAsyncImage(url: artwork.imageURL) { image in
-                image.resizable().scaledToFill()
-            } placeholder: {
-                Color.appCardBG
+            if let imageURL = artwork.imageURL {
+                CachedAsyncImage(url: imageURL) { image in
+                    image.resizable().scaledToFill()
+                } placeholder: {
+                    Color.appCardBG
+                }
+                .frame(height: 200)
+                .clipped()
+            } else {
+                ZStack {
+                    Color.appCardBG
+                    VStack(spacing: 8) {
+                        Image(systemName: "photo")
+                            .font(.system(size: 30))
+                            .foregroundStyle(Color.appTextTertiary)
+                        Text(artwork.displayTitle)
+                            .font(.system(size: 11, weight: .medium, design: .serif))
+                            .foregroundStyle(Color.appTextSecondary)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(3)
+                            .padding(.horizontal, 12)
+                    }
+                }
+                .frame(height: 200)
             }
-            .frame(height: 200)
-            .clipped()
 
-            LinearGradient(colors: [.clear, .black.opacity(0.7)], startPoint: .top, endPoint: .bottom)
+            LinearGradient(colors: [.clear, .black.opacity(0.65)], startPoint: .center, endPoint: .bottom)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(artwork.displayArtist)

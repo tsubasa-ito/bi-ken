@@ -7,6 +7,7 @@
       "x": 0,
       "y": 0,
       "name": "ホーム画面",
+      "opacity": 0.99,
       "width": 375,
       "height": 812,
       "fill": "#FAFAF7",
@@ -43,7 +44,8 @@
           "fill": "#1a1a1a",
           "content": "●●● 100%",
           "fontFamily": "Noto Sans JP",
-          "fontSize": 11
+          "fontSize": 11,
+          "fontWeight": "normal"
         },
         {
           "type": "text",
@@ -54,7 +56,8 @@
           "fill": "#4a4a4a",
           "content": "おかえりなさい",
           "fontFamily": "Noto Sans JP",
-          "fontSize": 12
+          "fontSize": 12,
+          "fontWeight": "normal"
         },
         {
           "type": "text",
@@ -125,7 +128,8 @@
               "fill": "#1a1a1a",
               "content": "🔥",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 22
+              "fontSize": 22,
+              "fontWeight": "normal"
             },
             {
               "type": "text",
@@ -148,7 +152,8 @@
               "fill": "#4a4a4a",
               "content": "あと1問で今日のノルマ達成",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 11
+              "fontSize": 11,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -233,7 +238,8 @@
               "fill": "#FFFFFFBB",
               "content": "1分 · 10XP",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 12
+              "fontSize": 12,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -292,7 +298,8 @@
                   "fill": "#FFFFFFAA",
                   "content": "作品画像",
                   "fontFamily": "Noto Sans JP",
-                  "fontSize": 10
+                  "fontSize": 10,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -307,7 +314,8 @@
           "fill": "#4a4a4a",
           "content": "── 学習モード ──",
           "fontFamily": "Noto Sans JP",
-          "fontSize": 11
+          "fontSize": 11,
+          "fontWeight": "normal"
         },
         {
           "type": "frame",
@@ -378,7 +386,8 @@
               "fill": "#4a4a4a",
               "content": "基本セット · 4択",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 11
+              "fontSize": 11,
+              "fontWeight": "normal"
             },
             {
               "type": "text",
@@ -389,7 +398,8 @@
               "fill": "#8a8a8a",
               "content": "›",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 24
+              "fontSize": 24,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -462,7 +472,8 @@
               "fill": "#4a4a4a",
               "content": "ルネサンス〜現代まで",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 11
+              "fontSize": 11,
+              "fontWeight": "normal"
             },
             {
               "type": "text",
@@ -473,7 +484,8 @@
               "fill": "#8a8a8a",
               "content": "›",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 24
+              "fontSize": 24,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -546,7 +558,8 @@
               "fill": "#4a4a4a",
               "content": "苦手を集中攻略",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 11
+              "fontSize": 11,
+              "fontWeight": "normal"
             },
             {
               "type": "text",
@@ -557,7 +570,8 @@
               "fill": "#8a8a8a",
               "content": "›",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 24
+              "fontSize": 24,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -829,7 +843,8 @@
               "fill": "#1a1a1a",
               "content": "×",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 20
+              "fontSize": 20,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -898,7 +913,8 @@
               "fill": "#1a1a1a",
               "content": "🔥",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 13
+              "fontSize": 13,
+              "fontWeight": "normal"
             },
             {
               "type": "text",
@@ -963,7 +979,8 @@
               "fill": "#4a4a4a",
               "content": "作品画像",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 12
+              "fontSize": 12,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -976,7 +993,8 @@
           "fill": "#8a8a8a",
           "content": "c.1665 / 油彩",
           "fontFamily": "Noto Sans JP",
-          "fontSize": 11
+          "fontSize": 11,
+          "fontWeight": "normal"
         },
         {
           "type": "frame",
@@ -1325,7 +1343,8 @@
               "fill": "#1a1a1a",
               "content": "×",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 20
+              "fontSize": 20,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -1394,7 +1413,8 @@
               "fill": "#1a1a1a",
               "content": "🔥",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 13
+              "fontSize": 13,
+              "fontWeight": "normal"
             },
             {
               "type": "text",
@@ -1447,7 +1467,8 @@
               "fill": "#4a4a4a",
               "content": "作品画像",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 12
+              "fontSize": 12,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -1735,7 +1756,8 @@
               "fill": "#4a4a4a",
               "content": "── 解説 ──",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 10
+              "fontSize": 10,
+              "fontWeight": "normal"
             },
             {
               "type": "text",
@@ -1758,7 +1780,8 @@
               "fill": "#4a4a4a",
               "content": "作者：ヨハネス・フェルメール（オランダ）",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 12
+              "fontSize": 12,
+              "fontWeight": "normal"
             },
             {
               "type": "text",
@@ -1769,7 +1792,8 @@
               "fill": "#4a4a4a",
               "content": "光と静けさの表現で知られるバロック期の傑作",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 12
+              "fontSize": 12,
+              "fontWeight": "normal"
             },
             {
               "type": "text",
@@ -1925,7 +1949,8 @@
               "fill": "#1a1a1a",
               "content": "×",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 20
+              "fontSize": 20,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -1974,7 +1999,8 @@
           "fill": "#8a8a8a",
           "content": "/ 10",
           "fontFamily": "Noto Serif JP",
-          "fontSize": 28
+          "fontSize": 28,
+          "fontWeight": "normal"
         },
         {
           "type": "text",
@@ -1985,7 +2011,8 @@
           "fill": "#4a4a4a",
           "content": "正答率 80% · 2分14秒",
           "fontFamily": "Noto Sans JP",
-          "fontSize": 13
+          "fontSize": 13,
+          "fontWeight": "normal"
         },
         {
           "type": "frame",
@@ -2024,7 +2051,8 @@
                   "fill": "#4a4a4a",
                   "content": "連続正解",
                   "fontFamily": "Noto Sans JP",
-                  "fontSize": 11
+                  "fontSize": 11,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "text",
@@ -2066,7 +2094,8 @@
                   "fill": "#4a4a4a",
                   "content": "本日のストリーク",
                   "fontFamily": "Noto Sans JP",
-                  "fontSize": 11
+                  "fontSize": 11,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "text",
@@ -2093,7 +2122,8 @@
           "fill": "#4a4a4a",
           "content": "── 結果一覧 ──",
           "fontFamily": "Noto Sans JP",
-          "fontSize": 11
+          "fontSize": 11,
+          "fontWeight": "normal"
         },
         {
           "type": "frame",
@@ -2526,8 +2556,8 @@
     {
       "type": "frame",
       "id": "kky9qL",
-      "x": 1700,
-      "y": 0,
+      "x": 0,
+      "y": 2170,
       "name": "進捗画面",
       "width": 375,
       "height": 812,
@@ -2614,7 +2644,8 @@
               "fill": "#4a4a4a",
               "content": "現在のレベル",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 11
+              "fontSize": 11,
+              "fontWeight": "normal"
             },
             {
               "type": "text",
@@ -2637,7 +2668,8 @@
               "fill": "#4a4a4a",
               "content": "画学生",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "rectangle",
@@ -2670,7 +2702,8 @@
               "fill": "#4a4a4a",
               "content": "62 / 100 XP",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 10
+              "fontSize": 10,
+              "fontWeight": "normal"
             },
             {
               "type": "text",
@@ -2681,7 +2714,8 @@
               "fill": "#4a4a4a",
               "content": "次：見習い学芸員",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 10
+              "fontSize": 10,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -2723,7 +2757,8 @@
               "fill": "#4a4a4a",
               "content": "連続日数",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 10
+              "fontSize": 10,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -2765,7 +2800,8 @@
               "fill": "#4a4a4a",
               "content": "解いた問題",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 10
+              "fontSize": 10,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -2807,7 +2843,8 @@
               "fill": "#4a4a4a",
               "content": "正答率",
               "fontFamily": "Noto Sans JP",
-              "fontSize": 10
+              "fontSize": 10,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -2820,7 +2857,8 @@
           "fill": "#4a4a4a",
           "content": "── 時代別の進捗 ──",
           "fontFamily": "Noto Sans JP",
-          "fontSize": 11
+          "fontSize": 11,
+          "fontWeight": "normal"
         },
         {
           "type": "text",
@@ -2831,7 +2869,8 @@
           "fill": "#1a1a1a",
           "content": "ルネサンス",
           "fontFamily": "Noto Serif JP",
-          "fontSize": 13
+          "fontSize": 13,
+          "fontWeight": "normal"
         },
         {
           "type": "rectangle",
@@ -2876,7 +2915,8 @@
           "fill": "#1a1a1a",
           "content": "バロック",
           "fontFamily": "Noto Serif JP",
-          "fontSize": 13
+          "fontSize": 13,
+          "fontWeight": "normal"
         },
         {
           "type": "rectangle",
@@ -2921,7 +2961,8 @@
           "fill": "#1a1a1a",
           "content": "印象派",
           "fontFamily": "Noto Serif JP",
-          "fontSize": 13
+          "fontSize": 13,
+          "fontWeight": "normal"
         },
         {
           "type": "rectangle",
@@ -2966,7 +3007,8 @@
           "fill": "#1a1a1a",
           "content": "近代美術",
           "fontFamily": "Noto Serif JP",
-          "fontSize": 13
+          "fontSize": 13,
+          "fontWeight": "normal"
         },
         {
           "type": "rectangle",
@@ -3011,7 +3053,8 @@
           "fill": "#1a1a1a",
           "content": "日本美術",
           "fontFamily": "Noto Serif JP",
-          "fontSize": 13
+          "fontSize": 13,
+          "fontWeight": "normal"
         },
         {
           "type": "rectangle",
@@ -3056,7 +3099,8 @@
           "fill": "#1a1a1a",
           "content": "現代美術",
           "fontFamily": "Noto Serif JP",
-          "fontSize": 13
+          "fontSize": 13,
+          "fontWeight": "normal"
         },
         {
           "type": "rectangle",
@@ -3101,7 +3145,8 @@
           "fill": "#4a4a4a",
           "content": "── 学習履歴（直近4週間）──",
           "fontFamily": "Noto Sans JP",
-          "fontSize": 11
+          "fontSize": 11,
+          "fontWeight": "normal"
         },
         {
           "type": "frame",
@@ -3635,6 +3680,1943 @@
               "fill": "#FCE993",
               "width": 9,
               "height": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "JDbsH",
+      "x": 0,
+      "y": 1070,
+      "name": "コレクション画面",
+      "width": 375,
+      "height": 812,
+      "fill": "#FAFAF7",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "w4K2Og",
+          "x": 0,
+          "y": 0,
+          "name": "statusbar",
+          "fill": "#FAFAF7",
+          "width": 375,
+          "height": 44
+        },
+        {
+          "type": "text",
+          "id": "uPD8b",
+          "x": 22,
+          "y": 14,
+          "name": "time",
+          "fill": "#1a1a1a",
+          "content": "9:41",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 13,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "a4sxWq",
+          "x": 280,
+          "y": 14,
+          "name": "battery",
+          "fill": "#1a1a1a",
+          "content": "●●● 100%",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 11,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "iXW35",
+          "x": 0,
+          "y": 44,
+          "name": "header_bg",
+          "fill": "#FAFAF7",
+          "width": 375,
+          "height": 56
+        },
+        {
+          "type": "rectangle",
+          "id": "ToeJw",
+          "x": 0,
+          "y": 100,
+          "name": "header_border",
+          "fill": "#1a1a1a",
+          "width": 375,
+          "height": 1.5
+        },
+        {
+          "type": "text",
+          "id": "NaxVM",
+          "x": 120,
+          "y": 64,
+          "name": "header_title",
+          "fill": "#1a1a1a",
+          "content": "コレクション",
+          "fontFamily": "Noto Serif JP",
+          "fontSize": 18,
+          "fontWeight": "600"
+        },
+        {
+          "type": "frame",
+          "id": "wZHvi",
+          "x": 20,
+          "y": 113,
+          "name": "chip_all",
+          "width": 50,
+          "height": 26,
+          "fill": "#1a1a1a",
+          "cornerRadius": 13,
+          "layout": "none",
+          "children": [
+            {
+              "type": "text",
+              "id": "tSeb0",
+              "x": 7,
+              "y": 6,
+              "fill": "#FFFFFF",
+              "content": "すべて",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 11,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "yWQMC",
+          "x": 78,
+          "y": 113,
+          "name": "chip_r",
+          "width": 78,
+          "height": 26,
+          "fill": "#F2F1EC",
+          "cornerRadius": 13,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#c8c6bf"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "text",
+              "id": "kOXwe",
+              "x": 8,
+              "y": 6,
+              "fill": "#4a4a4a",
+              "content": "ルネサンス",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "baBGe",
+          "x": 164,
+          "y": 113,
+          "name": "chip_b",
+          "width": 64,
+          "height": 26,
+          "fill": "#F2F1EC",
+          "cornerRadius": 13,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#c8c6bf"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "text",
+              "id": "AUPJ6",
+              "x": 8,
+              "y": 6,
+              "fill": "#4a4a4a",
+              "content": "バロック",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "oja1M",
+          "x": 236,
+          "y": 113,
+          "name": "chip_i",
+          "width": 54,
+          "height": 26,
+          "fill": "#F2F1EC",
+          "cornerRadius": 13,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#c8c6bf"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "text",
+              "id": "Cr2QF",
+              "x": 9,
+              "y": 6,
+              "fill": "#4a4a4a",
+              "content": "印象派",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "yETg5",
+          "x": 298,
+          "y": 113,
+          "name": "chip_mo",
+          "width": 68,
+          "height": 26,
+          "fill": "#F2F1EC",
+          "cornerRadius": 13,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#c8c6bf"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "text",
+              "id": "ylncB",
+              "x": 8,
+              "y": 6,
+              "fill": "#4a4a4a",
+              "content": "近代美術",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "UeCBs",
+          "x": 0,
+          "y": 148,
+          "name": "filter_border",
+          "fill": "#e0e0da",
+          "width": 375,
+          "height": 1
+        },
+        {
+          "type": "frame",
+          "id": "YGrVq",
+          "x": 20,
+          "y": 158,
+          "name": "card_sunflower",
+          "width": 162,
+          "height": 188,
+          "fill": "#FFFFFF",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.5,
+            "fill": "#1a1a1a"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": [
+                6,
+                6,
+                0,
+                0
+              ],
+              "id": "mfsAZ",
+              "x": 0,
+              "y": 0,
+              "name": "img",
+              "fill": "#F0E6C0",
+              "width": 162,
+              "height": 114
+            },
+            {
+              "type": "text",
+              "id": "WhGeY",
+              "x": 66,
+              "y": 38,
+              "fill": "#1a1a1a",
+              "content": "🌻",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 28,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "KyqJE",
+              "x": 10,
+              "y": 88,
+              "name": "era_tag",
+              "fill": "#4a4a4a",
+              "content": "印象派",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "p8z1x",
+              "x": 10,
+              "y": 122,
+              "name": "title",
+              "fill": "#1a1a1a",
+              "content": "ひまわり",
+              "fontFamily": "Noto Serif JP",
+              "fontSize": 13,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "NF8RB",
+              "x": 10,
+              "y": 141,
+              "name": "artist",
+              "fill": "#4a4a4a",
+              "textGrowth": "fixed-width",
+              "width": 142,
+              "content": "フィンセント・ファン・ゴッホ",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "vk48O",
+              "x": 10,
+              "y": 166,
+              "name": "year",
+              "fill": "#8a8a8a",
+              "content": "1889",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "q8FOB3",
+          "x": 193,
+          "y": 158,
+          "name": "card_pearl",
+          "width": 162,
+          "height": 188,
+          "fill": "#FFFFFF",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.5,
+            "fill": "#1a1a1a"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": [
+                6,
+                6,
+                0,
+                0
+              ],
+              "id": "iwC07",
+              "x": 0,
+              "y": 0,
+              "name": "img",
+              "fill": "#D4E8F0",
+              "width": 162,
+              "height": 114
+            },
+            {
+              "type": "text",
+              "id": "f4kV1",
+              "x": 66,
+              "y": 38,
+              "fill": "#1a1a1a",
+              "content": "👤",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 28,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "tFwhI",
+              "x": 10,
+              "y": 88,
+              "name": "era_tag",
+              "fill": "#4a4a4a",
+              "content": "バロック",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "L8uWM",
+              "x": 10,
+              "y": 122,
+              "name": "title",
+              "fill": "#1a1a1a",
+              "textGrowth": "fixed-width",
+              "width": 142,
+              "content": "真珠の耳飾りの少女",
+              "fontFamily": "Noto Serif JP",
+              "fontSize": 11,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "NAZMW",
+              "x": 10,
+              "y": 141,
+              "name": "artist",
+              "fill": "#4a4a4a",
+              "textGrowth": "fixed-width",
+              "width": 142,
+              "content": "ヨハネス・フェルメール",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "vQv1v",
+              "x": 10,
+              "y": 166,
+              "name": "year",
+              "fill": "#8a8a8a",
+              "content": "c.1665",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "V0wGCz",
+          "x": 20,
+          "y": 356,
+          "name": "card_mona",
+          "width": 162,
+          "height": 188,
+          "fill": "#FFFFFF",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.5,
+            "fill": "#1a1a1a"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": [
+                6,
+                6,
+                0,
+                0
+              ],
+              "id": "FRdfO",
+              "x": 0,
+              "y": 0,
+              "name": "img",
+              "fill": "#E8E0D0",
+              "width": 162,
+              "height": 114
+            },
+            {
+              "type": "text",
+              "id": "zay1f",
+              "x": 66,
+              "y": 38,
+              "fill": "#1a1a1a",
+              "content": "🎨",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 28,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "CVRPv",
+              "x": 10,
+              "y": 88,
+              "name": "era_tag",
+              "fill": "#4a4a4a",
+              "content": "ルネサンス",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "ROSlz",
+              "x": 10,
+              "y": 122,
+              "name": "title",
+              "fill": "#1a1a1a",
+              "content": "モナ・リザ",
+              "fontFamily": "Noto Serif JP",
+              "fontSize": 13,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "YFrud",
+              "x": 10,
+              "y": 141,
+              "name": "artist",
+              "fill": "#4a4a4a",
+              "textGrowth": "fixed-width",
+              "width": 142,
+              "content": "レオナルド・ダ・ヴィンチ",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Y1o1ep",
+              "x": 10,
+              "y": 166,
+              "name": "year",
+              "fill": "#8a8a8a",
+              "content": "c.1503",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "FxJGk",
+          "x": 193,
+          "y": 356,
+          "name": "card_starry",
+          "width": 162,
+          "height": 188,
+          "fill": "#FFFFFF",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.5,
+            "fill": "#1a1a1a"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": [
+                6,
+                6,
+                0,
+                0
+              ],
+              "id": "o9rZZ1",
+              "x": 0,
+              "y": 0,
+              "name": "img",
+              "fill": "#C0CDE0",
+              "width": 162,
+              "height": 114
+            },
+            {
+              "type": "text",
+              "id": "lzMpe",
+              "x": 66,
+              "y": 38,
+              "fill": "#1a1a1a",
+              "content": "🌙",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 28,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "a8Uo9o",
+              "x": 10,
+              "y": 88,
+              "name": "era_tag",
+              "fill": "#4a4a4a",
+              "content": "近代美術",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Z8gph",
+              "x": 10,
+              "y": 122,
+              "name": "title",
+              "fill": "#1a1a1a",
+              "content": "星月夜",
+              "fontFamily": "Noto Serif JP",
+              "fontSize": 13,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "RrQWN",
+              "x": 10,
+              "y": 141,
+              "name": "artist",
+              "fill": "#4a4a4a",
+              "textGrowth": "fixed-width",
+              "width": 142,
+              "content": "フィンセント・ファン・ゴッホ",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "KoNM1",
+              "x": 10,
+              "y": 166,
+              "name": "year",
+              "fill": "#8a8a8a",
+              "content": "1889",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "j5xmbl",
+          "x": 20,
+          "y": 554,
+          "name": "card_waterlily",
+          "width": 162,
+          "height": 188,
+          "fill": "#FFFFFF",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.5,
+            "fill": "#1a1a1a"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": [
+                6,
+                6,
+                0,
+                0
+              ],
+              "id": "gktFY",
+              "x": 0,
+              "y": 0,
+              "name": "img",
+              "fill": "#C8E0D8",
+              "width": 162,
+              "height": 114
+            },
+            {
+              "type": "text",
+              "id": "m1bcVN",
+              "x": 66,
+              "y": 38,
+              "fill": "#1a1a1a",
+              "content": "🌸",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 28,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "BEiIJ",
+              "x": 10,
+              "y": 88,
+              "name": "era_tag",
+              "fill": "#4a4a4a",
+              "content": "印象派",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "JOZdk",
+              "x": 10,
+              "y": 122,
+              "name": "title",
+              "fill": "#1a1a1a",
+              "content": "睡蓮",
+              "fontFamily": "Noto Serif JP",
+              "fontSize": 13,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "ZdmEW",
+              "x": 10,
+              "y": 141,
+              "name": "artist",
+              "fill": "#4a4a4a",
+              "content": "クロード・モネ",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Pbz4R",
+              "x": 10,
+              "y": 166,
+              "name": "year",
+              "fill": "#8a8a8a",
+              "content": "1906",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "BLNQF",
+          "x": 193,
+          "y": 554,
+          "name": "card_supper",
+          "width": 162,
+          "height": 188,
+          "fill": "#FFFFFF",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.5,
+            "fill": "#1a1a1a"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": [
+                6,
+                6,
+                0,
+                0
+              ],
+              "id": "ITFMd",
+              "x": 0,
+              "y": 0,
+              "name": "img",
+              "fill": "#E0D4C0",
+              "width": 162,
+              "height": 114
+            },
+            {
+              "type": "text",
+              "id": "I5biml",
+              "x": 66,
+              "y": 38,
+              "fill": "#1a1a1a",
+              "content": "🍞",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 28,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "s4nsKo",
+              "x": 10,
+              "y": 88,
+              "name": "era_tag",
+              "fill": "#4a4a4a",
+              "content": "ルネサンス",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "j8MXY",
+              "x": 10,
+              "y": 122,
+              "name": "title",
+              "fill": "#1a1a1a",
+              "content": "最後の晩餐",
+              "fontFamily": "Noto Serif JP",
+              "fontSize": 13,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "q8tR6j",
+              "x": 10,
+              "y": 141,
+              "name": "artist",
+              "fill": "#4a4a4a",
+              "textGrowth": "fixed-width",
+              "width": 142,
+              "content": "レオナルド・ダ・ヴィンチ",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "WmNKV",
+              "x": 10,
+              "y": 166,
+              "name": "year",
+              "fill": "#8a8a8a",
+              "content": "c.1498",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 9,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "oYjPm",
+          "x": 0,
+          "y": 736,
+          "name": "tabbar",
+          "width": 375,
+          "height": 76,
+          "fill": "#FAFAF7",
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "Me3GF",
+              "x": 0,
+              "y": 0,
+              "name": "tab_border",
+              "fill": "#1a1a1a",
+              "width": 375,
+              "height": 1.5
+            },
+            {
+              "type": "frame",
+              "id": "ZcgH8",
+              "x": 20,
+              "y": 10,
+              "name": "tab0",
+              "width": 50,
+              "height": 46,
+              "fill": "#00000000",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 4,
+                  "id": "oDHC3",
+                  "x": 14,
+                  "y": 0,
+                  "name": "tab_ic0",
+                  "fill": "#F2F1EC",
+                  "width": 22,
+                  "height": 22,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1.5,
+                    "fill": "#c8c6bf"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "uyWb6",
+                  "x": 6,
+                  "y": 26,
+                  "name": "tab_lb0",
+                  "fill": "#8a8a8a",
+                  "content": "ホーム",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 10,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "EUkdS",
+              "x": 108,
+              "y": 10,
+              "name": "tab1",
+              "width": 50,
+              "height": 46,
+              "fill": "#00000000",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 4,
+                  "id": "FY84t",
+                  "x": 14,
+                  "y": 0,
+                  "name": "tab_ic1",
+                  "fill": "#F5C518",
+                  "width": 22,
+                  "height": 22,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1.5,
+                    "fill": "#1a1a1a"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "nN2Wt",
+                  "x": 2,
+                  "y": 26,
+                  "name": "tab_lb1",
+                  "fill": "#1a1a1a",
+                  "content": "コレクション",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 10,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "C6dVt",
+              "x": 196,
+              "y": 10,
+              "name": "tab2",
+              "width": 50,
+              "height": 46,
+              "fill": "#00000000",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 4,
+                  "id": "TIyhX",
+                  "x": 14,
+                  "y": 0,
+                  "name": "tab_ic2",
+                  "fill": "#F2F1EC",
+                  "width": 22,
+                  "height": 22,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1.5,
+                    "fill": "#c8c6bf"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "zCTmL",
+                  "x": 2,
+                  "y": 26,
+                  "name": "tab_lb2",
+                  "fill": "#8a8a8a",
+                  "content": "学習記録",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 10,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "uZCP4",
+              "x": 284,
+              "y": 10,
+              "name": "tab3",
+              "width": 50,
+              "height": 46,
+              "fill": "#00000000",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 4,
+                  "id": "C1EQZ",
+                  "x": 14,
+                  "y": 0,
+                  "name": "tab_ic3",
+                  "fill": "#F2F1EC",
+                  "width": 22,
+                  "height": 22,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1.5,
+                    "fill": "#c8c6bf"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "qNvcU",
+                  "x": 6,
+                  "y": 26,
+                  "name": "tab_lb3",
+                  "fill": "#8a8a8a",
+                  "content": "設定",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 10,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "GUTzU",
+      "x": 0,
+      "y": 3325,
+      "name": "設定画面",
+      "width": 375,
+      "height": 812,
+      "fill": "#FAFAF7",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "g5Y87B",
+          "x": 0,
+          "y": 0,
+          "name": "statusbar",
+          "fill": "#FAFAF7",
+          "width": 375,
+          "height": 44
+        },
+        {
+          "type": "text",
+          "id": "wLmXi",
+          "x": 22,
+          "y": 14,
+          "name": "time",
+          "fill": "#1a1a1a",
+          "content": "9:41",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 13,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "bLBzb",
+          "x": 280,
+          "y": 14,
+          "name": "battery",
+          "fill": "#1a1a1a",
+          "content": "●●● 100%",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 11,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "lQRZA",
+          "x": 0,
+          "y": 44,
+          "name": "header_bg",
+          "fill": "#FAFAF7",
+          "width": 375,
+          "height": 60
+        },
+        {
+          "type": "rectangle",
+          "id": "hBvGv",
+          "x": 0,
+          "y": 104,
+          "name": "header_border",
+          "fill": "#1a1a1a",
+          "width": 375,
+          "height": 1.5
+        },
+        {
+          "type": "text",
+          "id": "efKAS",
+          "x": 165,
+          "y": 66,
+          "name": "header_title",
+          "fill": "#1a1a1a",
+          "content": "設定",
+          "fontFamily": "Noto Serif JP",
+          "fontSize": 18,
+          "fontWeight": "600"
+        },
+        {
+          "type": "frame",
+          "id": "n98hZv",
+          "x": 20,
+          "y": 114,
+          "name": "profile_card",
+          "width": 335,
+          "height": 72,
+          "fill": "#FFFFFF",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1.5,
+            "fill": "#1a1a1a"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "ellipse",
+              "id": "eN1fo",
+              "x": 14,
+              "y": 14,
+              "name": "avatar_bg",
+              "fill": "#F2F1EC",
+              "width": 44,
+              "height": 44,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1.5,
+                "fill": "#1a1a1a"
+              }
+            },
+            {
+              "type": "text",
+              "id": "aGW3v",
+              "x": 26,
+              "y": 24,
+              "name": "av_letter",
+              "fill": "#4a4a4a",
+              "content": "田",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 16,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "oq2q3",
+              "x": 70,
+              "y": 18,
+              "name": "user_name",
+              "fill": "#1a1a1a",
+              "content": "田中 花子",
+              "fontFamily": "Noto Serif JP",
+              "fontSize": 16,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "dcPTL",
+              "x": 70,
+              "y": 40,
+              "name": "level_title",
+              "fill": "#4a4a4a",
+              "content": "Lv.4　画学生",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "C7DLX",
+              "x": 312,
+              "y": 26,
+              "name": "arrow",
+              "fill": "#8a8a8a",
+              "content": "›",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 24,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "j3il62",
+          "x": 20,
+          "y": 200,
+          "name": "sec_account",
+          "fill": "#8a8a8a",
+          "content": "アカウント",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 11,
+          "fontWeight": "500"
+        },
+        {
+          "type": "frame",
+          "id": "XZdu3",
+          "x": 20,
+          "y": 218,
+          "name": "row_profile",
+          "width": 335,
+          "height": 52,
+          "fill": "#FFFFFF",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#e8e8e4"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "PCG0m",
+              "x": 14,
+              "y": 12,
+              "name": "icon_bg",
+              "fill": "#EBF0FF",
+              "width": 28,
+              "height": 28
+            },
+            {
+              "type": "text",
+              "id": "eSZI7",
+              "x": 18,
+              "y": 15,
+              "fill": "#1a1a1a",
+              "content": "👤",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "vorxE",
+              "x": 54,
+              "y": 18,
+              "name": "row_title",
+              "fill": "#1a1a1a",
+              "content": "プロフィール",
+              "fontFamily": "Noto Serif JP",
+              "fontSize": 15,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "Xk3Q6",
+              "x": 307,
+              "y": 14,
+              "name": "row_arrow",
+              "fill": "#8a8a8a",
+              "content": "›",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 24,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "h8wTlD",
+          "x": 20,
+          "y": 274,
+          "name": "row_notification",
+          "width": 335,
+          "height": 52,
+          "fill": "#FFFFFF",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#e8e8e4"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "KrfzQ",
+              "x": 14,
+              "y": 12,
+              "name": "icon_bg",
+              "fill": "#FFF0E0",
+              "width": 28,
+              "height": 28
+            },
+            {
+              "type": "text",
+              "id": "graky",
+              "x": 18,
+              "y": 15,
+              "fill": "#1a1a1a",
+              "content": "🔔",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Th9eb",
+              "x": 54,
+              "y": 18,
+              "name": "row_title",
+              "fill": "#1a1a1a",
+              "content": "通知",
+              "fontFamily": "Noto Serif JP",
+              "fontSize": 15,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "aZO5p",
+              "x": 307,
+              "y": 14,
+              "name": "row_arrow",
+              "fill": "#8a8a8a",
+              "content": "›",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 24,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "gCFri",
+          "x": 20,
+          "y": 340,
+          "name": "sec_learn",
+          "fill": "#8a8a8a",
+          "content": "学習",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 11,
+          "fontWeight": "500"
+        },
+        {
+          "type": "frame",
+          "id": "HEfCl",
+          "x": 20,
+          "y": 358,
+          "name": "row_goal",
+          "width": 335,
+          "height": 52,
+          "fill": "#FFFFFF",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#e8e8e4"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "EDYpN",
+              "x": 14,
+              "y": 12,
+              "name": "icon_bg",
+              "fill": "#E8F5E9",
+              "width": 28,
+              "height": 28
+            },
+            {
+              "type": "text",
+              "id": "y0X7rp",
+              "x": 18,
+              "y": 15,
+              "fill": "#1a1a1a",
+              "content": "🎯",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "RxhMq",
+              "x": 54,
+              "y": 18,
+              "name": "row_title",
+              "fill": "#1a1a1a",
+              "content": "目標設定",
+              "fontFamily": "Noto Serif JP",
+              "fontSize": 15,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "bADIQ",
+              "x": 54,
+              "y": 36,
+              "name": "row_sub",
+              "fill": "#8a8a8a",
+              "content": "1日10問",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Q4TQe",
+              "x": 307,
+              "y": 14,
+              "name": "row_arrow",
+              "fill": "#8a8a8a",
+              "content": "›",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 24,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "sIplZ",
+          "x": 20,
+          "y": 414,
+          "name": "row_reminder",
+          "width": 335,
+          "height": 52,
+          "fill": "#FFFFFF",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#e8e8e4"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "d74JWV",
+              "x": 14,
+              "y": 12,
+              "name": "icon_bg",
+              "fill": "#F0E8FF",
+              "width": 28,
+              "height": 28
+            },
+            {
+              "type": "text",
+              "id": "aTfJh",
+              "x": 18,
+              "y": 15,
+              "fill": "#1a1a1a",
+              "content": "⏰",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "dhr5l",
+              "x": 54,
+              "y": 18,
+              "name": "row_title",
+              "fill": "#1a1a1a",
+              "content": "学習リマインダー",
+              "fontFamily": "Noto Serif JP",
+              "fontSize": 15,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "oaWAU",
+              "x": 54,
+              "y": 36,
+              "name": "row_sub",
+              "fill": "#8a8a8a",
+              "content": "毎日 20:00",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "EoN11",
+              "x": 307,
+              "y": 14,
+              "name": "row_arrow",
+              "fill": "#8a8a8a",
+              "content": "›",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 24,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "pWilc",
+          "x": 20,
+          "y": 470,
+          "name": "row_reset",
+          "width": 335,
+          "height": 52,
+          "fill": "#FFF8F8",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#e8e8e4"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "gTijR",
+              "x": 14,
+              "y": 12,
+              "name": "icon_bg",
+              "fill": "#FFE8E8",
+              "width": 28,
+              "height": 28
+            },
+            {
+              "type": "text",
+              "id": "OmQPN",
+              "x": 18,
+              "y": 15,
+              "fill": "#1a1a1a",
+              "content": "🔄",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "hSVx3",
+              "x": 54,
+              "y": 18,
+              "name": "row_title",
+              "fill": "#B23A3A",
+              "content": "進捗をリセット",
+              "fontFamily": "Noto Serif JP",
+              "fontSize": 15,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "cPVed",
+          "x": 20,
+          "y": 538,
+          "name": "sec_app",
+          "fill": "#8a8a8a",
+          "content": "アプリ",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 11,
+          "fontWeight": "500"
+        },
+        {
+          "type": "frame",
+          "id": "qrOOw",
+          "x": 20,
+          "y": 556,
+          "name": "row_about",
+          "width": 335,
+          "height": 52,
+          "fill": "#FFFFFF",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#e8e8e4"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "QS6Gv",
+              "x": 14,
+              "y": 12,
+              "name": "icon_bg",
+              "fill": "#F0F0F0",
+              "width": 28,
+              "height": 28
+            },
+            {
+              "type": "text",
+              "id": "sflCG",
+              "x": 18,
+              "y": 15,
+              "fill": "#1a1a1a",
+              "content": "ℹ️",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "YzpDO",
+              "x": 54,
+              "y": 18,
+              "name": "row_title",
+              "fill": "#1a1a1a",
+              "content": "アプリについて",
+              "fontFamily": "Noto Serif JP",
+              "fontSize": 15,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "qaMDC",
+              "x": 307,
+              "y": 14,
+              "name": "row_arrow",
+              "fill": "#8a8a8a",
+              "content": "›",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 24,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "IFUIT",
+          "x": 20,
+          "y": 612,
+          "name": "row_review",
+          "width": 335,
+          "height": 52,
+          "fill": "#FFFFFF",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#e8e8e4"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "j86Dip",
+              "x": 14,
+              "y": 12,
+              "name": "icon_bg",
+              "fill": "#FFFCE0",
+              "width": 28,
+              "height": 28
+            },
+            {
+              "type": "text",
+              "id": "L9IEE",
+              "x": 18,
+              "y": 15,
+              "fill": "#1a1a1a",
+              "content": "⭐",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "e5FhK",
+              "x": 54,
+              "y": 18,
+              "name": "row_title",
+              "fill": "#1a1a1a",
+              "content": "レビューを書く",
+              "fontFamily": "Noto Serif JP",
+              "fontSize": 15,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "Xu5t3",
+              "x": 307,
+              "y": 14,
+              "name": "row_arrow",
+              "fill": "#8a8a8a",
+              "content": "›",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 24,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "nfRhp",
+          "x": 20,
+          "y": 668,
+          "name": "row_help",
+          "width": 335,
+          "height": 52,
+          "fill": "#FFFFFF",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#e8e8e4"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "kV6oL",
+              "x": 14,
+              "y": 12,
+              "name": "icon_bg",
+              "fill": "#E0F8FF",
+              "width": 28,
+              "height": 28
+            },
+            {
+              "type": "text",
+              "id": "nJFr0",
+              "x": 18,
+              "y": 15,
+              "fill": "#1a1a1a",
+              "content": "❓",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "tERvK",
+              "x": 54,
+              "y": 18,
+              "name": "row_title",
+              "fill": "#1a1a1a",
+              "content": "ヘルプ",
+              "fontFamily": "Noto Serif JP",
+              "fontSize": 15,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "HF7EI",
+              "x": 307,
+              "y": 14,
+              "name": "row_arrow",
+              "fill": "#8a8a8a",
+              "content": "›",
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 24,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "xvnYL",
+          "x": 152,
+          "y": 732,
+          "name": "app_name",
+          "fill": "#1a1a1a",
+          "content": "美術検定",
+          "fontFamily": "Noto Serif JP",
+          "fontSize": 14,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "f1UyA",
+          "x": 140,
+          "y": 750,
+          "name": "version",
+          "fill": "#8a8a8a",
+          "content": "バージョン 1.0.0",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 11,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "HuKVk",
+          "x": 0,
+          "y": 736,
+          "name": "tabbar",
+          "width": 375,
+          "height": 76,
+          "fill": "#FAFAF7",
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "fUO7N",
+              "x": 0,
+              "y": 0,
+              "name": "tab_border",
+              "fill": "#1a1a1a",
+              "width": 375,
+              "height": 1.5
+            },
+            {
+              "type": "frame",
+              "id": "bLJ4h",
+              "x": 20,
+              "y": 10,
+              "name": "tab0",
+              "width": 50,
+              "height": 46,
+              "fill": "#00000000",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 4,
+                  "id": "oJKzU",
+                  "x": 14,
+                  "y": 0,
+                  "name": "tab_ic0",
+                  "fill": "#F2F1EC",
+                  "width": 22,
+                  "height": 22,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1.5,
+                    "fill": "#c8c6bf"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "K8SUEJ",
+                  "x": 6,
+                  "y": 26,
+                  "name": "tab_lb0",
+                  "fill": "#8a8a8a",
+                  "content": "ホーム",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 10,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "RJ5Ks",
+              "x": 108,
+              "y": 10,
+              "name": "tab1",
+              "width": 50,
+              "height": 46,
+              "fill": "#00000000",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 4,
+                  "id": "t9kWj",
+                  "x": 14,
+                  "y": 0,
+                  "name": "tab_ic1",
+                  "fill": "#F2F1EC",
+                  "width": 22,
+                  "height": 22,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1.5,
+                    "fill": "#c8c6bf"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "f5UjRz",
+                  "x": 2,
+                  "y": 26,
+                  "name": "tab_lb1",
+                  "fill": "#8a8a8a",
+                  "content": "コレクション",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 10,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "BMCE1",
+              "x": 196,
+              "y": 10,
+              "name": "tab2",
+              "width": 50,
+              "height": 46,
+              "fill": "#00000000",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 4,
+                  "id": "nOBYl",
+                  "x": 14,
+                  "y": 0,
+                  "name": "tab_ic2",
+                  "fill": "#F2F1EC",
+                  "width": 22,
+                  "height": 22,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1.5,
+                    "fill": "#c8c6bf"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "aNqGR",
+                  "x": 2,
+                  "y": 26,
+                  "name": "tab_lb2",
+                  "fill": "#8a8a8a",
+                  "content": "学習記録",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 10,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "R3rGDV",
+              "x": 284,
+              "y": 10,
+              "name": "tab3",
+              "width": 50,
+              "height": 46,
+              "fill": "#00000000",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 4,
+                  "id": "n3pdr8",
+                  "x": 14,
+                  "y": 0,
+                  "name": "tab_ic3",
+                  "fill": "#F5C518",
+                  "width": 22,
+                  "height": 22,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1.5,
+                    "fill": "#1a1a1a"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "eGGxV",
+                  "x": 6,
+                  "y": 26,
+                  "name": "tab_lb3",
+                  "fill": "#1a1a1a",
+                  "content": "設定",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 10,
+                  "fontWeight": "500"
+                }
+              ]
             }
           ]
         }

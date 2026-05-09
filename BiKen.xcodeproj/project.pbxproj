@@ -10,6 +10,7 @@
 		00771B3568F9FCA04CAF8C04 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42338D85089B8FC74E029230 /* AboutView.swift */; };
 		11B3445C8609B381A4DB5689 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00318B4C7FFB80FBE847D91B /* CollectionView.swift */; };
 		11D5B72CE81858F128BCC745 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB86BF64CED65129C617A207 /* CollectionViewModel.swift */; };
+		121EF5AE87FA12CB9FDC211A /* TextbookArtworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC9E623DE4CC453C8CBE4E2 /* TextbookArtworkData.swift */; };
 		1D1E10FD2FBE2BFFFF595846 /* ArtworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599CC0F77C05E422E367FF7E /* ArtworkDetailView.swift */; };
 		2353A8DFBF2F2484885E5444 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0D03F552917FE492B99194 /* HelpView.swift */; };
 		2BF88C8F9D7223610BA2C025 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46564208C928406260A7C3BC /* CachedAsyncImage.swift */; };
@@ -24,6 +25,7 @@
 		640A3BFAEF4292BDB44D0C4C /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7575B70DABC9FE54ECE1DE5 /* MainTabView.swift */; };
 		8EA9FBA556F7A0D2CB26A6A9 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E4242CA0C7D18B561EA10C /* QuizView.swift */; };
 		931B38E9C0EF59ADD1781478 /* BiKenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5161800DFA4652FBA51CBCC6 /* BiKenApp.swift */; };
+		9B485C092E64FC91DD16AC48 /* WikipediaImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360FA1F46C2C70C19D58E586 /* WikipediaImageService.swift */; };
 		A8B3574863EC9A814CAB0C85 /* UserProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B43373202C266AEB917E1B6 /* UserProgress.swift */; };
 		BDABB414695DEB41680A2AD1 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B127CDC53F621D0D4A3649 /* QuizViewModel.swift */; };
 		C1D4483BDD082481E5E98F42 /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75B3FB58EA339433D66E59 /* NotificationSettingsView.swift */; };
@@ -41,9 +43,11 @@
 		00318B4C7FFB80FBE847D91B /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		026A0BC6B92D214B73EC35B2 /* GoalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSettingsView.swift; sourceTree = "<group>"; };
 		065C709B9444710709AE4F40 /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
+		1BC9E623DE4CC453C8CBE4E2 /* TextbookArtworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextbookArtworkData.swift; sourceTree = "<group>"; };
 		1BDA91FB692A30184AA7FCDC /* ReminderSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSettingsView.swift; sourceTree = "<group>"; };
 		24B127CDC53F621D0D4A3649 /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		2617EAF49D72A81D96C206C8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		360FA1F46C2C70C19D58E586 /* WikipediaImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaImageService.swift; sourceTree = "<group>"; };
 		42338D85089B8FC74E029230 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		43D7D75A0E9F523C207126BA /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		46564208C928406260A7C3BC /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
@@ -158,6 +162,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		99BEEC89CF86772182A0BB3B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1BC9E623DE4CC453C8CBE4E2 /* TextbookArtworkData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		9A619FF7EBD12221B35C2F50 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +177,7 @@
 				A99DA8814EC0391E4CBC5797 /* ArtworkConverter.swift */,
 				9C3A4FB985BF6A5895CF0B5B /* ImageCache.swift */,
 				A33E3019BFCECCDB21DE9DD3 /* MetMuseumAPIService.swift */,
+				360FA1F46C2C70C19D58E586 /* WikipediaImageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -174,6 +187,7 @@
 			children = (
 				D1A841F1C3EED8CCBB67B0F7 /* Info.plist */,
 				EEEDA86D5793FDFA79019C3A /* App */,
+				99BEEC89CF86772182A0BB3B /* Data */,
 				71323E58B3F449810F764EEA /* Extensions */,
 				C1C43DE87843F656C121E098 /* Models */,
 				9A619FF7EBD12221B35C2F50 /* Services */,
@@ -301,7 +315,9 @@
 				BDABB414695DEB41680A2AD1 /* QuizViewModel.swift in Sources */,
 				CAE70AF1931A9A6D6B5BFE6B /* ReminderSettingsView.swift in Sources */,
 				360CD355A2923B4A05E97FAD /* SettingsView.swift in Sources */,
+				121EF5AE87FA12CB9FDC211A /* TextbookArtworkData.swift in Sources */,
 				A8B3574863EC9A814CAB0C85 /* UserProgress.swift in Sources */,
+				9B485C092E64FC91DD16AC48 /* WikipediaImageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

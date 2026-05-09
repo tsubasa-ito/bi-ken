@@ -9,7 +9,7 @@ struct HomeView: View {
 
     private var oshiArtworkImageURL: URL? {
         guard !oshiArtworkData.isEmpty else { return nil }
-        return (try? JSONDecoder().decode(Artwork.self, from: oshiArtworkData))?.imageURL
+        return (try? JSONDecoder().decode(Artwork.self, from: oshiArtworkData)).flatMap { $0.imageURL }
     }
 
     var body: some View {
@@ -275,6 +275,7 @@ struct HomeView: View {
                     navigationPath.append(QuizMode.review)
                 }
             }
+
         }
     }
 

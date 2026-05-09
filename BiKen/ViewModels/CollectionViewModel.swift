@@ -15,39 +15,33 @@ final class CollectionViewModel {
         error = nil
         selectedEra = era
 
-        let queries: [String]
-        if let era {
-            queries = Array(era.searchQueries.shuffled().prefix(5))
-        } else {
-            queries = Array(Era.allCases.flatMap { $0.searchQueries }.shuffled().prefix(5))
-        }
+        let pool = TextbookArtworkData.all
+        let filtered: [TextbookArtwork] = era.map { e in pool.filter { $0.era == e } } ?? pool
 
-        // 各クエリを並列実行し、完了した順に逐次追加する
-        var seen = Set<String>()
-        await withTaskGroup(of: [Artwork].self) { group in
-            for query in queries {
+        // 即座にプレースホルダーで表示（画像なし）
+        artworks = filtered.map { $0.asArtwork(imageURL: nil) }
+        isLoading = false
+
+        // 画像を並列フェッチして順次更新
+        await withTaskGroup(of: (String, URL?).self) { group in
+            for artwork in filtered {
+                guard let title = artwork.wikiTitle else { continue }
+                let lang = artwork.wikiLang
+                let id = artwork.id
                 group.addTask {
-                    await Self.fetchArtworks(query: query)
+                    let url = await WikipediaImageService.shared.imageURL(wikiTitle: title, lang: lang)
+                    return (id, url)
                 }
             }
-            for await batch in group {
-                let unique = batch.filter { seen.insert($0.id).inserted }
-                artworks.append(contentsOf: unique)
-                if isLoading { isLoading = false }   // 最初のバッチが届いた時点でローディングを解除
+            for await (id, url) in group {
+                guard let url else { continue }
+                if let idx = artworks.firstIndex(where: { $0.id == id }),
+                   let textbook = filtered.first(where: { $0.id == id }) {
+                    artworks[idx] = textbook.asArtwork(imageURL: url)
+                }
             }
         }
 
-        if artworks.isEmpty { error = "コレクションの読み込みに失敗しました" }
-        isLoading = false
-    }
-
-    private static func fetchArtworks(query: String) async -> [Artwork] {
-        // isHighlight=true で試み、結果が空なら isHighlight=false にフォールバック
-        if let raw = try? await MetMuseumAPIService.highlightArtworks(query: query, limit: 20), !raw.isEmpty {
-            let converted = convertArtworks(raw)
-            if !converted.isEmpty { return converted }
-        }
-        let fallback = (try? await MetMuseumAPIService.highlightArtworks(query: query, limit: 20, isHighlight: false)) ?? []
-        return convertArtworks(fallback)
+        if filtered.isEmpty { error = "この時代の作品が見つかりませんでした" }
     }
 }

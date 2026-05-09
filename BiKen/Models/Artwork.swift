@@ -89,7 +89,7 @@ struct Artwork: Identifiable, Codable, Sendable, Equatable, Hashable {
     let medium: String
     let movement: String
     let era: Era
-    let imageURL: URL
+    let imageURL: URL?
     let description: String
     let artistBio: String?
     let difficulty: Difficulty

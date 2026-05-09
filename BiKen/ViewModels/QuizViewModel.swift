@@ -33,48 +33,71 @@ final class QuizViewModel {
         error = nil
         reset()
         defer { isLoading = false }
+
+        let pool = TextbookArtworkData.all
+
+        let selected: [TextbookArtwork]
+        switch mode {
+        case .random:
+            selected = Array(pool.shuffled().prefix(10))
+
+        case .era(let era):
+            let filtered = pool.filter { $0.era == era }
+            guard !filtered.isEmpty else {
+                self.error = "この時代の作品が見つかりませんでした"
+                return
+            }
+            selected = Array(filtered.shuffled().prefix(10))
+
+        case .review:
+            let ids = UserProgress.shared.wrongArtworkIDs
+            guard !ids.isEmpty else {
+                self.error = "間違えた問題はありません。すべて正解済みです！"
+                return
+            }
+            let matched = pool.filter { ids.contains($0.id) }
+            guard !matched.isEmpty else {
+                self.error = "復習する作品が見つかりませんでした"
+                return
+            }
+            selected = Array(matched.shuffled().prefix(20))
+
+        case .specificIDs(let ids):
+            guard !ids.isEmpty else {
+                self.error = "復習する問題がありません"
+                return
+            }
+            let matched = pool.filter { ids.contains($0.id) }
+            guard !matched.isEmpty else {
+                self.error = "指定された作品が見つかりませんでした"
+                return
+            }
+            selected = matched
+        }
+
+        // 画像を並列フェッチ
+        var fetchedImages: [String: URL] = [:]
+        await withTaskGroup(of: (String, URL?).self) { group in
+            for artwork in selected {
+                guard let title = artwork.wikiTitle else { continue }
+                let lang = artwork.wikiLang
+                let id = artwork.id
+                group.addTask {
+                    let url = await WikipediaImageService.shared.imageURL(wikiTitle: title, lang: lang)
+                    return (id, url)
+                }
+            }
+            for await (id, url) in group {
+                if let url { fetchedImages[id] = url }
+            }
+        }
+
+        let artworks = selected.map { $0.asArtwork(imageURL: fetchedImages[$0.id]) }
+
         do {
-            let raw: [MetArtworkResponse]
-            switch mode {
-            case .random:
-                let queries = Array(Era.allCases.flatMap { $0.searchQueries }.shuffled().prefix(6))
-                raw = await MetMuseumAPIService.artworksByQueries(queries, limitPerQuery: 20)
-
-            case .era(let era):
-                let queries = Array(era.searchQueries.shuffled().prefix(6))
-                raw = await MetMuseumAPIService.artworksByQueries(queries, limitPerQuery: 20)
-
-            case .review:
-                let ids = UserProgress.shared.wrongArtworkIDs
-                guard !ids.isEmpty else {
-                    self.error = "間違えた問題はありません。すべて正解済みです！"
-                    return
-                }
-                raw = await fetchByIDs(ids)
-
-            case .specificIDs(let ids):
-                guard !ids.isEmpty else {
-                    self.error = "復習する問題がありません"
-                    return
-                }
-                raw = await fetchByIDs(ids)
-            }
-
-            let artworks = convertArtworks(raw)
-            questions = try generateQuiz(from: artworks, count: 10)
-        } catch is CancellationError {
-            return
-        } catch let urlError as URLError {
-            switch urlError.code {
-            case .notConnectedToInternet, .networkConnectionLost:
-                self.error = "インターネットに接続されていません"
-            case .timedOut:
-                self.error = "接続がタイムアウトしました。再試行してください"
-            default:
-                self.error = "作品の読み込みに失敗しました"
-            }
+            questions = try generateQuiz(from: artworks, count: min(10, artworks.count))
         } catch {
-            self.error = "データの読み込みに失敗しました。しばらく待ってから再試行してください"
+            self.error = "問題の生成に失敗しました"
         }
     }
 
@@ -110,21 +133,6 @@ final class QuizViewModel {
         case 60...: return ("よくできました", "着実に知識が身についています。")
         case 40...: return ("もう少し", "復習して知識を定着させましょう。")
         default:    return ("復習しましょう", "繰り返し学習で上達します。")
-        }
-    }
-
-    private func fetchByIDs(_ ids: [String]) async -> [MetArtworkResponse] {
-        let intIDs = ids.compactMap { Int($0) }
-        assert(intIDs.count == ids.count, "wrongArtworkIDs に非数値IDが含まれています")
-        return await withTaskGroup(of: MetArtworkResponse?.self) { group in
-            for id in intIDs.prefix(20) {
-                group.addTask { try? await MetMuseumAPIService.artwork(id: id) }
-            }
-            var results: [MetArtworkResponse] = []
-            for await item in group {
-                if let r = item { results.append(r) }
-            }
-            return results
         }
     }
 

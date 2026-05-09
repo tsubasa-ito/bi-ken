@@ -13,28 +13,28 @@ final class HomeViewModel {
         isLoading = true
         error = nil
 
-        let queries = [
-            Era.impressionism.searchQueries,
-            Era.renaissance.searchQueries,
-            Era.baroque.searchQueries,
-        ].flatMap { $0 }.shuffled().prefix(4)
-
-        let raw = await MetMuseumAPIService.artworksByQueries(Array(queries), limitPerQuery: 10)
-        let artworks = convertArtworks(raw)
-        let sorted = artworks.sorted { $0.id < $1.id }
-        featuredArtworks = sorted
-
-        if !sorted.isEmpty {
-            let today = Date()
-            let daySeed = Calendar.current.component(.year, from: today) * 366
-                + Calendar.current.component(.month, from: today) * 31
-                + Calendar.current.component(.day, from: today)
-            dailyArtwork = sorted[daySeed % sorted.count]
-        } else {
-            print("[HomeViewModel] load() returned no artworks")
-            error = "作品の読み込みに失敗しました"
+        let pool = TextbookArtworkData.all
+        guard !pool.isEmpty else {
+            error = "作品データの読み込みに失敗しました"
+            isLoading = false
+            return
         }
 
+        let today = Date()
+        let cal = Calendar.current
+        let daySeed = cal.component(.year, from: today) * 366
+            + cal.component(.month, from: today) * 31
+            + cal.component(.day, from: today)
+        let dailyTextbook = pool[daySeed % pool.count]
+
+        var dailyImageURL: URL? = nil
+        if let wikiTitle = dailyTextbook.wikiTitle {
+            dailyImageURL = await WikipediaImageService.shared.imageURL(
+                wikiTitle: wikiTitle, lang: dailyTextbook.wikiLang)
+        }
+
+        dailyArtwork = dailyTextbook.asArtwork(imageURL: dailyImageURL)
+        featuredArtworks = pool.map { $0.asArtwork(imageURL: nil) }
         isLoading = false
     }
 }
