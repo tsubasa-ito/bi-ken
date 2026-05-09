@@ -2,7 +2,7 @@ import Foundation
 import Observation
 
 enum QuizMode: Equatable, Hashable {
-    case random
+    case random(Int)
     case era(Era)
     case review
     case specificIDs([String])
@@ -21,7 +21,7 @@ final class QuizViewModel {
     var correctCount = 0
     var isCompleted = false
     var answerRecords: [AnswerRecord] = []
-    private(set) var mode: QuizMode = .random
+    private(set) var mode: QuizMode = .random(10)
 
     var currentQuestion: QuizQuestion? { questions[safe: currentIndex] }
     var totalQuestions: Int { questions.count }
@@ -39,8 +39,8 @@ final class QuizViewModel {
 
         let selected: [TextbookArtwork]
         switch mode {
-        case .random:
-            selected = Array(pool.shuffled().prefix(10))
+        case .random(let count):
+            selected = Array(pool.shuffled().prefix(count))
 
         case .era(let era):
             let filtered = pool.filter { $0.era == era }

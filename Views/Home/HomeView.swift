@@ -3,6 +3,7 @@ import SwiftUI
 struct HomeView: View {
     @State private var navigationPath = NavigationPath()
     @State private var showEraSheet = false
+    @State private var showRandomSheet = false
     private let progress = UserProgress.shared
     @AppStorage("oshiArtworkData") private var oshiArtworkData: Data = Data()
 
@@ -40,6 +41,12 @@ struct HomeView: View {
                 EraSelectionSheet { era in
                     showEraSheet = false
                     navigationPath.append(QuizMode.era(era))
+                }
+            }
+            .sheet(isPresented: $showRandomSheet) {
+                RandomQuizSetupSheet { count in
+                    showRandomSheet = false
+                    navigationPath.append(QuizMode.random(count))
                 }
             }
         }
@@ -135,12 +142,12 @@ struct HomeView: View {
 
             modeRow(
                 title: "ランダム出題",
-                subtitle: "全作品シャッフル · 10問",
-                badgeText: "10",
+                subtitle: "問題数を選んで挑戦",
+                badgeText: "?",
                 badgeColor: Color.appCardBG,
                 bgColor: Color.appCardBG
             ) {
-                navigationPath.append(QuizMode.random)
+                showRandomSheet = true
             }
 
             modeRow(
@@ -258,6 +265,52 @@ struct HomeView: View {
             )
         }
         .buttonStyle(.plain)
+    }
+}
+
+// MARK: - Random Quiz Setup Sheet
+
+struct RandomQuizSetupSheet: View {
+    let onSelect: (Int) -> Void
+    @Environment(\.dismiss) private var dismiss
+
+    private let options: [(label: String, count: Int)] = [
+        ("5問", 5),
+        ("10問", 10),
+        ("20問", 20),
+        ("全問（\(TextbookArtworkData.all.count)問）", TextbookArtworkData.all.count),
+    ]
+
+    var body: some View {
+        NavigationStack {
+            List(options, id: \.count) { option in
+                Button {
+                    onSelect(option.count)
+                } label: {
+                    HStack {
+                        Text(option.label)
+                            .font(.system(size: 17, weight: .semibold, design: .serif))
+                            .foregroundStyle(.appText)
+                        Spacer()
+                        Text("›")
+                            .foregroundStyle(.appTextTertiary)
+                    }
+                    .padding(.vertical, 6)
+                }
+                .listRowBackground(Color.appCardBG)
+            }
+            .listStyle(.insetGrouped)
+            .scrollContentBackground(.hidden)
+            .background(Color.appBackground)
+            .navigationTitle("問題数を選択")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("閉じる") { dismiss() }
+                        .foregroundStyle(.appPrimary)
+                }
+            }
+        }
     }
 }
 
