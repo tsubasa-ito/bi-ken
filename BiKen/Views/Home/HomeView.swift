@@ -15,8 +15,11 @@ struct HomeView: View {
 
                     VStack(alignment: .leading, spacing: 16) {
                         streakBox
+                        levelCard
+                        statsRow
                         ctaCard
                         modeSection
+                        heatmapSection
                     }
                     .padding(.horizontal, 20)
                     .padding(.top, 16)
@@ -308,6 +311,140 @@ struct HomeView: View {
             )
         }
         .buttonStyle(.plain)
+    }
+
+    // MARK: Level Card
+
+    private var levelCard: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("現在のレベル")
+                .font(.system(size: 11))
+                .foregroundStyle(.appTextSecondary)
+
+            HStack(alignment: .bottom, spacing: 12) {
+                Text("Lv.\(progress.level)")
+                    .font(.system(size: 28, weight: .bold, design: .serif))
+                    .foregroundStyle(.appText)
+                Text(progress.levelTitle)
+                    .font(.system(size: 14))
+                    .foregroundStyle(.appTextSecondary)
+                    .padding(.bottom, 4)
+            }
+
+            GeometryReader { geo in
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(Color.appCardBG)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 4)
+                                .stroke(Color.appBorder, lineWidth: 1.5)
+                        )
+                        .frame(height: 8)
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(Color.appPrimary)
+                        .frame(width: max(0, geo.size.width * CGFloat(progress.currentXP) / 100), height: 8)
+                }
+            }
+            .frame(height: 8)
+
+            HStack {
+                Text("\(progress.currentXP) / 100 XP")
+                    .font(.system(size: 10))
+                    .foregroundStyle(.appTextSecondary)
+                Spacer()
+                Text("次：\(progress.nextLevelTitle)")
+                    .font(.system(size: 10))
+                    .foregroundStyle(.appTextSecondary)
+            }
+        }
+        .padding(14)
+        .background(Color.appCardBG)
+        .clipShape(RoundedRectangle(cornerRadius: 6))
+        .overlay(
+            RoundedRectangle(cornerRadius: 6)
+                .stroke(Color.appBorder, lineWidth: 1.5)
+        )
+    }
+
+    // MARK: Stats Row
+
+    private var statsRow: some View {
+        HStack(spacing: 8) {
+            statCell(value: "\(progress.totalArtworksMet)", label: "解いた問題", bg: Color.appCardBG)
+            statCell(value: accuracyText, label: "正答率", bg: Color.appCardBG)
+            statCell(value: "\(progress.totalCertificates)", label: "証書", bg: Color.appStreakBG)
+        }
+    }
+
+    private var accuracyText: String {
+        guard progress.totalArtworksMet > 0 else { return "—" }
+        let pct = progress.totalCorrectAnswers * 100 / progress.totalArtworksMet
+        return "\(max(0, min(100, pct)))%"
+    }
+
+    private func statCell(value: String, label: String, bg: Color) -> some View {
+        VStack(spacing: 4) {
+            Text(value)
+                .font(.system(size: 22, weight: .bold, design: .serif))
+                .foregroundStyle(.appText)
+            Text(label)
+                .font(.system(size: 10))
+                .foregroundStyle(.appTextSecondary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 14)
+        .background(bg)
+        .clipShape(RoundedRectangle(cornerRadius: 6))
+        .overlay(
+            RoundedRectangle(cornerRadius: 6)
+                .stroke(Color.appBorder, lineWidth: 1.5)
+        )
+    }
+
+    // MARK: Heatmap
+
+    private var heatmapSection: some View {
+        VStack(spacing: 8) {
+            HStack {
+                Rectangle().fill(Color.appTextTertiary.opacity(0.5)).frame(height: 0.5)
+                Text("学習履歴（直近4週間）")
+                    .font(.system(size: 11))
+                    .foregroundStyle(.appTextTertiary)
+                Rectangle().fill(Color.appTextTertiary.opacity(0.5)).frame(height: 0.5)
+            }
+
+            let dates = last28Days()
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: 7), spacing: 4) {
+                ForEach(dates, id: \.self) { dateStr in
+                    heatCell(dateStr: dateStr)
+                }
+            }
+        }
+    }
+
+    private func heatCell(dateStr: String) -> some View {
+        let studied = progress.studyDateStrings.contains(dateStr)
+        let color: Color = studied ? .appPrimary : .appCardBG
+        return RoundedRectangle(cornerRadius: 2)
+            .fill(color)
+            .frame(height: 9)
+    }
+
+    private static let dayFormatter: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withFullDate]
+        return formatter
+    }()
+
+    private func last28Days() -> [String] {
+        let today = Date()
+        return (0..<28).reversed().compactMap { offset -> String? in
+            guard let date = Calendar.current.date(byAdding: .day, value: -offset, to: today) else {
+                assertionFailure("Calendar.date(byAdding:) returned nil for offset \(offset)")
+                return nil
+            }
+            return Self.dayFormatter.string(from: date)
+        }
     }
 }
 

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00771B3568F9FCA04CAF8C04 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42338D85089B8FC74E029230 /* AboutView.swift */; };
-		0AC51F94957A9306240E09C2 /* ProgressView_.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F997193D4D31D96BDC16A6 /* ProgressView_.swift */; };
 		11B3445C8609B381A4DB5689 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00318B4C7FFB80FBE847D91B /* CollectionView.swift */; };
 		11D5B72CE81858F128BCC745 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB86BF64CED65129C617A207 /* CollectionViewModel.swift */; };
 		1D1E10FD2FBE2BFFFF595846 /* ArtworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599CC0F77C05E422E367FF7E /* ArtworkDetailView.swift */; };
@@ -60,7 +59,6 @@
 		C7575B70DABC9FE54ECE1DE5 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		D1A841F1C3EED8CCBB67B0F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D2D032FB31E3119E02900AAD /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
-		E7F997193D4D31D96BDC16A6 /* ProgressView_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView_.swift; sourceTree = "<group>"; };
 		EB86BF64CED65129C617A207 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		F96AC92471F8C3DB55342777 /* Array+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Safe.swift"; sourceTree = "<group>"; };
 		F9D3694A9AF8CE0C6B588B7D /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
@@ -70,7 +68,6 @@
 		3D5CD3E369B87169077BDE28 /* Progress */ = {
 			isa = PBXGroup;
 			children = (
-				E7F997193D4D31D96BDC16A6 /* ProgressView_.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -286,7 +283,6 @@
 				F8BABBF5F69533483D70768C /* MetMuseumAPIService.swift in Sources */,
 				C1D4483BDD082481E5E98F42 /* NotificationSettingsView.swift in Sources */,
 				387C5A8EBBF029FF49C26A85 /* ProfileSettingsView.swift in Sources */,
-				0AC51F94957A9306240E09C2 /* ProgressView_.swift in Sources */,
 				2C23C5B65ECC41942C2868CB /* QuizQuestion.swift in Sources */,
 				62FA98A3AFD8F73A1C83499D /* QuizResultView.swift in Sources */,
 				8EA9FBA556F7A0D2CB26A6A9 /* QuizView.swift in Sources */,
