@@ -97,7 +97,7 @@ struct CollectionView: View {
                 Text("ブックマーク")
                     .font(.caption.weight(.medium))
             }
-            .foregroundStyle(showBookmarksOnly ? .white : Color.appTextSecondary)
+            .foregroundStyle(showBookmarksOnly ? .white : .appTextSecondary)
             .padding(.horizontal, 14)
             .padding(.vertical, 7)
             .background(showBookmarksOnly ? Color.appPrimary : Color.appCardBG, in: Capsule())
@@ -105,19 +105,17 @@ struct CollectionView: View {
     }
 
     private func filterChip(title: String, era: Era?) -> some View {
-        Button {
+        let isSelected = !showBookmarksOnly && selectedEra == era
+        return Button {
             selectedEra = era
             showBookmarksOnly = false
         } label: {
             Text(title)
                 .font(.caption.weight(.medium))
-                .foregroundStyle(!showBookmarksOnly && selectedEra == era ? .white : Color.appTextSecondary)
+                .foregroundStyle(isSelected ? .white : .appTextSecondary)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 7)
-                .background(
-                    !showBookmarksOnly && selectedEra == era ? Color.appPrimary : Color.appCardBG,
-                    in: Capsule()
-                )
+                .background(isSelected ? Color.appPrimary : Color.appCardBG, in: Capsule())
         }
     }
 
@@ -135,8 +133,7 @@ struct CollectionView: View {
     }
 
     private func artworkCell(artwork: Artwork) -> some View {
-        let bookmarked = UserProgress.shared.isBookmarked(artwork.id)
-        return ZStack(alignment: .bottomLeading) {
+        ZStack(alignment: .bottomLeading) {
             if let imageURL = artwork.imageURL {
                 CachedAsyncImage(url: imageURL) { image in
                     image.resizable().scaledToFill()
@@ -151,10 +148,10 @@ struct CollectionView: View {
                     VStack(spacing: 8) {
                         Image(systemName: "photo")
                             .font(.system(size: 30))
-                            .foregroundStyle(Color.appTextTertiary)
+                            .foregroundStyle(.appTextTertiary)
                         Text(artwork.displayTitle)
                             .font(.system(size: 11, weight: .medium, design: .serif))
-                            .foregroundStyle(Color.appTextSecondary)
+                            .foregroundStyle(.appTextSecondary)
                             .multilineTextAlignment(.center)
                             .lineLimit(3)
                             .padding(.horizontal, 12)
@@ -175,18 +172,18 @@ struct CollectionView: View {
                     .foregroundStyle(.white.opacity(0.7))
             }
             .padding(10)
-
-            if bookmarked {
+        }
+        .frame(height: 200)
+        .clipped()
+        .overlay(alignment: .topTrailing) {
+            if UserProgress.shared.isBookmarked(artwork.id) {
                 Image(systemName: "bookmark.fill")
                     .font(.system(size: 13))
                     .foregroundStyle(.white)
                     .padding(6)
                     .background(Color.appPrimary, in: Circle())
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                     .padding(8)
             }
         }
-        .frame(height: 200)
-        .clipped()
     }
 }

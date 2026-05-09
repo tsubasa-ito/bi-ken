@@ -189,8 +189,8 @@ final class UserProgress {
         ud.set(studyDateStrings,    forKey: "studyDateStrings")
         ud.set(userName,            forKey: "userName")
         ud.set(dailyGoal,           forKey: "dailyGoal")
-        ud.set(todayArtworksMet,        forKey: "todayArtworksMet")
-        ud.set(todayDateString,         forKey: "todayDateString")
-        ud.set(bookmarkedArtworkIDs,    forKey: "bookmarkedArtworkIDs")
+        ud.set(todayArtworksMet,    forKey: "todayArtworksMet")
+        ud.set(todayDateString,     forKey: "todayDateString")
+        ud.set(bookmarkedArtworkIDs, forKey: "bookmarkedArtworkIDs")
     }
 }

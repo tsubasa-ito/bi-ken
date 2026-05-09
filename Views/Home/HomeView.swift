@@ -287,7 +287,6 @@ struct HomeView: View {
             ) {
                 navigationPath.append(QuizMode.bookmark)
             }
-
         }
     }
 

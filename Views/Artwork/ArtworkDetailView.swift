@@ -36,7 +36,7 @@ struct ArtworkDetailView: View {
             } label: {
                 Image(systemName: bookmarked ? "bookmark.fill" : "bookmark")
                     .font(.title3.bold())
-                    .foregroundStyle(bookmarked ? Color.appPrimary : .appText)
+                    .foregroundStyle(bookmarked ? .appPrimary : .appText)
                     .padding(12)
                     .background(Color.appCardBG, in: Circle())
                     .overlay(Circle().stroke(Color.appBorder, lineWidth: 1))

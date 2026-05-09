@@ -166,7 +166,7 @@ struct QuizResultView: View {
         return HStack(spacing: 12) {
             Text(record.isCorrect ? "○" : "×")
                 .font(.system(size: 18, weight: .bold))
-                .foregroundStyle(record.isCorrect ? Color.appCorrect : Color.appIncorrect)
+                .foregroundStyle(record.isCorrect ? .appCorrect : .appIncorrect)
                 .frame(width: 24)
 
             VStack(alignment: .leading, spacing: 2) {
@@ -187,7 +187,7 @@ struct QuizResultView: View {
             } label: {
                 Image(systemName: bookmarked ? "bookmark.fill" : "bookmark")
                     .font(.system(size: 16))
-                    .foregroundStyle(bookmarked ? Color.appPrimary : Color.appTextSecondary)
+                    .foregroundStyle(bookmarked ? .appPrimary : .appTextSecondary)
                     .frame(width: 36, height: 36)
             }
             .buttonStyle(.plain)

@@ -339,7 +339,7 @@ struct QuizView: View {
             } label: {
                 Image(systemName: bookmarked ? "bookmark.fill" : "bookmark")
                     .font(.system(size: 18))
-                    .foregroundStyle(bookmarked ? Color.appPrimary : Color.appTextSecondary)
+                    .foregroundStyle(bookmarked ? .appPrimary : .appTextSecondary)
                     .frame(width: 44, height: 44)
             }
             .buttonStyle(.plain)
