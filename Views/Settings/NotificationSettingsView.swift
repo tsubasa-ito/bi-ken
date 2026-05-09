@@ -13,6 +13,14 @@ struct NotificationSettingsView: View {
 
             Section("通知の設定") {
                 statusRow
+                if authStatus == .authorized {
+                    NavigationLink {
+                        ReminderSettingsView()
+                    } label: {
+                        Label("学習リマインダー", systemImage: "clock.fill")
+                            .foregroundStyle(.appText)
+                    }
+                }
             }
             .listRowBackground(Color.appCardBG)
 
@@ -53,7 +61,7 @@ struct NotificationSettingsView: View {
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundStyle(.appText)
                 Text(authStatus == .authorized
-                    ? "通知を受け取れます"
+                    ? "学習リマインダーを受け取れます"
                     : authStatus == .denied
                     ? "設定アプリから許可してください"
                     : "タップして通知を許可する")
