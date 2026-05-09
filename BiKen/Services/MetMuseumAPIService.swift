@@ -67,10 +67,10 @@ enum MetMuseumAPIService {
         return result
     }
 
-    static func highlightArtworks(query: String, limit: Int = 10) async throws -> [MetArtworkResponse] {
-        let searchResult = try await search(query: query)
+    static func highlightArtworks(query: String, limit: Int = 10, isHighlight: Bool = true) async throws -> [MetArtworkResponse] {
+        let searchResult = try await search(query: query, isHighlight: isHighlight)
         guard let ids = searchResult.objectIDs, !ids.isEmpty else { return [] }
-        let selected = Array(ids.prefix(min(limit, 15)))
+        let selected = Array(ids.prefix(min(limit, 30)))
         return try await fetchBatch(ids: selected)
     }
 
@@ -78,7 +78,11 @@ enum MetMuseumAPIService {
         await withTaskGroup(of: [MetArtworkResponse].self) { group in
             for query in queries {
                 group.addTask {
-                    (try? await highlightArtworks(query: query, limit: limitPerQuery)) ?? []
+                    // isHighlight=true で試み、空なら isHighlight=false にフォールバック
+                    if let r = try? await highlightArtworks(query: query, limit: limitPerQuery), !r.isEmpty {
+                        return r
+                    }
+                    return (try? await highlightArtworks(query: query, limit: limitPerQuery, isHighlight: false)) ?? []
                 }
             }
             var results: [MetArtworkResponse] = []

@@ -310,7 +310,7 @@ func convertArtworks(_ metArtworks: [MetArtworkResponse]) -> [Artwork] {
 }
 
 func generateQuiz(from artworks: [Artwork], count: Int = 10) throws -> [QuizQuestion] {
-    guard artworks.count >= 4 else {
+    guard artworks.count >= 2 else {
         throw NSError(domain: "Quiz", code: 0, userInfo: [NSLocalizedDescriptionKey: "十分な作品を取得できませんでした"])
     }
     let shuffled = artworks.shuffled()

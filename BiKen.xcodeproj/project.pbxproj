@@ -12,6 +12,7 @@
 		11D5B72CE81858F128BCC745 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB86BF64CED65129C617A207 /* CollectionViewModel.swift */; };
 		1D1E10FD2FBE2BFFFF595846 /* ArtworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599CC0F77C05E422E367FF7E /* ArtworkDetailView.swift */; };
 		2353A8DFBF2F2484885E5444 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0D03F552917FE492B99194 /* HelpView.swift */; };
+		2BF88C8F9D7223610BA2C025 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46564208C928406260A7C3BC /* CachedAsyncImage.swift */; };
 		2C23C5B65ECC41942C2868CB /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3694A9AF8CE0C6B588B7D /* QuizQuestion.swift */; };
 		360CD355A2923B4A05E97FAD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCAA3666CFEC76DB8C0FB67 /* SettingsView.swift */; };
 		387C5A8EBBF029FF49C26A85 /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065C709B9444710709AE4F40 /* ProfileSettingsView.swift */; };
@@ -29,6 +30,7 @@
 		CAE70AF1931A9A6D6B5BFE6B /* ReminderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDA91FB692A30184AA7FCDC /* ReminderSettingsView.swift */; };
 		D5D73A063690026615D768C1 /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96AC92471F8C3DB55342777 /* Array+Safe.swift */; };
 		EA3BFB7C428C9AA864F3296B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BB8277351E158F751038E8 /* HomeView.swift */; };
+		F331CB48BC9D88995108DAE5 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3A4FB985BF6A5895CF0B5B /* ImageCache.swift */; };
 		F7E8FD457841BE70C89DBBC3 /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D032FB31E3119E02900AAD /* Color+Theme.swift */; };
 		F86DF46E09056F1BEC0659CB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2617EAF49D72A81D96C206C8 /* HomeViewModel.swift */; };
 		F8BABBF5F69533483D70768C /* MetMuseumAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E3019BFCECCDB21DE9DD3 /* MetMuseumAPIService.swift */; };
@@ -44,6 +46,7 @@
 		2617EAF49D72A81D96C206C8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		42338D85089B8FC74E029230 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		43D7D75A0E9F523C207126BA /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
+		46564208C928406260A7C3BC /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		50E4242CA0C7D18B561EA10C /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		5161800DFA4652FBA51CBCC6 /* BiKenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiKenApp.swift; sourceTree = "<group>"; };
 		599CC0F77C05E422E367FF7E /* ArtworkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkDetailView.swift; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 		6B43373202C266AEB917E1B6 /* UserProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProgress.swift; sourceTree = "<group>"; };
 		759B34A4ADBEE3CDB8991DDF /* OshiArtworkPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshiArtworkPickerView.swift; sourceTree = "<group>"; };
 		8D75B3FB58EA339433D66E59 /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
+		9C3A4FB985BF6A5895CF0B5B /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		9FCAA3666CFEC76DB8C0FB67 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A33E3019BFCECCDB21DE9DD3 /* MetMuseumAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetMuseumAPIService.swift; sourceTree = "<group>"; };
 		A99DA8814EC0391E4CBC5797 /* ArtworkConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkConverter.swift; sourceTree = "<group>"; };
@@ -124,6 +128,14 @@
 			path = Quiz;
 			sourceTree = "<group>";
 		};
+		7D85F2450AD4583AC0485EFA /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				46564208C928406260A7C3BC /* CachedAsyncImage.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		8C29ABF781B56B722FD3DCF6 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +150,7 @@
 				C7575B70DABC9FE54ECE1DE5 /* MainTabView.swift */,
 				EF97D8C0A4738CFCF1563634 /* Artwork */,
 				8C29ABF781B56B722FD3DCF6 /* Collection */,
+				7D85F2450AD4583AC0485EFA /* Components */,
 				675E18C679C9B017DBAFBE68 /* Home */,
 				7684C84C3591D235F40257E7 /* Quiz */,
 				3E80C720083D99A3F71F10A5 /* Settings */,
@@ -150,6 +163,7 @@
 			children = (
 				64A2A84CFD2A1F7732A3B9E0 /* ArtworkCache.swift */,
 				A99DA8814EC0391E4CBC5797 /* ArtworkConverter.swift */,
+				9C3A4FB985BF6A5895CF0B5B /* ImageCache.swift */,
 				A33E3019BFCECCDB21DE9DD3 /* MetMuseumAPIService.swift */,
 			);
 			path = Services;
@@ -267,6 +281,7 @@
 				FE1333D23CD696C766465B65 /* ArtworkConverter.swift in Sources */,
 				1D1E10FD2FBE2BFFFF595846 /* ArtworkDetailView.swift in Sources */,
 				931B38E9C0EF59ADD1781478 /* BiKenApp.swift in Sources */,
+				2BF88C8F9D7223610BA2C025 /* CachedAsyncImage.swift in Sources */,
 				11B3445C8609B381A4DB5689 /* CollectionView.swift in Sources */,
 				11D5B72CE81858F128BCC745 /* CollectionViewModel.swift in Sources */,
 				F7E8FD457841BE70C89DBBC3 /* Color+Theme.swift in Sources */,
@@ -274,6 +289,7 @@
 				2353A8DFBF2F2484885E5444 /* HelpView.swift in Sources */,
 				EA3BFB7C428C9AA864F3296B /* HomeView.swift in Sources */,
 				F86DF46E09056F1BEC0659CB /* HomeViewModel.swift in Sources */,
+				F331CB48BC9D88995108DAE5 /* ImageCache.swift in Sources */,
 				640A3BFAEF4292BDB44D0C4C /* MainTabView.swift in Sources */,
 				F8BABBF5F69533483D70768C /* MetMuseumAPIService.swift in Sources */,
 				C1D4483BDD082481E5E98F42 /* NotificationSettingsView.swift in Sources */,

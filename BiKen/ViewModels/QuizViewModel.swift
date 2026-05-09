@@ -37,12 +37,12 @@ final class QuizViewModel {
             let raw: [MetArtworkResponse]
             switch mode {
             case .random:
-                let queries = Array(Era.allCases.flatMap { $0.searchQueries }.shuffled().prefix(4))
-                raw = await MetMuseumAPIService.artworksByQueries(queries, limitPerQuery: 10)
+                let queries = Array(Era.allCases.flatMap { $0.searchQueries }.shuffled().prefix(6))
+                raw = await MetMuseumAPIService.artworksByQueries(queries, limitPerQuery: 20)
 
             case .era(let era):
-                let queries = Array(era.searchQueries.shuffled().prefix(4))
-                raw = await MetMuseumAPIService.artworksByQueries(queries, limitPerQuery: 10)
+                let queries = Array(era.searchQueries.shuffled().prefix(6))
+                raw = await MetMuseumAPIService.artworksByQueries(queries, limitPerQuery: 20)
 
             case .review:
                 let ids = UserProgress.shared.wrongArtworkIDs

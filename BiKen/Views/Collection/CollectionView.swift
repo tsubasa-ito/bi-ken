@@ -101,7 +101,7 @@ struct CollectionView: View {
 
     private func artworkCell(artwork: Artwork) -> some View {
         ZStack(alignment: .bottomLeading) {
-            AsyncImage(url: artwork.imageURL) { image in
+            CachedAsyncImage(url: artwork.imageURL) { image in
                 image.resizable().scaledToFill()
             } placeholder: {
                 Color.appCardBG

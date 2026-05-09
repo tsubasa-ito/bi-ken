@@ -65,7 +65,7 @@ struct HomeView: View {
             Spacer()
             Group {
                 if let url = oshiArtworkImageURL {
-                    AsyncImage(url: url) { image in
+                    CachedAsyncImage(url: url) { image in
                         image.resizable().scaledToFill()
                     } placeholder: {
                         Color.appCardBG
@@ -207,7 +207,7 @@ struct HomeView: View {
     private var artworkThumbnail: some View {
         Group {
             if let artwork = vm.dailyArtwork {
-                AsyncImage(url: artwork.imageURL) { image in
+                CachedAsyncImage(url: artwork.imageURL) { image in
                     image.resizable().scaledToFill()
                 } placeholder: {
                     Color.white.opacity(0.13)

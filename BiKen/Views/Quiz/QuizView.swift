@@ -187,7 +187,7 @@ struct QuizView: View {
                         .stroke(Color.appBorder, lineWidth: 1.5)
                 )
 
-            AsyncImage(url: question.artwork.imageURL) { image in
+            CachedAsyncImage(url: question.artwork.imageURL) { image in
                 image.resizable().scaledToFit()
             } placeholder: {
                 Color.appCardBG

@@ -17,9 +17,9 @@ final class CollectionViewModel {
 
         let queries: [String]
         if let era {
-            queries = Array(era.searchQueries.shuffled().prefix(3))
+            queries = Array(era.searchQueries.shuffled().prefix(5))
         } else {
-            queries = Array(Era.allCases.flatMap { $0.searchQueries }.shuffled().prefix(3))
+            queries = Array(Era.allCases.flatMap { $0.searchQueries }.shuffled().prefix(5))
         }
 
         // 各クエリを並列実行し、完了した順に逐次追加する
@@ -27,8 +27,7 @@ final class CollectionViewModel {
         await withTaskGroup(of: [Artwork].self) { group in
             for query in queries {
                 group.addTask {
-                    let raw = (try? await MetMuseumAPIService.highlightArtworks(query: query, limit: 5)) ?? []
-                    return convertArtworks(raw)
+                    await Self.fetchArtworks(query: query)
                 }
             }
             for await batch in group {
@@ -40,5 +39,15 @@ final class CollectionViewModel {
 
         if artworks.isEmpty { error = "コレクションの読み込みに失敗しました" }
         isLoading = false
+    }
+
+    private static func fetchArtworks(query: String) async -> [Artwork] {
+        // isHighlight=true で試み、結果が空なら isHighlight=false にフォールバック
+        if let raw = try? await MetMuseumAPIService.highlightArtworks(query: query, limit: 20), !raw.isEmpty {
+            let converted = convertArtworks(raw)
+            if !converted.isEmpty { return converted }
+        }
+        let fallback = (try? await MetMuseumAPIService.highlightArtworks(query: query, limit: 20, isHighlight: false)) ?? []
+        return convertArtworks(fallback)
     }
 }

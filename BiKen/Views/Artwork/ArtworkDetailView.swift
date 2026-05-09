@@ -32,7 +32,7 @@ struct ArtworkDetailView: View {
     }
 
     private var artworkImage: some View {
-        AsyncImage(url: artwork.imageURL) { image in
+        CachedAsyncImage(url: artwork.imageURL) { image in
             image.resizable().scaledToFit()
         } placeholder: {
             Color.appCardBG
