@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-美術検定（Art Certification）学習アプリ - Swift 6 / iOS 17+ ネイティブアプリ。Metropolitan Museum of Art APIから作品データを取得し、日本語でクイズを出題する。
+美術検定（Art Certification）学習アプリ - Swift 6 / iOS 17+ ネイティブアプリ。美術検定テキスト掲載の名作100点をローカルデータ（TextbookArtworkData）として保持し、Wikipedia APIから作品画像を取得してクイズを出題する。
 
 ## Development Commands
 
@@ -24,31 +24,28 @@ xcrun simctl launch booted com.tebasakin.biken
 
 ### Data Flow
 ```
-Met Museum API → MetMuseumAPIService.swift → ArtworkConverter.swift → ViewModels → SwiftUI Views
+TextbookArtworkData.swift → ViewModels + WikipediaImageService.swift → SwiftUI Views
 ```
 
-### Key Services
+### Key Data Source
 
-**BiKen/Services/MetMuseumAPIService.swift**
-- Metropolitan Museum of Art API との通信（async/await）
-- `artworksByQueries(_:limitPerQuery:)`: `withTaskGroup` で並列実行、エラーは吸収して続行
-- nullable フィールド（`artistDisplayName` 等）はすべて `String?` で受け取る
+**BiKen/Data/TextbookArtworkData.swift**
+- 美術検定テキスト掲載の名作100点をハードコード（`TextbookArtworkData.all: [TextbookArtwork]`）
+- `TextbookArtwork`: `id`（`"textbook-001"`形式）、`wikiTitle: String?`、`wikiLang: String`（`"en"` or `"ja"`）を保持
+- `var era: Era`: `periodJa` 文字列から `Era` enum に変換（exhaustive マッピング）
+- `func asArtwork(imageURL: URL?) -> Artwork`: `TextbookArtwork` → `Artwork` 変換
 
-**BiKen/Services/ArtworkConverter.swift**
-- `MetArtworkResponse` → `Artwork` 型への変換
-- `MAPPED_ARTISTS`: 日本語マッピングが存在する作家名リスト
-- `hasJapaneseMapping()`: マッピング存在チェック（これを通過した作品のみ表示）
-- `year`: `objectBeginDate > 0` のときのみセット、それ以外は `nil`
-
-**BiKen/Services/ArtworkCache.swift**
-- `actor ArtworkCache` - 5分TTLのインメモリキャッシュ
-- `CacheEntry.value: Any` 型でJSON再エンコード不要
+**BiKen/Services/WikipediaImageService.swift**
+- `actor WikipediaImageService` - Wikipedia Action API（`/w/api.php?prop=pageimages`）から作品画像を取得
+- `inFlight: [String: Task<URL?, Never>]` で並行リクエストの重複防止（actor再入バグ対策）
+- `completed: [String: URL?]` でリクエスト結果をキャッシュ（成功・失敗ともに記録）
+- キー形式: `"lang:wikiTitle"`
 
 ### ViewModels
 
-- `HomeViewModel`: デイリー作品（日付シードで固定）・フィーチャー作品取得
-- `QuizViewModel`: クイズ進行・回答記録・URLError種別ごとのエラーメッセージ
-- `CollectionViewModel`: `withTaskGroup` でプログレッシブロード・重複除去
+- `HomeViewModel`: デイリー作品（日付シードで固定）・フィーチャー作品取得。`TextbookArtworkData.all` からシード選択し、Wikipedia画像を1件フェッチ
+- `QuizViewModel`: クイズ進行・回答記録。`withTaskGroup` で選択作品の画像を並列フェッチ
+- `CollectionViewModel`: プレースホルダー即時表示 → `withTaskGroup` で画像を逐次更新するプログレッシブロード
 
 ### Navigation
 
@@ -82,7 +79,7 @@ enum QuizMode: Equatable, Hashable {
 
 ### Type Definitions（BiKen/Models/）
 
-- `Artwork`: `artistOriginal`（英語名）を保持、`year` は `Int?`
+- `Artwork`: `artistOriginal`（英語名）を保持、`year` は `Int?`、`imageURL` は `URL?`（Wikipedia画像が取得できない作品は nil）
 - `QuizQuestion`: `init` で `options.contains(correctAnswer)` を `precondition` チェック
 - `UserProgress`: 全プロパティ `private(set)`、`levelTitle` は computed
   - `currentXP: Int` — 0–99、100で自動レベルアップ（`totalCertificates += 1`）
@@ -104,12 +101,15 @@ enum QuizMode: Equatable, Hashable {
 
 ## Important Patterns
 
-### 日本語化フィルタリング
-Met Museum APIは英語データを返すため、マッピング辞書に存在する作家・作品のみを表示する設計。新しい作家を追加する場合はマッピング辞書とリスト両方に追加が必要。
+### 作品データの管理
+全作品は `TextbookArtworkData.all` の静的配列で管理。新しい作品を追加する場合は `TextbookArtworkData.swift` に `TextbookArtwork` エントリを追加し、`wikiTitle` に Wikipedia記事名を設定する。画像が取れない・誤った画像になる場合は `wikiTitle: nil` を設定。
 
-### APIレート制限対策
-- クエリ数を最大4に制限
-- キャッシュで重複リクエストを抑制
+### Wikipedia画像の信頼性
+Wikipedia REST API は曖昧さ回避ページの画像（建物・風景）を返すことがある。Action API（`prop=pageimages&redirects=1`）を使用し、問題のある作品には `wikiTitle: nil` を設定して画像なしプレースホルダーを表示する。
+
+### 画像なし時のUI
+- **クイズ**: 作品タイトルをセリフ体で表示（`Text("『タイトル』")`）
+- **コレクション**: フォトアイコン + タイトルのプレースホルダーセルを表示
 
 ## Reference Documentation
 
