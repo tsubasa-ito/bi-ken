@@ -18,11 +18,6 @@ struct SettingsView: View {
                 List {
                     Section("アカウント") {
                         NavigationLink {
-                            ProfileSettingsView()
-                        } label: {
-                            settingsRow(icon: "person.circle.fill", title: "プロフィール", color: .appPrimary)
-                        }
-                        NavigationLink {
                             NotificationSettingsView()
                         } label: {
                             settingsRow(icon: "bell.fill", title: "通知", color: .orange)

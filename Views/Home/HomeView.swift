@@ -4,13 +4,8 @@ struct HomeView: View {
     @State private var navigationPath = NavigationPath()
     @State private var showEraSheet = false
     @State private var showRandomSheet = false
+    @State private var showSettingsSheet = false
     private let progress = UserProgress.shared
-    @AppStorage("oshiArtworkData") private var oshiArtworkData: Data = Data()
-
-    private var oshiArtworkImageURL: URL? {
-        guard !oshiArtworkData.isEmpty else { return nil }
-        return (try? JSONDecoder().decode(Artwork.self, from: oshiArtworkData)).flatMap { $0.imageURL }
-    }
 
     var body: some View {
         NavigationStack(path: $navigationPath) {
@@ -49,6 +44,9 @@ struct HomeView: View {
                     navigationPath.append(QuizMode.random(count))
                 }
             }
+            .sheet(isPresented: $showSettingsSheet) {
+                SettingsView()
+            }
         }
     }
 
@@ -65,38 +63,18 @@ struct HomeView: View {
                     .foregroundStyle(.appText)
             }
             Spacer()
-            Group {
-                if let url = oshiArtworkImageURL {
-                    CachedAsyncImage(url: url) { image in
-                        image.resizable().scaledToFill()
-                    } placeholder: {
-                        Color.appCardBG
-                    }
+            Button {
+                showSettingsSheet = true
+            } label: {
+                Image(systemName: "gearshape")
+                    .font(.system(size: 20))
+                    .foregroundStyle(.appTextSecondary)
                     .frame(width: 38, height: 38)
-                    .clipShape(Circle())
-                    .overlay(Circle().stroke(Color.appBorder, lineWidth: 1.5))
-                } else {
-                    Circle()
-                        .fill(Color.appCardBG)
-                        .frame(width: 38, height: 38)
-                        .overlay(Circle().stroke(Color.appBorder, lineWidth: 1.5))
-                        .overlay(
-                            Text(avatarInitial)
-                                .font(.system(size: 16, weight: .medium))
-                                .foregroundStyle(.appTextSecondary)
-                        )
-                }
             }
         }
         .padding(.horizontal, 20)
         .padding(.top, 52)
         .padding(.bottom, 8)
-    }
-
-    private var avatarInitial: String {
-        let name = progress.userName.trimmingCharacters(in: .whitespaces)
-        guard let first = name.first else { return "U" }
-        return String(first)
     }
 
     // MARK: Stats Row
