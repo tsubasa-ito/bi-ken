@@ -61,8 +61,6 @@ TextbookArtworkData.swift → ViewModels + WikipediaImageService.swift → Swift
 - `ProfileSettingsView`: ユーザー名編集（`@FocusState`）+ 推し作品設定。`@AppStorage("oshiArtworkData")` に `Artwork` を JSON エンコードして永続化。`@State + onChange(initial: true)` でデコードキャッシュ
 - `OshiArtworkPickerView`: 推し作品選択シート。`CollectionViewModel` で作品一覧取得、`LazyVGrid` でサムネイル表示。選択作品を `oshiArtworkData` に保存
 - `NotificationSettingsView`: `UNAuthorizationStatus` 表示と許可リクエスト。`didBecomeActiveNotification` で状態を再取得
-- `ReminderSettingsView`: 毎日リマインダーのオン/オフと時刻選択（`UNCalendarNotificationTrigger`）
-- `GoalSettingsView`: 1日の目標問題数選択（5/10/15/20/30問）
 - `AboutView`: アプリ情報・機能紹介
 - `HelpView`: FAQ アコーディオン（`expandedItem: String?` で展開状態管理）
 

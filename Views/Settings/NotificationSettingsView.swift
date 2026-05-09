@@ -53,7 +53,7 @@ struct NotificationSettingsView: View {
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundStyle(.appText)
                 Text(authStatus == .authorized
-                    ? "学習リマインダーを受け取れます"
+                    ? "通知を受け取れます"
                     : authStatus == .denied
                     ? "設定アプリから許可してください"
                     : "タップして通知を許可する")
