@@ -63,7 +63,7 @@
 		AEE59327EC1E3D94A707D6C9 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		B6939C3FF055EA4CCB8A9195 /* GoalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSettingsView.swift; sourceTree = "<group>"; };
 		BF2E8BD1D64190B943296127 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
-		C06E37D258CAB6ECF24C592F /* BiKen.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BiKen.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C06E37D258CAB6ECF24C592F /* BiKen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiKen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4D18837FB157690468B37D6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E207F81AF3DC2D93E5422151 /* OshiArtworkPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshiArtworkPickerView.swift; sourceTree = "<group>"; };
 		E555A4B198F51ACBAB4B9696 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -251,8 +251,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 173D26EE15FD71C64DC475BF /* Build configuration list for PBXProject "BiKen" */;
 			developmentRegion = en;
@@ -439,6 +437,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6CGGS6SX69;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -460,6 +459,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6CGGS6SX69;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
