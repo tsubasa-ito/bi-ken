@@ -74,6 +74,7 @@ enum QuizMode: Equatable, Hashable {
     case era(Era)         // 時代別クイズ
     case review           // UserProgress.wrongArtworkIDs を使った復習
     case specificIDs([String]) // 結果画面から選んだ間違い問題を復習
+    case bookmark         // UserProgress.bookmarkedArtworkIDs を使ったブックマーク復習
 }
 ```
 
@@ -84,6 +85,7 @@ enum QuizMode: Equatable, Hashable {
 - `UserProgress`: 全プロパティ `private(set)`、`levelTitle` は computed
   - `currentXP: Int` — 0–99、100で自動レベルアップ（`totalCertificates += 1`）
   - `wrongArtworkIDs: [String]` — 間違えた作品IDのリスト（重複なし）
+  - `bookmarkedArtworkIDs: [String]` — ブックマークした作品IDのリスト。`toggleBookmark`・`isBookmarked` で操作。`reset()` でクリアされる
   - `studyDateStrings: [String]` — ISO8601日付文字列、最大28件
   - `userName: String` — プロフィール設定で変更可能
   - `dailyGoal: Int` — 1日の目標問題数（デフォルト10）
