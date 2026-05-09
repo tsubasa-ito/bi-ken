@@ -4,11 +4,15 @@ struct CollectionView: View {
     @State private var vm = CollectionViewModel()
     @State private var selectedEra: Era?
     @State private var showBookmarksOnly = false
+    @State private var displayedArtworks: [Artwork] = []
 
-    private var displayedArtworks: [Artwork] {
-        guard showBookmarksOnly else { return vm.artworks }
+    private func refreshDisplayedArtworks() {
+        guard showBookmarksOnly else {
+            displayedArtworks = vm.artworks
+            return
+        }
         let ids = Set(UserProgress.shared.bookmarkedArtworkIDs)
-        return vm.artworks.filter { ids.contains($0.id) }
+        displayedArtworks = vm.artworks.filter { ids.contains($0.id) }
     }
 
     var body: some View {
@@ -53,6 +57,9 @@ struct CollectionView: View {
         .onChange(of: selectedEra) { _, new in
             Task { await vm.load(era: new) }
         }
+        .onChange(of: vm.artworks, initial: true) { _, _ in refreshDisplayedArtworks() }
+        .onChange(of: showBookmarksOnly) { _, _ in refreshDisplayedArtworks() }
+        .onChange(of: UserProgress.shared.bookmarkedArtworkIDs) { _, _ in refreshDisplayedArtworks() }
     }
 
     private var customHeader: some View {
