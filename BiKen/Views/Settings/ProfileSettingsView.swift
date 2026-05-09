@@ -7,11 +7,7 @@ struct ProfileSettingsView: View {
     @FocusState private var isFocused: Bool
     @AppStorage("oshiArtworkData") private var oshiArtworkData: Data = Data()
     @State private var showOshiPicker = false
-
-    private var oshiArtwork: Artwork? {
-        guard !oshiArtworkData.isEmpty else { return nil }
-        return try? JSONDecoder().decode(Artwork.self, from: oshiArtworkData)
-    }
+    @State private var oshiArtwork: Artwork?
 
     var body: some View {
         List {
@@ -51,6 +47,10 @@ struct ProfileSettingsView: View {
         }
         .onAppear {
             draftName = progress.userName
+        }
+        .onChange(of: oshiArtworkData, initial: true) { _, data in
+            guard !data.isEmpty else { oshiArtwork = nil; return }
+            oshiArtwork = try? JSONDecoder().decode(Artwork.self, from: data)
         }
         .sheet(isPresented: $showOshiPicker) {
             OshiArtworkPickerView()
