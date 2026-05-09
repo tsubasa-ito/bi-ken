@@ -29,6 +29,21 @@ struct ArtworkDetailView: View {
             .padding(16)
             .padding(.top, 40)
         }
+        .overlay(alignment: .topTrailing) {
+            let bookmarked = UserProgress.shared.isBookmarked(artwork.id)
+            Button {
+                UserProgress.shared.toggleBookmark(artworkID: artwork.id)
+            } label: {
+                Image(systemName: bookmarked ? "bookmark.fill" : "bookmark")
+                    .font(.title3.bold())
+                    .foregroundStyle(bookmarked ? .appPrimary : .appText)
+                    .padding(12)
+                    .background(Color.appCardBG, in: Circle())
+                    .overlay(Circle().stroke(Color.appBorder, lineWidth: 1))
+            }
+            .padding(16)
+            .padding(.top, 40)
+        }
     }
 
     private var artworkImage: some View {

@@ -18,6 +18,7 @@ final class UserProgress {
     private(set) var dailyGoal: Int
     private(set) var todayArtworksMet: Int
     private(set) var todayDateString: String
+    private(set) var bookmarkedArtworkIDs: [String]
 
     private static let dateFormatter: ISO8601DateFormatter = {
         let f = ISO8601DateFormatter()
@@ -26,6 +27,11 @@ final class UserProgress {
     }()
 
     var hasMissedQuestions: Bool { !wrongArtworkIDs.isEmpty }
+    var hasBookmarks: Bool { !bookmarkedArtworkIDs.isEmpty }
+
+    func isBookmarked(_ artworkID: String) -> Bool {
+        bookmarkedArtworkIDs.contains(artworkID)
+    }
 
     // XP within current level (0–99)
     var masteryPercentage: Int { currentXP }
@@ -68,6 +74,7 @@ final class UserProgress {
         dailyGoal            = (ud.value(forKey: "dailyGoal")            as? Int) ?? 10
         todayArtworksMet     = (ud.value(forKey: "todayArtworksMet")     as? Int) ?? 0
         todayDateString      = ud.string(forKey: "todayDateString") ?? ""
+        bookmarkedArtworkIDs = ud.stringArray(forKey: "bookmarkedArtworkIDs") ?? []
 
         let today = UserProgress.dateFormatter.string(from: Date())
         if todayDateString != today {
@@ -125,9 +132,19 @@ final class UserProgress {
         currentStreak = 0
         wrongArtworkIDs = []
         studyDateStrings = []
+        bookmarkedArtworkIDs = []
         todayArtworksMet = 0
         todayDateString = ""
         UserDefaults.standard.removeObject(forKey: "lastStudyDate")
+        save()
+    }
+
+    func toggleBookmark(artworkID: String) {
+        if bookmarkedArtworkIDs.contains(artworkID) {
+            bookmarkedArtworkIDs.removeAll { $0 == artworkID }
+        } else {
+            bookmarkedArtworkIDs.append(artworkID)
+        }
         save()
     }
 
@@ -174,5 +191,6 @@ final class UserProgress {
         ud.set(dailyGoal,           forKey: "dailyGoal")
         ud.set(todayArtworksMet,    forKey: "todayArtworksMet")
         ud.set(todayDateString,     forKey: "todayDateString")
+        ud.set(bookmarkedArtworkIDs, forKey: "bookmarkedArtworkIDs")
     }
 }

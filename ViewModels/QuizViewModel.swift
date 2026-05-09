@@ -6,6 +6,7 @@ enum QuizMode: Equatable, Hashable {
     case era(Era)
     case review
     case specificIDs([String])
+    case bookmark
 }
 
 @MainActor
@@ -73,6 +74,19 @@ final class QuizViewModel {
                 return
             }
             selected = matched
+
+        case .bookmark:
+            let ids = UserProgress.shared.bookmarkedArtworkIDs
+            guard !ids.isEmpty else {
+                self.error = "ブックマークした作品がありません"
+                return
+            }
+            let matched = pool.filter { ids.contains($0.id) }
+            guard !matched.isEmpty else {
+                self.error = "ブックマークした作品が見つかりませんでした"
+                return
+            }
+            selected = Array(matched.shuffled().prefix(20))
         }
 
         // 画像を並列フェッチ

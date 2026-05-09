@@ -3,6 +3,17 @@ import SwiftUI
 struct CollectionView: View {
     @State private var vm = CollectionViewModel()
     @State private var selectedEra: Era?
+    @State private var showBookmarksOnly = false
+    @State private var displayedArtworks: [Artwork] = []
+
+    private func refreshDisplayedArtworks() {
+        guard showBookmarksOnly else {
+            displayedArtworks = vm.artworks
+            return
+        }
+        let ids = Set(UserProgress.shared.bookmarkedArtworkIDs)
+        displayedArtworks = vm.artworks.filter { ids.contains($0.id) }
+    }
 
     var body: some View {
         NavigationStack {
@@ -26,9 +37,10 @@ struct CollectionView: View {
                             .buttonStyle(.borderedProminent).tint(.appPrimary)
                     }
                     Spacer()
-                } else if vm.artworks.isEmpty {
+                } else if displayedArtworks.isEmpty {
                     Spacer()
-                    Text("作品が見つかりませんでした").foregroundStyle(.appTextSecondary)
+                    Text(showBookmarksOnly ? "ブックマークした作品がありません" : "作品が見つかりませんでした")
+                        .foregroundStyle(.appTextSecondary)
                     Spacer()
                 } else {
                     eraFilter
@@ -45,6 +57,9 @@ struct CollectionView: View {
         .onChange(of: selectedEra) { _, new in
             Task { await vm.load(era: new) }
         }
+        .onChange(of: vm.artworks, initial: true) { _, _ in refreshDisplayedArtworks() }
+        .onChange(of: showBookmarksOnly) { _, _ in refreshDisplayedArtworks() }
+        .onChange(of: UserProgress.shared.bookmarkedArtworkIDs) { _, _ in refreshDisplayedArtworks() }
     }
 
     private var customHeader: some View {
@@ -60,6 +75,7 @@ struct CollectionView: View {
     private var eraFilter: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
+                bookmarkChip
                 filterChip(title: "すべて", era: nil)
                 ForEach(Era.allCases, id: \.self) { era in
                     filterChip(title: era.japaneseName, era: era)
@@ -70,19 +86,36 @@ struct CollectionView: View {
         }
     }
 
-    private func filterChip(title: String, era: Era?) -> some View {
+    private var bookmarkChip: some View {
         Button {
+            showBookmarksOnly.toggle()
+            if showBookmarksOnly { selectedEra = nil }
+        } label: {
+            HStack(spacing: 4) {
+                Image(systemName: showBookmarksOnly ? "bookmark.fill" : "bookmark")
+                    .font(.system(size: 11))
+                Text("ブックマーク")
+                    .font(.caption.weight(.medium))
+            }
+            .foregroundStyle(showBookmarksOnly ? .white : .appTextSecondary)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 7)
+            .background(showBookmarksOnly ? Color.appPrimary : Color.appCardBG, in: Capsule())
+        }
+    }
+
+    private func filterChip(title: String, era: Era?) -> some View {
+        let isSelected = !showBookmarksOnly && selectedEra == era
+        return Button {
             selectedEra = era
+            showBookmarksOnly = false
         } label: {
             Text(title)
                 .font(.caption.weight(.medium))
-                .foregroundStyle(selectedEra == era ? .white : .appTextSecondary)
+                .foregroundStyle(isSelected ? .white : .appTextSecondary)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 7)
-                .background(
-                    selectedEra == era ? Color.appPrimary : Color.appCardBG,
-                    in: Capsule()
-                )
+                .background(isSelected ? Color.appPrimary : Color.appCardBG, in: Capsule())
         }
     }
 
@@ -90,7 +123,7 @@ struct CollectionView: View {
         let columns = [GridItem(.flexible(), spacing: 2), GridItem(.flexible(), spacing: 2)]
         return ScrollView {
             LazyVGrid(columns: columns, spacing: 2) {
-                ForEach(vm.artworks) { artwork in
+                ForEach(displayedArtworks) { artwork in
                     NavigationLink(value: artwork) {
                         artworkCell(artwork: artwork)
                     }
@@ -115,10 +148,10 @@ struct CollectionView: View {
                     VStack(spacing: 8) {
                         Image(systemName: "photo")
                             .font(.system(size: 30))
-                            .foregroundStyle(Color.appTextTertiary)
+                            .foregroundStyle(.appTextTertiary)
                         Text(artwork.displayTitle)
                             .font(.system(size: 11, weight: .medium, design: .serif))
-                            .foregroundStyle(Color.appTextSecondary)
+                            .foregroundStyle(.appTextSecondary)
                             .multilineTextAlignment(.center)
                             .lineLimit(3)
                             .padding(.horizontal, 12)
@@ -142,5 +175,15 @@ struct CollectionView: View {
         }
         .frame(height: 200)
         .clipped()
+        .overlay(alignment: .topTrailing) {
+            if UserProgress.shared.isBookmarked(artwork.id) {
+                Image(systemName: "bookmark.fill")
+                    .font(.system(size: 13))
+                    .foregroundStyle(.white)
+                    .padding(6)
+                    .background(Color.appPrimary, in: Circle())
+                    .padding(8)
+            }
+        }
     }
 }

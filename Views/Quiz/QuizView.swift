@@ -303,6 +303,7 @@ struct QuizView: View {
     private func explanationPanel(question: QuizQuestion) -> some View {
         let artwork = question.artwork
         let examPoint = examPointText(artwork)
+        let bookmarked = UserProgress.shared.isBookmarked(artwork.id)
         return HStack(spacing: 0) {
             Rectangle()
                 .fill(Color.appAccent)
@@ -330,6 +331,19 @@ struct QuizView: View {
                     .foregroundStyle(.appPrimary)
             }
             .padding(12)
+
+            Spacer(minLength: 0)
+
+            Button {
+                UserProgress.shared.toggleBookmark(artworkID: artwork.id)
+            } label: {
+                Image(systemName: bookmarked ? "bookmark.fill" : "bookmark")
+                    .font(.system(size: 18))
+                    .foregroundStyle(bookmarked ? .appPrimary : .appTextSecondary)
+                    .frame(width: 44, height: 44)
+            }
+            .buttonStyle(.plain)
+            .padding(.trailing, 4)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.appStreakBG)
