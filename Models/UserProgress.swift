@@ -132,6 +132,7 @@ final class UserProgress {
         currentStreak = 0
         wrongArtworkIDs = []
         studyDateStrings = []
+        bookmarkedArtworkIDs = []
         todayArtworksMet = 0
         todayDateString = ""
         UserDefaults.standard.removeObject(forKey: "lastStudyDate")
