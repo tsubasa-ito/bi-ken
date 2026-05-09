@@ -3,11 +3,8 @@ import SwiftUI
 struct OshiArtworkPickerView: View {
     @AppStorage("oshiArtworkData") private var oshiArtworkData: Data = Data()
     @State private var vm = CollectionViewModel()
+    @State private var selectedArtworkID: String?
     @Environment(\.dismiss) private var dismiss
-
-    private var selectedArtworkID: String? {
-        (try? JSONDecoder().decode(Artwork.self, from: oshiArtworkData))?.id
-    }
 
     var body: some View {
         NavigationStack {
@@ -15,6 +12,8 @@ struct OshiArtworkPickerView: View {
                 if vm.isLoading {
                     ProgressView().tint(.appPrimary)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else if let errorMsg = vm.error {
+                    errorView(errorMsg)
                 } else if vm.artworks.isEmpty {
                     emptyView
                 } else {
@@ -30,8 +29,11 @@ struct OshiArtworkPickerView: View {
                         .foregroundStyle(.appPrimary)
                 }
             }
+            .task { await vm.load() }
+            .onChange(of: oshiArtworkData, initial: true) { _, data in
+                selectedArtworkID = (try? JSONDecoder().decode(Artwork.self, from: data))?.id
+            }
         }
-        .task { await vm.load() }
     }
 
     private var emptyView: some View {
@@ -46,6 +48,22 @@ struct OshiArtworkPickerView: View {
                 .padding(.horizontal, 32)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private func errorView(_ message: String) -> some View {
+        VStack(spacing: 12) {
+            Image(systemName: "exclamationmark.circle")
+                .font(.title)
+                .foregroundStyle(.appIncorrect)
+            Text(message)
+                .foregroundStyle(.appTextSecondary)
+                .multilineTextAlignment(.center)
+            Button("再試行") { Task { await vm.load() } }
+                .buttonStyle(.borderedProminent)
+                .tint(.appPrimary)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding()
     }
 
     private var artworkGrid: some View {
@@ -106,9 +124,8 @@ struct OshiArtworkPickerView: View {
     }
 
     private func selectArtwork(_ artwork: Artwork) {
-        if let data = try? JSONEncoder().encode(artwork) {
-            oshiArtworkData = data
-        }
+        guard let data = try? JSONEncoder().encode(artwork) else { return }
+        oshiArtworkData = data
         dismiss()
     }
 }
