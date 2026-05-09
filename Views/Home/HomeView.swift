@@ -3,7 +3,6 @@ import SwiftUI
 struct HomeView: View {
     @State private var navigationPath = NavigationPath()
     @State private var showEraSheet = false
-    @State private var showArtistSheet = false
     private let progress = UserProgress.shared
     @AppStorage("oshiArtworkData") private var oshiArtworkData: Data = Data()
 
@@ -41,12 +40,6 @@ struct HomeView: View {
                 EraSelectionSheet { era in
                     showEraSheet = false
                     navigationPath.append(QuizMode.era(era))
-                }
-            }
-            .sheet(isPresented: $showArtistSheet) {
-                ArtistSelectionSheet { artist in
-                    showArtistSheet = false
-                    navigationPath.append(QuizMode.artist(artist))
                 }
             }
         }
@@ -160,15 +153,6 @@ struct HomeView: View {
                 showEraSheet = true
             }
 
-            modeRow(
-                title: "作者別で学ぶ",
-                subtitle: "作者を絞って挑戦",
-                badgeText: "👤",
-                badgeColor: Color.appCardBG,
-                bgColor: Color.appCardBG
-            ) {
-                showArtistSheet = true
-            }
         }
     }
 
@@ -310,56 +294,6 @@ struct EraSelectionSheet: View {
             .scrollContentBackground(.hidden)
             .background(Color.appBackground)
             .navigationTitle("時代別で学ぶ")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("閉じる") { dismiss() }
-                        .foregroundStyle(.appPrimary)
-                }
-            }
-        }
-    }
-}
-
-// MARK: - Artist Selection Sheet
-
-struct ArtistSelectionSheet: View {
-    let onSelect: (String) -> Void
-    @Environment(\.dismiss) private var dismiss
-
-    private var artists: [(name: String, count: Int)] {
-        let grouped = Dictionary(grouping: TextbookArtworkData.all) { $0.artist }
-        return grouped.map { (name: $0.key, count: $0.value.count) }
-            .sorted { $0.name < $1.name }
-    }
-
-    var body: some View {
-        NavigationStack {
-            List(artists, id: \.name) { item in
-                Button {
-                    onSelect(item.name)
-                } label: {
-                    HStack {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(item.name)
-                                .font(.system(size: 16, weight: .semibold, design: .serif))
-                                .foregroundStyle(.appText)
-                            Text("\(item.count)作品")
-                                .font(.system(size: 12))
-                                .foregroundStyle(.appTextSecondary)
-                        }
-                        Spacer()
-                        Text("›")
-                            .foregroundStyle(.appTextTertiary)
-                    }
-                    .padding(.vertical, 4)
-                }
-                .listRowBackground(Color.appCardBG)
-            }
-            .listStyle(.insetGrouped)
-            .scrollContentBackground(.hidden)
-            .background(Color.appBackground)
-            .navigationTitle("作者別で学ぶ")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {

@@ -7,7 +7,6 @@ enum QuizMode: Equatable, Hashable {
     case review
     case specificIDs([String])
     case bookmark
-    case artist(String)
 }
 
 @MainActor
@@ -89,13 +88,6 @@ final class QuizViewModel {
             }
             selected = Array(matched.shuffled().prefix(20))
 
-        case .artist(let artistName):
-            let filtered = pool.filter { $0.artist == artistName }
-            guard !filtered.isEmpty else {
-                self.error = "「\(artistName)」の作品が見つかりませんでした"
-                return
-            }
-            selected = Array(filtered.shuffled().prefix(10))
         }
 
         // 画像を並列フェッチ
