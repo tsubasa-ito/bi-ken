@@ -61,11 +61,19 @@ struct ProfileSettingsView: View {
         VStack(alignment: .center, spacing: 0) {
             ZStack {
                 if let artwork = oshiArtwork {
-                    AsyncImage(url: artwork.imageURL) { image in
-                        image.resizable().scaledToFill()
-                    } placeholder: {
-                        Color.appCardBG
-                            .overlay(ProgressView().tint(.appPrimary))
+                    AsyncImage(url: artwork.imageURL) { phase in
+                        switch phase {
+                        case .success(let image):
+                            image.resizable().scaledToFill()
+                        case .failure:
+                            Color.appCardBG
+                                .overlay(Image(systemName: "photo").foregroundStyle(.appTextSecondary))
+                        case .empty:
+                            Color.appCardBG
+                                .overlay(ProgressView().tint(.appPrimary))
+                        @unknown default:
+                            EmptyView()
+                        }
                     }
                     .frame(width: 96, height: 96)
                     .clipShape(Circle())
