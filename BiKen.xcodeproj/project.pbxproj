@@ -10,7 +10,6 @@
 		0A283063F3C7B974D90D1002 /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85699C924959A97004BCE570 /* Array+Safe.swift */; };
 		2433BA5BBAA61B0E96770A81 /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3388FE3B98938BD4F1C12922 /* NotificationSettingsView.swift */; };
 		254681A0E34461D22E0CF4B0 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC78CDE96C01267C75C38D5 /* HelpView.swift */; };
-		2560E277AA6AFA656B046B65 /* GoalSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6939C3FF055EA4CCB8A9195 /* GoalSettingsView.swift */; };
 		27194D04473D101018DD34E3 /* ProfileSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28B00B8B6AFDED407D9AC9C /* ProfileSettingsView.swift */; };
 		2F61801C1F545617A90ABC6A /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3296DFD92CD7C92B1BC0A107 /* MainTabView.swift */; };
 		3984394409537211A02AEDD0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D18837FB157690468B37D6 /* HomeViewModel.swift */; };
@@ -61,9 +60,8 @@
 		9D91100584F210495B75AA74 /* ArtworkConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkConverter.swift; sourceTree = "<group>"; };
 		A28B00B8B6AFDED407D9AC9C /* ProfileSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsView.swift; sourceTree = "<group>"; };
 		AEE59327EC1E3D94A707D6C9 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
-		B6939C3FF055EA4CCB8A9195 /* GoalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSettingsView.swift; sourceTree = "<group>"; };
 		BF2E8BD1D64190B943296127 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
-		C06E37D258CAB6ECF24C592F /* BiKen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiKen.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C06E37D258CAB6ECF24C592F /* BiKen.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BiKen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4D18837FB157690468B37D6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E207F81AF3DC2D93E5422151 /* OshiArtworkPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshiArtworkPickerView.swift; sourceTree = "<group>"; };
 		E555A4B198F51ACBAB4B9696 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 			isa = PBXGroup;
 			children = (
 				BF2E8BD1D64190B943296127 /* AboutView.swift */,
-				B6939C3FF055EA4CCB8A9195 /* GoalSettingsView.swift */,
 				6DC78CDE96C01267C75C38D5 /* HelpView.swift */,
 				3388FE3B98938BD4F1C12922 /* NotificationSettingsView.swift */,
 				E207F81AF3DC2D93E5422151 /* OshiArtworkPickerView.swift */,
@@ -251,6 +248,11 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					230B4C51AEB08EEF083F8BF8 = {
+						DevelopmentTeam = 6CGGS6SX69;
+					};
+				};
 			};
 			buildConfigurationList = 173D26EE15FD71C64DC475BF /* Build configuration list for PBXProject "BiKen" */;
 			developmentRegion = en;
@@ -287,7 +289,6 @@
 				D7B2EBFFF2A65334F7FFD2B5 /* CollectionView.swift in Sources */,
 				AD673BF0CD2EFF34B395BB0A /* CollectionViewModel.swift in Sources */,
 				4394CD719B65A18E2C4901AC /* Color+Theme.swift in Sources */,
-				2560E277AA6AFA656B046B65 /* GoalSettingsView.swift in Sources */,
 				254681A0E34461D22E0CF4B0 /* HelpView.swift in Sources */,
 				F1E300F42B7871DA098142BF /* HomeView.swift in Sources */,
 				3984394409537211A02AEDD0 /* HomeViewModel.swift in Sources */,

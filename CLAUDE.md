@@ -62,7 +62,6 @@ TextbookArtworkData.swift → ViewModels + WikipediaImageService.swift → Swift
 - `OshiArtworkPickerView`: 推し作品選択シート。`CollectionViewModel` で作品一覧取得、`LazyVGrid` でサムネイル表示。選択作品を `oshiArtworkData` に保存
 - `NotificationSettingsView`: `UNAuthorizationStatus` 表示と許可リクエスト。`didBecomeActiveNotification` で状態を再取得
 - `ReminderSettingsView`: 毎日リマインダーのオン/オフと時刻選択（`UNCalendarNotificationTrigger`）
-- `GoalSettingsView`: 1日の目標問題数選択（5/10/15/20/30問）
 - `AboutView`: アプリ情報・機能紹介
 - `HelpView`: FAQ アコーディオン（`expandedItem: String?` で展開状態管理）
 
@@ -70,7 +69,7 @@ TextbookArtworkData.swift → ViewModels + WikipediaImageService.swift → Swift
 
 ```swift
 enum QuizMode: Equatable, Hashable {
-    case random           // 全時代シャッフルの10問チャレンジ
+    case random(Int)      // 指定数のランダムクイズ（5/10/20/全問）
     case era(Era)         // 時代別クイズ
     case review           // UserProgress.wrongArtworkIDs を使った復習
     case specificIDs([String]) // 結果画面から選んだ間違い問題を復習
