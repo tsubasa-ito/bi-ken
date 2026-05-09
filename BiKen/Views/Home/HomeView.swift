@@ -430,16 +430,20 @@ struct HomeView: View {
             .frame(height: 9)
     }
 
-    private func last28Days() -> [String] {
+    private static let dayFormatter: ISO8601DateFormatter = {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withFullDate]
+        return formatter
+    }()
+
+    private func last28Days() -> [String] {
         let today = Date()
         return (0..<28).reversed().compactMap { offset -> String? in
             guard let date = Calendar.current.date(byAdding: .day, value: -offset, to: today) else {
                 assertionFailure("Calendar.date(byAdding:) returned nil for offset \(offset)")
                 return nil
             }
-            return formatter.string(from: date)
+            return Self.dayFormatter.string(from: date)
         }
     }
 }
