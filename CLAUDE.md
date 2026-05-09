@@ -61,7 +61,8 @@ Met Museum API → MetMuseumAPIService.swift → ArtworkConverter.swift → View
 ### Settings Views（BiKen/Views/Settings/）
 
 - `SettingsView`: 設定トップ。`confirmationDialog` で進捗リセット確認、`@Environment(\.requestReview)` でレビューリクエスト
-- `ProfileSettingsView`: ユーザー名編集（`@FocusState` でキーボード制御）
+- `ProfileSettingsView`: ユーザー名編集（`@FocusState`）+ 推し作品設定。`@AppStorage("oshiArtworkData")` に `Artwork` を JSON エンコードして永続化。`@State + onChange(initial: true)` でデコードキャッシュ
+- `OshiArtworkPickerView`: 推し作品選択シート。`CollectionViewModel` で作品一覧取得、`LazyVGrid` でサムネイル表示。選択作品を `oshiArtworkData` に保存
 - `NotificationSettingsView`: `UNAuthorizationStatus` 表示と許可リクエスト。`didBecomeActiveNotification` で状態を再取得
 - `ReminderSettingsView`: 毎日リマインダーのオン/オフと時刻選択（`UNCalendarNotificationTrigger`）
 - `GoalSettingsView`: 1日の目標問題数選択（5/10/15/20/30問）

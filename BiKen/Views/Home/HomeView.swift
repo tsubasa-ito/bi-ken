@@ -5,6 +5,12 @@ struct HomeView: View {
     @State private var navigationPath = NavigationPath()
     @State private var showEraSheet = false
     private let progress = UserProgress.shared
+    @AppStorage("oshiArtworkData") private var oshiArtworkData: Data = Data()
+
+    private var oshiArtworkImageURL: URL? {
+        guard !oshiArtworkData.isEmpty else { return nil }
+        return (try? JSONDecoder().decode(Artwork.self, from: oshiArtworkData))?.imageURL
+    }
 
     var body: some View {
         NavigationStack(path: $navigationPath) {
@@ -57,17 +63,28 @@ struct HomeView: View {
                     .foregroundStyle(.appText)
             }
             Spacer()
-            Circle()
-                .fill(Color.appCardBG)
-                .frame(width: 38, height: 38)
-                .overlay(
-                    Circle().stroke(Color.appBorder, lineWidth: 1.5)
-                )
-                .overlay(
-                    Text(avatarInitial)
-                        .font(.system(size: 16, weight: .medium))
-                        .foregroundStyle(.appTextSecondary)
-                )
+            Group {
+                if let url = oshiArtworkImageURL {
+                    AsyncImage(url: url) { image in
+                        image.resizable().scaledToFill()
+                    } placeholder: {
+                        Color.appCardBG
+                    }
+                    .frame(width: 38, height: 38)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.appBorder, lineWidth: 1.5))
+                } else {
+                    Circle()
+                        .fill(Color.appCardBG)
+                        .frame(width: 38, height: 38)
+                        .overlay(Circle().stroke(Color.appBorder, lineWidth: 1.5))
+                        .overlay(
+                            Text(avatarInitial)
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundStyle(.appTextSecondary)
+                        )
+                }
+            }
         }
         .padding(.horizontal, 20)
         .padding(.top, 52)
