@@ -4,9 +4,9 @@
 
 ## スクリーンショット
 
-| ホーム | クイズ | コレクション | 作品詳細 |
-|:------:|:------:|:------------:|:--------:|
-| 今日の一問・時代別学習 | 4択クイズ形式 | マスターした作品一覧 | 解説・検定ポイント |
+| ホーム | クイズ | 作品詳細 |
+|:------:|:------:|:--------:|
+| クイズモード選択・復習 | 4択クイズ形式 | 解説・検定ポイント |
 
 ## 機能
 
@@ -17,11 +17,6 @@
 - **ブックマーク**: 気になる作品・忘れやすい作品をブックマーク保存し、ブックマーク作品のみでクイズを受講
 - **作品解説**: 正解後に詳しい解説と検定のポイントを表示
 - **結果画面**: 作品名・作者・○×のリスト表示、各問題にブックマークボタン、間違えた問題をワンタップで復習
-
-### コレクション機能
-- ブックマーク・時代別フィルターで作品を絞り込み
-- ブックマーク済み作品には右上にアイコン表示
-- 作品詳細から解説をいつでも復習可能
 
 ### 進捗管理
 - **XPシステム**: 正解でXP獲得、100XPでレベルアップ・認定証を取得
@@ -38,7 +33,7 @@
 - **Language**: Swift 6
 - **UI Framework**: SwiftUI
 - **Architecture**: `@Observable` + `@MainActor` ViewModel
-- **Navigation**: NavigationStack + TabView
+- **Navigation**: NavigationStack + Sheet
 - **Networking**: URLSession async/await
 - **Target**: iOS 17.0+
 
@@ -94,12 +89,10 @@ bi-ken/
 │   └── ArtworkConverter.swift       # クイズ生成ロジック
 ├── ViewModels/                      # @Observable ViewModel
 │   ├── HomeViewModel.swift
-│   ├── QuizViewModel.swift
-│   └── CollectionViewModel.swift
+│   └── QuizViewModel.swift
 ├── Views/                           # SwiftUI ビュー
 │   ├── Home/
 │   ├── Quiz/
-│   ├── Collection/
 │   ├── Artwork/
 │   └── ...
 ├── Extensions/                      # Color+Theme.swift 等
@@ -111,21 +104,15 @@ bi-ken/
 ## 画面遷移
 
 ```
-ホーム
-├── レベルカード（Lv. / XP進捗バー）
-├── 統計行（解いた問題数・正答率・証書数）
-├── 10問チャレンジ → QuizView(.random) → 結果 → [復習] QuizView(.specificIDs)
-├── 時代から学ぶ → EraSelectionSheet → QuizView(.era(Era))
-├── 復習する → QuizView(.review)
+ホーム（唯一のルート画面）
+├── 統計行（正答率・連続正解数・挑戦回数）
+├── ランダム出題 → RandomQuizSetupSheet → QuizView(.random) → 結果 → [復習] QuizView(.specificIDs)
+├── 時代別で学ぶ → EraSelectionSheet → QuizView(.era(Era))
+├── 間違えた問題を復習 → QuizView(.review)
 ├── ブックマーク問題 → QuizView(.bookmark)
-└── 学習ヒートマップ（直近4週間・週単位）
+└── [右上歯車] → SettingsView（シート）
 
-コレクション
-├── ブックマーク / 時代別フィルター切り替え
-└── 作品タップ → 作品詳細（ブックマークボタン）
-
-設定
-├── プロフィール → 名前変更
+SettingsView（シート）
 ├── 通知 → 許可リクエスト / 学習リマインダー設定
 ├── 進捗をリセット → 確認ダイアログ → UserProgress 全リセット
 ├── アプリについて → アプリ情報・機能紹介
