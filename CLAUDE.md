@@ -18,6 +18,9 @@ xcodebuild -target BiKen -sdk iphonesimulator -arch arm64 build SYMROOT=/tmp/bik
 # シミュレーターにインストールして起動
 xcrun simctl install booted /tmp/biken-products/Debug-iphonesimulator/BiKen.app
 xcrun simctl launch booted com.tebasakin.biken
+
+# ユニットテスト実行
+xcodebuild test -scheme BiKen -sdk iphonesimulator -destination "platform=iOS Simulator,arch=arm64,id=<SIMULATOR_UDID>"
 ```
 
 ## Architecture
@@ -78,7 +81,7 @@ enum QuizMode: Equatable, Hashable {
 
 - `Artwork`: `artistOriginal`（英語名）を保持、`year` は `Int?`、`imageURL` は `URL?`（Wikipedia画像が取得できない作品は nil）
 - `QuizQuestion`: `init` で `options.contains(correctAnswer)` を `precondition` チェック
-- `UserProgress`: 全プロパティ `private(set)`、`levelTitle` は computed
+- `UserProgress`: 全プロパティ `private(set)`、`levelTitle` は computed。テスト用に `init(userDefaults: UserDefaults)` を公開（`static let shared` は `private convenience init()` 経由で `UserDefaults.standard` を使用）
   - `currentXP: Int` — 0–99、100で自動レベルアップ（`totalCertificates += 1`）
   - `wrongArtworkIDs: [String]` — 間違えた作品IDのリスト（重複なし）
   - `bookmarkedArtworkIDs: [String]` — ブックマークした作品IDのリスト。`toggleBookmark`・`isBookmarked` で操作。`reset()` でクリアされる

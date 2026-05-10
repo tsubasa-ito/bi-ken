@@ -96,6 +96,8 @@ bi-ken/
 │   ├── Artwork/
 │   └── ...
 ├── Extensions/                      # Color+Theme.swift 等
+├── Tests/
+│   └── BiKenTests/                  # XCTest ユニットテスト
 ├── project.yml                      # xcodegen 設定
 ├── docs/                            # 参考資料
 └── bijutsu-kentei.pen               # デザインファイル
