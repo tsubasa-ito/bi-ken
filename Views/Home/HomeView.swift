@@ -67,7 +67,7 @@ struct HomeView: View {
                 Text("おかえりなさい")
                     .font(.system(size: 12, weight: .regular))
                     .foregroundStyle(.appTextSecondary)
-                Text("美術検定 4級")
+                Text("美術検定4級 名画問題集")
                     .font(.system(size: 22, weight: .bold, design: .serif))
                     .foregroundStyle(.appText)
             }

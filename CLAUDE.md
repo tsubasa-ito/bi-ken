@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-美術検定（Art Certification）学習アプリ - Swift 6 / iOS 17+ ネイティブアプリ。美術検定テキスト掲載の名作100点をローカルデータ（TextbookArtworkData）として保持し、Wikipedia APIから作品画像を取得してクイズを出題する。
+美術検定4級 名画問題集 - Swift 6 / iOS 17+ ネイティブアプリ。美術検定テキスト掲載の名作100点をローカルデータ（TextbookArtworkData）として保持し、Wikipedia APIから作品画像を取得してクイズを出題する。
 
 ## Development Commands
 

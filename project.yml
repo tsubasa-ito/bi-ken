@@ -73,7 +73,7 @@ targets:
     info:
       path: Info.plist
       properties:
-        CFBundleDisplayName: 美術検定
+        CFBundleDisplayName: 美術検定4級 名画問題集
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait

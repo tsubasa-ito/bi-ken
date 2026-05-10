@@ -47,7 +47,7 @@ struct AboutView: View {
                             .font(.system(size: 36, weight: .bold, design: .serif))
                             .foregroundStyle(.white)
                     )
-                Text("美術検定")
+                Text("美術検定4級 名画問題集")
                     .font(.system(size: 20, weight: .bold, design: .serif))
                     .foregroundStyle(.appText)
                 Text("美術の知識を楽しく学ぼう")

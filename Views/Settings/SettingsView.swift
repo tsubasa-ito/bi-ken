@@ -57,7 +57,7 @@ struct SettingsView: View {
                         HStack {
                             Spacer()
                             VStack(spacing: 4) {
-                                Text("美術検定")
+                                Text("美術検定4級 名画問題集")
                                     .font(.headline.bold())
                                     .foregroundStyle(.appText)
                                 Text("バージョン 1.0.0")
