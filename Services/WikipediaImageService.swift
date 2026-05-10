@@ -1,20 +1,41 @@
 import Foundation
 
+// MARK: - WikiImageResult
+
+enum WikiImageResult {
+    case found(URL)
+    case absent  // 記事なし・サムネイルなし（恒久的失敗）
+}
+
+// MARK: - WikipediaImageService
+
 actor WikipediaImageService {
     static let shared = WikipediaImageService()
 
-    private var inFlight: [String: Task<URL?, Never>] = [:]
-    private var completed: [String: URL?] = [:]
+    private let session: URLSession
+    private var inFlight: [String: Task<WikiImageResult?, Never>] = [:]
+    private var completed: [String: WikiImageResult] = [:]
+
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
 
     func imageURL(wikiTitle: String, lang: String = "en") async -> URL? {
         let key = "\(lang):\(wikiTitle)"
 
-        if completed.keys.contains(key) { return completed[key] ?? nil }
-        if let running = inFlight[key] { return await running.value }
+        if let cached = completed[key] {
+            if case .found(let url) = cached { return url }
+            return nil
+        }
+        if let running = inFlight[key] {
+            let result = await running.value
+            if let result, case .found(let url) = result { return url }
+            return nil
+        }
 
-        let task = Task<URL?, Never> {
+        let task = Task<WikiImageResult?, Never> {
             guard var components = URLComponents(string: "https://\(lang).wikipedia.org/w/api.php") else {
-                return nil
+                return .absent
             }
             components.queryItems = [
                 URLQueryItem(name: "action",      value: "query"),
@@ -24,22 +45,39 @@ actor WikipediaImageService {
                 URLQueryItem(name: "format",      value: "json"),
                 URLQueryItem(name: "redirects",   value: "1"),
             ]
-            guard let requestURL = components.url,
-                  let (data, _) = try? await URLSession.shared.data(from: requestURL),
-                  let json   = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                  let query  = json["query"]  as? [String: Any],
-                  let pages  = query["pages"] as? [String: Any],
-                  let page   = pages.values.first as? [String: Any],
-                  page["missing"] == nil,
+            guard let requestURL = components.url else { return .absent }
+
+            let data: Data
+            do {
+                (data, _) = try await self.session.data(from: requestURL)
+            } catch {
+                return nil  // ネットワークエラーは一時的な失敗 → キャッシュしない
+            }
+
+            guard let json  = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let query = json["query"]  as? [String: Any],
+                  let pages = query["pages"] as? [String: Any],
+                  let page  = pages.values.first as? [String: Any] else {
+                return .absent
+            }
+
+            guard page["missing"] == nil,
                   let thumb  = page["thumbnail"] as? [String: Any],
-                  let source = thumb["source"]   as? String else { return nil }
-            return URL(string: source)
+                  let source = thumb["source"]   as? String,
+                  let url    = URL(string: source) else {
+                return .absent
+            }
+
+            return .found(url)
         }
 
         inFlight[key] = task
-        let url = await task.value
-        completed[key] = url
+        let result = await task.value
+        if let result {
+            completed[key] = result
+        }
         inFlight[key] = nil
-        return url
+        if let result, case .found(let url) = result { return url }
+        return nil
     }
 }
