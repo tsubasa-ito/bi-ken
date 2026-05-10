@@ -56,6 +56,15 @@ TextbookArtworkData.swift → ViewModels + WikipediaImageService.swift → Swift
 - 1日1回のみチェック（当日チェック済みなら即 `nil` を返す）
 - `AppRootView`（`BiKenApp.swift` 内 `private struct`）で `.task` + `didBecomeActiveNotification` の両方でチェックを呼ぶ
 
+### App/BiKenApp.swift（初期化順序）
+
+`BiKenApp.init()` での初期化順序は以下のとおり：
+1. `FirebaseApp.configure()` — `GoogleService-Info.plist` が Bundle に存在する場合のみ実行
+2. URLCache 容量設定
+3. `MobileAds.shared.start()` — AdMob 初期化
+
+**Firebase Crashlytics の前提:** `GoogleService-Info.plist`（Firebase Console からダウンロード）をプロジェクトルートに配置する必要がある。このファイルは `.gitignore` 対象（API キーを含む）。ファイルが不在の場合、Crashlytics は動作しないがアプリはクラッシュしない。
+
 ### Services/AdService.swift
 
 - `@MainActor final class AdService` - Google Mobile Ads SDK のラッパー（シングルトン `shared`）

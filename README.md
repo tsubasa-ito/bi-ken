@@ -36,6 +36,8 @@
 - **Navigation**: NavigationStack + Sheet
 - **Networking**: URLSession async/await
 - **Target**: iOS 17.0+
+- **Crash Reporting**: Firebase Crashlytics
+- **Analytics**: Firebase Analytics
 
 ## セットアップ
 
@@ -44,6 +46,16 @@
 - Xcode 16 以上
 - [xcodegen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`)
 - iOS 17 以上のシミュレーターまたは実機
+
+### Firebase セットアップ（任意）
+
+Firebase Crashlytics を有効にするには `GoogleService-Info.plist` が必要です。
+
+1. [Firebase Console](https://console.firebase.google.com/) で Bundle ID `com.tebasakin.biken` のアプリを登録
+2. ダウンロードした `GoogleService-Info.plist` をプロジェクトルートに配置
+
+> このファイルは API キーを含むため `.gitignore` 対象です。リポジトリにコミットしないでください。
+> ファイルが不在の場合もビルド・起動は可能です（Crashlytics 無効で動作）。
 
 ### ビルド方法
 
