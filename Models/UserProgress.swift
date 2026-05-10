@@ -6,6 +6,7 @@ import Observation
 final class UserProgress {
     static let shared = UserProgress()
 
+    private let userDefaults: UserDefaults
     private(set) var level: Int
     private(set) var currentXP: Int
     private(set) var totalArtworksMet: Int
@@ -60,28 +61,32 @@ final class UserProgress {
         }
     }
 
-    private init() {
-        let ud = UserDefaults.standard
-        level                = (ud.value(forKey: "level")                as? Int) ?? 1
-        currentXP            = (ud.value(forKey: "currentXP")            as? Int) ?? 0
-        totalArtworksMet     = (ud.value(forKey: "totalArtworksMet")     as? Int) ?? 0
-        totalCorrectAnswers  = (ud.value(forKey: "totalCorrectAnswers")  as? Int) ?? 0
-        totalCertificates    = (ud.value(forKey: "totalCertificates")    as? Int) ?? 0
-        currentStreak        = (ud.value(forKey: "currentStreak")        as? Int) ?? 0
-        wrongArtworkIDs      = ud.stringArray(forKey: "wrongArtworkIDs") ?? []
-        studyDateStrings     = ud.stringArray(forKey: "studyDateStrings") ?? []
-        userName             = ud.string(forKey: "userName") ?? ""
-        dailyGoal            = (ud.value(forKey: "dailyGoal")            as? Int) ?? 10
-        todayArtworksMet     = (ud.value(forKey: "todayArtworksMet")     as? Int) ?? 0
-        todayDateString      = ud.string(forKey: "todayDateString") ?? ""
-        bookmarkedArtworkIDs = ud.stringArray(forKey: "bookmarkedArtworkIDs") ?? []
+    private convenience init() {
+        self.init(userDefaults: .standard)
+    }
+
+    init(userDefaults: UserDefaults) {
+        self.userDefaults = userDefaults
+        level                = (userDefaults.value(forKey: "level")                as? Int) ?? 1
+        currentXP            = (userDefaults.value(forKey: "currentXP")            as? Int) ?? 0
+        totalArtworksMet     = (userDefaults.value(forKey: "totalArtworksMet")     as? Int) ?? 0
+        totalCorrectAnswers  = (userDefaults.value(forKey: "totalCorrectAnswers")  as? Int) ?? 0
+        totalCertificates    = (userDefaults.value(forKey: "totalCertificates")    as? Int) ?? 0
+        currentStreak        = (userDefaults.value(forKey: "currentStreak")        as? Int) ?? 0
+        wrongArtworkIDs      = userDefaults.stringArray(forKey: "wrongArtworkIDs") ?? []
+        studyDateStrings     = userDefaults.stringArray(forKey: "studyDateStrings") ?? []
+        userName             = userDefaults.string(forKey: "userName") ?? ""
+        dailyGoal            = (userDefaults.value(forKey: "dailyGoal")            as? Int) ?? 10
+        todayArtworksMet     = (userDefaults.value(forKey: "todayArtworksMet")     as? Int) ?? 0
+        todayDateString      = userDefaults.string(forKey: "todayDateString") ?? ""
+        bookmarkedArtworkIDs = userDefaults.stringArray(forKey: "bookmarkedArtworkIDs") ?? []
 
         let today = UserProgress.dateFormatter.string(from: Date())
         if todayDateString != today {
             todayArtworksMet = 0
             todayDateString = today
-            ud.set(0, forKey: "todayArtworksMet")
-            ud.set(today, forKey: "todayDateString")
+            userDefaults.set(0, forKey: "todayArtworksMet")
+            userDefaults.set(today, forKey: "todayDateString")
         }
     }
 
@@ -135,7 +140,7 @@ final class UserProgress {
         bookmarkedArtworkIDs = []
         todayArtworksMet = 0
         todayDateString = ""
-        UserDefaults.standard.removeObject(forKey: "lastStudyDate")
+        userDefaults.removeObject(forKey: "lastStudyDate")
         save()
     }
 
@@ -154,9 +159,8 @@ final class UserProgress {
     }
 
     private func updateStreak() {
-        let ud = UserDefaults.standard
         let today = Calendar.current.startOfDay(for: Date())
-        if let last = ud.object(forKey: "lastStudyDate") as? Date {
+        if let last = userDefaults.object(forKey: "lastStudyDate") as? Date {
             let lastDay = Calendar.current.startOfDay(for: last)
             if lastDay == today { return }
             let diff = Calendar.current.dateComponents([.day], from: lastDay, to: today).day ?? 0
@@ -165,7 +169,7 @@ final class UserProgress {
         } else {
             currentStreak = 1
         }
-        ud.set(Date(), forKey: "lastStudyDate")
+        userDefaults.set(Date(), forKey: "lastStudyDate")
     }
 
     private func recordStudyDate() {
@@ -178,19 +182,18 @@ final class UserProgress {
     }
 
     private func save() {
-        let ud = UserDefaults.standard
-        ud.set(level,               forKey: "level")
-        ud.set(currentXP,           forKey: "currentXP")
-        ud.set(totalArtworksMet,    forKey: "totalArtworksMet")
-        ud.set(totalCorrectAnswers, forKey: "totalCorrectAnswers")
-        ud.set(totalCertificates,   forKey: "totalCertificates")
-        ud.set(currentStreak,       forKey: "currentStreak")
-        ud.set(wrongArtworkIDs,     forKey: "wrongArtworkIDs")
-        ud.set(studyDateStrings,    forKey: "studyDateStrings")
-        ud.set(userName,            forKey: "userName")
-        ud.set(dailyGoal,           forKey: "dailyGoal")
-        ud.set(todayArtworksMet,    forKey: "todayArtworksMet")
-        ud.set(todayDateString,     forKey: "todayDateString")
-        ud.set(bookmarkedArtworkIDs, forKey: "bookmarkedArtworkIDs")
+        userDefaults.set(level,               forKey: "level")
+        userDefaults.set(currentXP,           forKey: "currentXP")
+        userDefaults.set(totalArtworksMet,    forKey: "totalArtworksMet")
+        userDefaults.set(totalCorrectAnswers, forKey: "totalCorrectAnswers")
+        userDefaults.set(totalCertificates,   forKey: "totalCertificates")
+        userDefaults.set(currentStreak,       forKey: "currentStreak")
+        userDefaults.set(wrongArtworkIDs,     forKey: "wrongArtworkIDs")
+        userDefaults.set(studyDateStrings,    forKey: "studyDateStrings")
+        userDefaults.set(userName,            forKey: "userName")
+        userDefaults.set(dailyGoal,           forKey: "dailyGoal")
+        userDefaults.set(todayArtworksMet,    forKey: "todayArtworksMet")
+        userDefaults.set(todayDateString,     forKey: "todayDateString")
+        userDefaults.set(bookmarkedArtworkIDs, forKey: "bookmarkedArtworkIDs")
     }
 }

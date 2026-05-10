@@ -10,10 +10,13 @@ schemes:
     build:
       targets:
         BiKen: all
+        BiKenTests: [test]
     run:
       config: Debug
     test:
       config: Debug
+      targets:
+        - BiKenTests
     profile:
       config: Release
     analyze:
@@ -22,6 +25,21 @@ schemes:
       config: Release
 
 targets:
+  BiKenTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - Tests/BiKenTests
+    dependencies:
+      - target: BiKen
+        embed: false
+    settings:
+      base:
+        SWIFT_VERSION: "6.0"
+        SWIFT_STRICT_CONCURRENCY: complete
+        GENERATE_INFOPLIST_FILE: YES
+
   BiKen:
     type: application
     platform: iOS
