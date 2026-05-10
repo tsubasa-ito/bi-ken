@@ -40,8 +40,9 @@ TextbookArtworkData.swift → ViewModels + WikipediaImageService.swift → Swift
 
 **Services/WikipediaImageService.swift**
 - `actor WikipediaImageService` - Wikipedia Action API（`/w/api.php?prop=pageimages`）から作品画像を取得
-- `inFlight: [String: Task<URL?, Never>]` で並行リクエストの重複防止（actor再入バグ対策）
-- `completed: [String: URL?]` でリクエスト結果をキャッシュ（成功・失敗ともに記録）
+- `fileprivate enum WikiImageResult { case found(URL); case absent }` — 恒久的失敗（記事なし・サムネイルなし）と一時的失敗（ネットワーク・HTTP 5xx）を区別
+- `inFlight: [String: Task<WikiImageResult?, Never>]` で並行リクエストの重複防止（actor再入バグ対策）
+- `completed: [String: WikiImageResult]` で**恒久的失敗のみ**キャッシュ（ネットワークエラーはキャッシュせず再試行可能にする）
 - キー形式: `"lang:wikiTitle"`
 
 ### ViewModels

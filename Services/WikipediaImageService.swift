@@ -1,18 +1,60 @@
 import Foundation
 
+// MARK: - WikiImageResult
+
+fileprivate enum WikiImageResult {
+    case found(URL)
+    case absent  // 記事なし・サムネイルなし（恒久的失敗）
+
+    var url: URL? {
+        guard case .found(let url) = self else { return nil }
+        return url
+    }
+}
+
+// MARK: - Wikipedia API Decodable Models
+
+fileprivate struct WikipediaResponse: Decodable {
+    let query: WikipediaQuery
+}
+
+fileprivate struct WikipediaQuery: Decodable {
+    let pages: [String: WikipediaPage]
+}
+
+fileprivate struct WikipediaPage: Decodable {
+    let missing: String?
+    let thumbnail: WikipediaThumbnail?
+}
+
+fileprivate struct WikipediaThumbnail: Decodable {
+    let source: String
+}
+
+// MARK: - WikipediaImageService
+
 actor WikipediaImageService {
     static let shared = WikipediaImageService()
 
-    private var inFlight: [String: Task<URL?, Never>] = [:]
-    private var completed: [String: URL?] = [:]
+    private let session: URLSession
+    private var inFlight: [String: Task<WikiImageResult?, Never>] = [:]
+    private var completed: [String: WikiImageResult] = [:]
+
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
 
     func imageURL(wikiTitle: String, lang: String = "en") async -> URL? {
         let key = "\(lang):\(wikiTitle)"
 
-        if completed.keys.contains(key) { return completed[key] ?? nil }
-        if let running = inFlight[key] { return await running.value }
+        if let cached = completed[key] {
+            return cached.url
+        }
+        if let running = inFlight[key] {
+            return await running.value?.url
+        }
 
-        let task = Task<URL?, Never> {
+        let task = Task<WikiImageResult?, Never> {
             guard var components = URLComponents(string: "https://\(lang).wikipedia.org/w/api.php") else {
                 return nil
             }
@@ -24,22 +66,39 @@ actor WikipediaImageService {
                 URLQueryItem(name: "format",      value: "json"),
                 URLQueryItem(name: "redirects",   value: "1"),
             ]
-            guard let requestURL = components.url,
-                  let (data, _) = try? await URLSession.shared.data(from: requestURL),
-                  let json   = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                  let query  = json["query"]  as? [String: Any],
-                  let pages  = query["pages"] as? [String: Any],
-                  let page   = pages.values.first as? [String: Any],
-                  page["missing"] == nil,
-                  let thumb  = page["thumbnail"] as? [String: Any],
-                  let source = thumb["source"]   as? String else { return nil }
-            return URL(string: source)
+            guard let requestURL = components.url else { return nil }
+
+            let data: Data
+            do {
+                let (d, response) = try await self.session.data(from: requestURL)
+                if let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
+                    return nil  // サーバ一時エラー（5xx/4xx）→ キャッシュしない
+                }
+                data = d
+            } catch {
+                return nil  // ネットワークエラーは一時的な失敗 → キャッシュしない
+            }
+
+            guard let response = try? JSONDecoder().decode(WikipediaResponse.self, from: data),
+                  let page = response.query.pages.values.first else {
+                return .absent
+            }
+
+            guard page.missing == nil,
+                  let source = page.thumbnail?.source,
+                  let url = URL(string: source) else {
+                return .absent
+            }
+
+            return .found(url)
         }
 
         inFlight[key] = task
-        let url = await task.value
-        completed[key] = url
+        let result = await task.value
+        if let result {
+            completed[key] = result
+        }
         inFlight[key] = nil
-        return url
+        return result?.url
     }
 }
