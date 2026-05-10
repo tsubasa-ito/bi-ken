@@ -12,6 +12,25 @@ fileprivate enum WikiImageResult {
     }
 }
 
+// MARK: - Wikipedia API Decodable Models
+
+fileprivate struct WikipediaResponse: Decodable {
+    let query: WikipediaQuery
+}
+
+fileprivate struct WikipediaQuery: Decodable {
+    let pages: [String: WikipediaPage]
+}
+
+fileprivate struct WikipediaPage: Decodable {
+    let missing: String?
+    let thumbnail: WikipediaThumbnail?
+}
+
+fileprivate struct WikipediaThumbnail: Decodable {
+    let source: String
+}
+
 // MARK: - WikipediaImageService
 
 actor WikipediaImageService {
@@ -60,17 +79,14 @@ actor WikipediaImageService {
                 return nil  // ネットワークエラーは一時的な失敗 → キャッシュしない
             }
 
-            guard let json  = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                  let query = json["query"]  as? [String: Any],
-                  let pages = query["pages"] as? [String: Any],
-                  let page  = pages.values.first as? [String: Any] else {
+            guard let response = try? JSONDecoder().decode(WikipediaResponse.self, from: data),
+                  let page = response.query.pages.values.first else {
                 return .absent
             }
 
-            guard page["missing"] == nil,
-                  let thumb  = page["thumbnail"] as? [String: Any],
-                  let source = thumb["source"]   as? String,
-                  let url    = URL(string: source) else {
+            guard page.missing == nil,
+                  let source = page.thumbnail?.source,
+                  let url = URL(string: source) else {
                 return .absent
             }
 
