@@ -137,7 +137,6 @@ struct HomeView: View {
             ) {
                 showEraSheet = true
             }
-
         }
     }
 
