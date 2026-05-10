@@ -18,7 +18,9 @@ private extension UIColor {
 }
 
 private func adaptive(_ light: String, _ dark: String) -> Color {
-    Color(UIColor { t in UIColor(hex: t.userInterfaceStyle == .dark ? dark : light) })
+    let lightColor = UIColor(hex: light)
+    let darkColor = UIColor(hex: dark)
+    return Color(UIColor { t in t.userInterfaceStyle == .dark ? darkColor : lightColor })
 }
 
 extension Color {
