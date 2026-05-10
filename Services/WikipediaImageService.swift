@@ -5,6 +5,11 @@ import Foundation
 fileprivate enum WikiImageResult {
     case found(URL)
     case absent  // 記事なし・サムネイルなし（恒久的失敗）
+
+    var url: URL? {
+        guard case .found(let url) = self else { return nil }
+        return url
+    }
 }
 
 // MARK: - WikipediaImageService
@@ -24,13 +29,10 @@ actor WikipediaImageService {
         let key = "\(lang):\(wikiTitle)"
 
         if let cached = completed[key] {
-            if case .found(let url) = cached { return url }
-            return nil
+            return cached.url
         }
         if let running = inFlight[key] {
-            let result = await running.value
-            if let result, case .found(let url) = result { return url }
-            return nil
+            return await running.value?.url
         }
 
         let task = Task<WikiImageResult?, Never> {
@@ -81,7 +83,6 @@ actor WikipediaImageService {
             completed[key] = result
         }
         inFlight[key] = nil
-        if let result, case .found(let url) = result { return url }
-        return nil
+        return result?.url
     }
 }
