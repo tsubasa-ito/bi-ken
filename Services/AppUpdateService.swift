@@ -5,7 +5,7 @@ actor AppUpdateService {
 
     private static let lastCheckKey = "appUpdateLastCheckDate"
     private static let lookupURL: URL = {
-        let bundleId = Bundle.main.bundleIdentifier ?? "com.tebasakin.biken"
+        let bundleId = Bundle.main.bundleIdentifier ?? "com.tebasaki.biken"
         return URL(string: "https://itunes.apple.com/lookup?bundleId=\(bundleId)")!
     }()
     private static let appStoreBaseURL = "https://apps.apple.com/app/id"

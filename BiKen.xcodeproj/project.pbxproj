@@ -365,7 +365,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -f \"${SRCROOT}/GoogleService-Info.plist\" ]; then\n  \"${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\nfi\n";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] && [ -f \"${SRCROOT}/GoogleService-Info.plist\" ]; then\n  GOOGLE_APP_ID=$(/usr/libexec/PlistBuddy -c \"Print :GOOGLE_APP_ID\" \"${SRCROOT}/GoogleService-Info.plist\")\n  export GOOGLE_APP_ID\n  \"${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -559,7 +559,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tebasakin.BiKenTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tebasaki.BiKenTests;
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
@@ -583,7 +583,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tebasakin.biken;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tebasaki.biken;
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
@@ -606,7 +606,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tebasakin.biken;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tebasaki.biken;
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
@@ -625,7 +625,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tebasakin.BiKenTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tebasaki.BiKenTests;
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
