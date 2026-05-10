@@ -8,7 +8,7 @@ options:
 packages:
   GoogleMobileAds:
     url: https://github.com/googleads/swift-package-manager-google-mobile-ads
-    from: "11.0.0"
+    from: "13.3.0"
 
 schemes:
   BiKen:

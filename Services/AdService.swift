@@ -19,7 +19,7 @@ private enum AdUnitID {
 final class AdService: NSObject {
     static let shared = AdService()
 
-    private var interstitialAd: GADInterstitialAd?
+    private var interstitialAd: InterstitialAd?
     private var onDismissCallback: (() -> Void)?
 
     static let bannerAdUnitID = AdUnitID.banner
@@ -29,9 +29,9 @@ final class AdService: NSObject {
     func preload() {
         Task {
             do {
-                let ad = try await GADInterstitialAd.load(
-                    withAdUnitID: AdUnitID.interstitial,
-                    request: GADRequest()
+                let ad = try await InterstitialAd.load(
+                    with: AdUnitID.interstitial,
+                    request: Request()
                 )
                 interstitialAd = ad
                 interstitialAd?.fullScreenContentDelegate = self
@@ -53,14 +53,14 @@ final class AdService: NSObject {
 
         onDismissCallback = onDismiss
         interstitialAd = nil
-        ad.present(fromRootViewController: rootVC)
+        ad.present(from: rootVC)
     }
 }
 
-// MARK: - GADFullScreenContentDelegate
+// MARK: - FullScreenContentDelegate
 
-extension AdService: GADFullScreenContentDelegate {
-    nonisolated func adDidDismissFullScreenContent(_ ad: any GADFullScreenPresentingAd) {
+extension AdService: FullScreenContentDelegate {
+    nonisolated func adDidDismissFullScreenContent(_ ad: any FullScreenPresentingAd) {
         Task { @MainActor [weak self] in
             self?.preload()
             self?.onDismissCallback?()
@@ -69,7 +69,7 @@ extension AdService: GADFullScreenContentDelegate {
     }
 
     nonisolated func ad(
-        _ ad: any GADFullScreenPresentingAd,
+        _ ad: any FullScreenPresentingAd,
         didFailToPresentFullScreenContentWithError error: Error
     ) {
         Task { @MainActor [weak self] in

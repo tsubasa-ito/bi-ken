@@ -67,7 +67,7 @@ TextbookArtworkData.swift → ViewModels + WikipediaImageService.swift → Swift
 
 ### Views/Components/BannerAdView.swift
 
-- `GADBannerView` を `UIViewRepresentable` でラップした SwiftUI コンポーネント
+- `BannerView` を `UIViewRepresentable` でラップした SwiftUI コンポーネント（AdMob v13 以降の命名）
 - `HomeView` の `.safeAreaInset(edge: .bottom)` 内に配置し、画面最下部に固定表示
 
 ### ViewModels
