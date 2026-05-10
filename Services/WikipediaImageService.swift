@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - WikiImageResult
 
-enum WikiImageResult {
+fileprivate enum WikiImageResult {
     case found(URL)
     case absent  // 記事なし・サムネイルなし（恒久的失敗）
 }
@@ -35,7 +35,7 @@ actor WikipediaImageService {
 
         let task = Task<WikiImageResult?, Never> {
             guard var components = URLComponents(string: "https://\(lang).wikipedia.org/w/api.php") else {
-                return .absent
+                return nil
             }
             components.queryItems = [
                 URLQueryItem(name: "action",      value: "query"),
@@ -45,11 +45,15 @@ actor WikipediaImageService {
                 URLQueryItem(name: "format",      value: "json"),
                 URLQueryItem(name: "redirects",   value: "1"),
             ]
-            guard let requestURL = components.url else { return .absent }
+            guard let requestURL = components.url else { return nil }
 
             let data: Data
             do {
-                (data, _) = try await self.session.data(from: requestURL)
+                let (d, response) = try await self.session.data(from: requestURL)
+                if let http = response as? HTTPURLResponse, !(200..<300).contains(http.statusCode) {
+                    return nil  // サーバ一時エラー（5xx/4xx）→ キャッシュしない
+                }
+                data = d
             } catch {
                 return nil  // ネットワークエラーは一時的な失敗 → キャッシュしない
             }

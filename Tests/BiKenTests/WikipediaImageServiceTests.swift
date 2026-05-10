@@ -145,6 +145,31 @@ final class WikipediaImageServiceTests: XCTestCase {
         XCTAssertEqual(callCount.withLock { $0 }, 1, "サムネイルなしはキャッシュされ、2回目はAPIを叩かないべき")
     }
 
+    // MARK: - HTTP エラー（一時的失敗）はキャッシュしない
+
+    func testImageURL_serverError_notCached_allowsRetry() async {
+        // 1回目: サーバーエラー 503
+        MockURLProtocol.requestHandler = { _ in
+            let response = HTTPURLResponse(url: URL(string: "https://en.wikipedia.org")!, statusCode: 503, httpVersion: nil, headerFields: nil)!
+            return (response, Data())
+        }
+
+        let sut = WikipediaImageService(session: session)
+        let firstResult = await sut.imageURL(wikiTitle: "Mona_Lisa", lang: "en")
+        XCTAssertNil(firstResult, "503エラー時は nil を返すべき")
+
+        // 2回目: 成功（キャッシュされていなければ再試行される）
+        let expectedSource = "https://example.com/image.jpg"
+        let json = successJSON(source: expectedSource)
+        MockURLProtocol.requestHandler = { _ in
+            let response = HTTPURLResponse(url: URL(string: "https://en.wikipedia.org")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, json)
+        }
+
+        let secondResult = await sut.imageURL(wikiTitle: "Mona_Lisa", lang: "en")
+        XCTAssertEqual(secondResult?.absoluteString, expectedSource, "サーバー回復後は画像を取得できるべき")
+    }
+
     // MARK: - Helpers
 
     private func successJSON(source: String) -> Data {
