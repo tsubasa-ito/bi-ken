@@ -22,6 +22,11 @@ struct SettingsView: View {
                         } label: {
                             settingsRow(icon: "bell.fill", title: "通知", color: .orange)
                         }
+                        NavigationLink {
+                            AppearanceSettingsView()
+                        } label: {
+                            settingsRow(icon: "paintbrush.fill", title: "外観", color: .appPrimary)
+                        }
                     }
                     .listRowBackground(Color.appCardBG)
 

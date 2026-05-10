@@ -30,6 +30,7 @@ private struct AppRootView: View {
 
     var body: some View {
         HomeView()
+            .preferredColorScheme(AppSettings.shared.colorScheme.preferredColorScheme)
             .task { await checkForUpdate() }
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
                 Task { await checkForUpdate() }
