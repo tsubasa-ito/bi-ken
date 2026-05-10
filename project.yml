@@ -67,7 +67,7 @@ targets:
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
-        GADApplicationIdentifier: ca-app-pub-3940256099942544~1458002511
+        GADApplicationIdentifier: $(GAD_APPLICATION_IDENTIFIER)
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.tebasakin.biken
@@ -76,3 +76,8 @@ targets:
         CURRENT_PROJECT_VERSION: "1"
         SWIFT_STRICT_CONCURRENCY: complete
         DEVELOPMENT_TEAM: 6CGGS6SX69
+      configs:
+        Debug:
+          GAD_APPLICATION_IDENTIFIER: ca-app-pub-3940256099942544~1458002511
+        Release:
+          GAD_APPLICATION_IDENTIFIER: ca-app-pub-6267199278067658~4644940714

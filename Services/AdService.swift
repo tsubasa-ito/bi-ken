@@ -1,11 +1,16 @@
 import GoogleMobileAds
 import UIKit
 
-// MARK: - Ad Unit IDs (テスト用ID。本番リリース前に差し替える)
+// MARK: - Ad Unit IDs
 
 private enum AdUnitID {
-    static let banner = "ca-app-pub-3940256099942544/2934735716"
+    #if DEBUG
+    static let banner       = "ca-app-pub-3940256099942544/2934735716"
     static let interstitial = "ca-app-pub-3940256099942544/4411468910"
+    #else
+    static let banner       = "ca-app-pub-6267199278067658/9544317718"
+    static let interstitial = "ca-app-pub-6267199278067658/5251895081"
+    #endif
 }
 
 // MARK: - AdService
