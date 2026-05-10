@@ -40,7 +40,6 @@
 		E36B09E8B680DE79B5F792DB /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1C877BF011ADB4F71DDB06 /* BannerAdView.swift */; };
 		F1E300F42B7871DA098142BF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436BCF75D474D537EB8DB93 /* HomeView.swift */; };
 		F986207F1E35B392C959700C /* QuizResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7E7F0F32F1B2422056F553 /* QuizResultView.swift */; };
-		FD06A84B2CD78AD36D62F2FE /* AdServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B01377EC23724A50AC1FE6 /* AdServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +70,6 @@
 		6DC78CDE96C01267C75C38D5 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		73FF9F0D4BCEBED32FB3A745 /* UserProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProgress.swift; sourceTree = "<group>"; };
 		74B48925BFAEDB6E988E9FC5 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
-		80B01377EC23724A50AC1FE6 /* AdServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdServiceTests.swift; sourceTree = "<group>"; };
 		85699C924959A97004BCE570 /* Array+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Safe.swift"; sourceTree = "<group>"; };
 		870EDA85B4D13C155271F316 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		9B42662B5E0F6D57B75CC942 /* ArtworkCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkCache.swift; sourceTree = "<group>"; };
@@ -106,7 +104,6 @@
 		06BCDF8F58F806CEB66FA43E /* BiKenTests */ = {
 			isa = PBXGroup;
 			children = (
-				80B01377EC23724A50AC1FE6 /* AdServiceTests.swift */,
 				D60DA727731C6AD9EACB4766 /* ArtworkTests.swift */,
 				6DB5880ADA5A21970A9B6573 /* GenerateQuizTests.swift */,
 				B51F33CE9851DB448327D1DE /* QuizQuestionTests.swift */,
@@ -372,7 +369,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD06A84B2CD78AD36D62F2FE /* AdServiceTests.swift in Sources */,
 				2058227EA4DB35E245915AC6 /* ArtworkTests.swift in Sources */,
 				42659F0E0EFC5BC69DB18CD4 /* GenerateQuizTests.swift in Sources */,
 				92652BECE3C4F2D1CD3A0942 /* QuizQuestionTests.swift in Sources */,

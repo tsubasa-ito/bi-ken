@@ -240,7 +240,7 @@ struct QuizResultView: View {
                 .buttonStyle(.plain)
 
                 Button {
-                    AdService.shared.showInterstitialIfNeeded(onDismiss: onDismiss)
+                    AdService.shared.showInterstitial(onDismiss: onDismiss)
                 } label: {
                     Text("ホームへ")
                         .font(.system(size: 14, weight: .medium))

@@ -8,41 +8,18 @@ private enum AdUnitID {
     static let interstitial = "ca-app-pub-3940256099942544/4411468910"
 }
 
-// MARK: - AdFrequencyController
-
-struct AdFrequencyController {
-    let showEvery: Int
-    private var count: Int = 0
-
-    init(showEvery: Int = 3) {
-        self.showEvery = showEvery
-    }
-
-    mutating func shouldShow() -> Bool {
-        count += 1
-        return count % showEvery == 0
-    }
-
-    mutating func reset() {
-        count = 0
-    }
-}
-
 // MARK: - AdService
 
 @MainActor
 final class AdService: NSObject {
     static let shared = AdService()
 
-    private var frequencyController: AdFrequencyController
     private var interstitialAd: GADInterstitialAd?
     private var onDismissCallback: (() -> Void)?
 
     static let bannerAdUnitID = AdUnitID.banner
 
-    private override init() {
-        frequencyController = AdFrequencyController(showEvery: 3)
-    }
+    private override init() {}
 
     func preload() {
         Task {
@@ -59,17 +36,12 @@ final class AdService: NSObject {
         }
     }
 
-    func showInterstitialIfNeeded(onDismiss: @escaping () -> Void) {
+    func showInterstitial(onDismiss: @escaping () -> Void) {
         guard
             let ad = interstitialAd,
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
             let rootVC = windowScene.windows.first?.rootViewController
         else {
-            onDismiss()
-            return
-        }
-
-        guard frequencyController.shouldShow() else {
             onDismiss()
             return
         }
