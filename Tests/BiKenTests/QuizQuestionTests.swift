@@ -1,6 +1,7 @@
 import XCTest
 @testable import BiKen
 
+@MainActor
 final class QuizQuestionTests: XCTestCase {
 
     private func makeArtwork() -> Artwork {

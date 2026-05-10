@@ -1,6 +1,7 @@
 import XCTest
 @testable import BiKen
 
+@MainActor
 final class TextbookArtworkDataTests: XCTestCase {
 
     func testAll_countIs100() {

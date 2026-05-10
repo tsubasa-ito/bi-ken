@@ -16,7 +16,10 @@ final class UserProgressTests: XCTestCase {
     }
 
     override func tearDown() {
+        sut = nil
         userDefaults.removePersistentDomain(forName: suiteName)
+        userDefaults = nil
+        suiteName = nil
         super.tearDown()
     }
 
