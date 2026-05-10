@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A283063F3C7B974D90D1002 /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85699C924959A97004BCE570 /* Array+Safe.swift */; };
+		2058227EA4DB35E245915AC6 /* ArtworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60DA727731C6AD9EACB4766 /* ArtworkTests.swift */; };
 		2433BA5BBAA61B0E96770A81 /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3388FE3B98938BD4F1C12922 /* NotificationSettingsView.swift */; };
 		254681A0E34461D22E0CF4B0 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC78CDE96C01267C75C38D5 /* HelpView.swift */; };
 		3984394409537211A02AEDD0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D18837FB157690468B37D6 /* HomeViewModel.swift */; };
@@ -21,17 +22,30 @@
 		74EB336835D9797AE08C5BF5 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B48925BFAEDB6E988E9FC5 /* Artwork.swift */; };
 		754DBF5A184EC6B1E1A89517 /* BiKenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FFE94344196D985D64969 /* BiKenApp.swift */; };
 		760330EE9CE2C6602FFD8005 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2E8BD1D64190B943296127 /* AboutView.swift */; };
+		7CAE7D32D4A7EDDD6F7B85AB /* UserProgressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE8011ECA3295BDB8699CA6 /* UserProgressTests.swift */; };
 		7CE323C0CD1226F437F11DBA /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE59327EC1E3D94A707D6C9 /* QuizView.swift */; };
 		7FA2FBE034F7D07D02549FAF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E555A4B198F51ACBAB4B9696 /* SettingsView.swift */; };
+		92652BECE3C4F2D1CD3A0942 /* QuizQuestionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51F33CE9851DB448327D1DE /* QuizQuestionTests.swift */; };
 		9F0DFCD2D84EC15D594412D0 /* ArtworkConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D91100584F210495B75AA74 /* ArtworkConverter.swift */; };
 		A3ABDF01D36453C168D1B504 /* TextbookArtworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B43A51AFD85974E7B1C8949 /* TextbookArtworkData.swift */; };
 		A3C0E9FD0AD41AF0A69891BA /* UserProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FF9F0D4BCEBED32FB3A745 /* UserProgress.swift */; };
 		AC1D4BC2565BDEE7EF63E292 /* ArtworkCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B42662B5E0F6D57B75CC942 /* ArtworkCache.swift */; };
+		C00F9139E8901E6E037DD036 /* TextbookArtworkDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE769C109213ACB14E61801 /* TextbookArtworkDataTests.swift */; };
 		D29BB5CD0A14EC09EED93FCE /* ArtworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA2F1CC7A94B679D07E0449 /* ArtworkDetailView.swift */; };
 		DF414878CF233180333A5E59 /* ReminderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F796256349CA937417915 /* ReminderSettingsView.swift */; };
 		F1E300F42B7871DA098142BF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436BCF75D474D537EB8DB93 /* HomeView.swift */; };
 		F986207F1E35B392C959700C /* QuizResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7E7F0F32F1B2422056F553 /* QuizResultView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1BD5FDA35999FC691725D397 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7CBBE1FFC7F5151BD9A7865 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 230B4C51AEB08EEF083F8BF8;
+			remoteInfo = BiKen;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1436BCF75D474D537EB8DB93 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -40,6 +54,7 @@
 		345A715D3E6D10D31B88DE58 /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		3C7E7F0F32F1B2422056F553 /* QuizResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultView.swift; sourceTree = "<group>"; };
 		445AEBCFD0E78A0D71B78AB3 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
+		4EE769C109213ACB14E61801 /* TextbookArtworkDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextbookArtworkDataTests.swift; sourceTree = "<group>"; };
 		4FFDDC8E13B8667D42B4CC95 /* WikipediaImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaImageService.swift; sourceTree = "<group>"; };
 		6B43A51AFD85974E7B1C8949 /* TextbookArtworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextbookArtworkData.swift; sourceTree = "<group>"; };
 		6D6EFDD8CCB106956FC3FE75 /* MetMuseumAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetMuseumAPIService.swift; sourceTree = "<group>"; };
@@ -51,17 +66,33 @@
 		9B42662B5E0F6D57B75CC942 /* ArtworkCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkCache.swift; sourceTree = "<group>"; };
 		9D91100584F210495B75AA74 /* ArtworkConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkConverter.swift; sourceTree = "<group>"; };
 		AEE59327EC1E3D94A707D6C9 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		B4BB0E9003F9827C09365632 /* BiKenTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BiKenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B51F33CE9851DB448327D1DE /* QuizQuestionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestionTests.swift; sourceTree = "<group>"; };
 		BF2E8BD1D64190B943296127 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		C06E37D258CAB6ECF24C592F /* BiKen.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BiKen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4D18837FB157690468B37D6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		D60DA727731C6AD9EACB4766 /* ArtworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkTests.swift; sourceTree = "<group>"; };
 		E555A4B198F51ACBAB4B9696 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E58FFE94344196D985D64969 /* BiKenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiKenApp.swift; sourceTree = "<group>"; };
 		F1C97A13FE12DBD88C166171 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		FA2F796256349CA937417915 /* ReminderSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSettingsView.swift; sourceTree = "<group>"; };
+		FCE8011ECA3295BDB8699CA6 /* UserProgressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProgressTests.swift; sourceTree = "<group>"; };
 		FFA2F1CC7A94B679D07E0449 /* ArtworkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		06BCDF8F58F806CEB66FA43E /* BiKenTests */ = {
+			isa = PBXGroup;
+			children = (
+				D60DA727731C6AD9EACB4766 /* ArtworkTests.swift */,
+				B51F33CE9851DB448327D1DE /* QuizQuestionTests.swift */,
+				4EE769C109213ACB14E61801 /* TextbookArtworkDataTests.swift */,
+				FCE8011ECA3295BDB8699CA6 /* UserProgressTests.swift */,
+			);
+			name = BiKenTests;
+			path = Tests/BiKenTests;
+			sourceTree = "<group>";
+		};
 		15C8BF4C96EB683646D1D1F2 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				86B004BEA6E220002D48ED5D /* Artwork */,
-				863317CA8CBD86786904869C /* Collection */,
 				FE07E885866BF2636159461A /* Components */,
 				A2DB410C6D5094C4DDC9F2AC /* Home */,
 				DAF937DDF766B3511C00FFFC /* Quiz */,
@@ -104,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				C06E37D258CAB6ECF24C592F /* BiKen.app */,
+				B4BB0E9003F9827C09365632 /* BiKenTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				15C8BF4C96EB683646D1D1F2 /* App */,
+				06BCDF8F58F806CEB66FA43E /* BiKenTests */,
 				19FDD7B534AFC713AB39F85F /* Data */,
 				1DB02D97EA39D480AE018628 /* Extensions */,
 				D0F2F5AB3832651DD8EF9127 /* Models */,
@@ -120,13 +152,6 @@
 				285289B841EE6A3CBBD9C088 /* Views */,
 				5E32489225D63D293C6D830B /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		863317CA8CBD86786904869C /* Collection */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Collection;
 			sourceTree = "<group>";
 		};
 		86B004BEA6E220002D48ED5D /* Artwork */ = {
@@ -208,6 +233,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		12F2D32CD20F6AF47F7D12C3 /* BiKenTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9F3CDB9BDCB15C6D74F2359 /* Build configuration list for PBXNativeTarget "BiKenTests" */;
+			buildPhases = (
+				89084A62AA7485D8EB8B752F /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EB63D960B4F6AF6DEE666719 /* PBXTargetDependency */,
+			);
+			name = BiKenTests;
+			packageProductDependencies = (
+			);
+			productName = BiKenTests;
+			productReference = B4BB0E9003F9827C09365632 /* BiKenTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		230B4C51AEB08EEF083F8BF8 /* BiKen */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4DA67E98CCAEA74BA1950A1D /* Build configuration list for PBXNativeTarget "BiKen" */;
@@ -254,6 +297,7 @@
 			projectRoot = "";
 			targets = (
 				230B4C51AEB08EEF083F8BF8 /* BiKen */,
+				12F2D32CD20F6AF47F7D12C3 /* BiKenTests */,
 			);
 		};
 /* End PBXProject section */
@@ -290,7 +334,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		89084A62AA7485D8EB8B752F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2058227EA4DB35E245915AC6 /* ArtworkTests.swift in Sources */,
+				92652BECE3C4F2D1CD3A0942 /* QuizQuestionTests.swift in Sources */,
+				C00F9139E8901E6E037DD036 /* TextbookArtworkDataTests.swift in Sources */,
+				7CAE7D32D4A7EDDD6F7B85AB /* UserProgressTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EB63D960B4F6AF6DEE666719 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 230B4C51AEB08EEF083F8BF8 /* BiKen */;
+			targetProxy = 1BD5FDA35999FC691725D397 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		3A3C3275B61A64678A51BB53 /* Release */ = {
@@ -412,6 +475,26 @@
 			};
 			name = Debug;
 		};
+		9A750728DFAE80444E35C4FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tebasakin.BiKenTests;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BiKen.app/BiKen";
+			};
+			name = Debug;
+		};
 		A6097EB633CC35516A7DF5E2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -456,6 +539,26 @@
 			};
 			name = Debug;
 		};
+		DF3F227B7CFB4F6C208BB998 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tebasakin.BiKenTests;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BiKen.app/BiKen";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -473,6 +576,15 @@
 			buildConfigurations = (
 				DD2088ECFA3708108041B3B6 /* Debug */,
 				A6097EB633CC35516A7DF5E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A9F3CDB9BDCB15C6D74F2359 /* Build configuration list for PBXNativeTarget "BiKenTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A750728DFAE80444E35C4FC /* Debug */,
+				DF3F227B7CFB4F6C208BB998 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
