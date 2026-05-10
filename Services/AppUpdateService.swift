@@ -7,12 +7,16 @@ actor AppUpdateService {
     private static let lookupURL = URL(string: "https://itunes.apple.com/lookup?bundleId=com.tebasakin.biken")!
     private static let appStoreBaseURL = "https://apps.apple.com/app/id"
 
+    private var isChecking = false
+
     func checkForUpdate() async -> URL? {
+        guard !isChecking else { return nil }
         let userDefaults = UserDefaults.standard
         let lastCheck = userDefaults.object(forKey: Self.lastCheckKey) as? Date
         guard Self.shouldCheckToday(lastCheckDate: lastCheck) else { return nil }
 
-        userDefaults.set(Date(), forKey: Self.lastCheckKey)
+        isChecking = true
+        defer { isChecking = false }
 
         guard
             let (data, response) = try? await URLSession.shared.data(from: Self.lookupURL),
@@ -24,6 +28,8 @@ actor AppUpdateService {
             let storeVersion = first["version"] as? String,
             let appId = first["trackId"] as? Int
         else { return nil }
+
+        userDefaults.set(Date(), forKey: Self.lastCheckKey)
 
         let current = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0"
         guard Self.isUpdateAvailable(current: current, store: storeVersion) else { return nil }

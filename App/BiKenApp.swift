@@ -37,7 +37,7 @@ private struct AppRootView: View {
             )) {
                 Button("アップデートする") {
                     if let url = appStoreURL {
-                        UIApplication.shared.open(url)
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
                     appStoreURL = nil
                 }
