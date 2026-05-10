@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021250E9CC86957742E61505 /* AppUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E7D20C998FD69F577FE5C9 /* AppUpdateService.swift */; };
 		0A283063F3C7B974D90D1002 /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85699C924959A97004BCE570 /* Array+Safe.swift */; };
 		2058227EA4DB35E245915AC6 /* ArtworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60DA727731C6AD9EACB4766 /* ArtworkTests.swift */; };
 		2433BA5BBAA61B0E96770A81 /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3388FE3B98938BD4F1C12922 /* NotificationSettingsView.swift */; };
@@ -28,6 +29,7 @@
 		760330EE9CE2C6602FFD8005 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2E8BD1D64190B943296127 /* AboutView.swift */; };
 		7CAE7D32D4A7EDDD6F7B85AB /* UserProgressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE8011ECA3295BDB8699CA6 /* UserProgressTests.swift */; };
 		7CE323C0CD1226F437F11DBA /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE59327EC1E3D94A707D6C9 /* QuizView.swift */; };
+		7EFD7BA8E7B497B8FD2FEFF3 /* AppUpdateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF60303AC893FCFB2FED7A /* AppUpdateServiceTests.swift */; };
 		7FA2FBE034F7D07D02549FAF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E555A4B198F51ACBAB4B9696 /* SettingsView.swift */; };
 		92652BECE3C4F2D1CD3A0942 /* QuizQuestionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51F33CE9851DB448327D1DE /* QuizQuestionTests.swift */; };
 		9F0DFCD2D84EC15D594412D0 /* ArtworkConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D91100584F210495B75AA74 /* ArtworkConverter.swift */; };
@@ -63,6 +65,7 @@
 		445AEBCFD0E78A0D71B78AB3 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
 		4EE769C109213ACB14E61801 /* TextbookArtworkDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextbookArtworkDataTests.swift; sourceTree = "<group>"; };
 		4FFDDC8E13B8667D42B4CC95 /* WikipediaImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaImageService.swift; sourceTree = "<group>"; };
+		52FF60303AC893FCFB2FED7A /* AppUpdateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateServiceTests.swift; sourceTree = "<group>"; };
 		58630432D9DD900CD443D37F /* WikipediaImageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaImageServiceTests.swift; sourceTree = "<group>"; };
 		6B43A51AFD85974E7B1C8949 /* TextbookArtworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextbookArtworkData.swift; sourceTree = "<group>"; };
 		6D6EFDD8CCB106956FC3FE75 /* MetMuseumAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetMuseumAPIService.swift; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 		BF2E8BD1D64190B943296127 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		C06E37D258CAB6ECF24C592F /* BiKen.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BiKen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4D18837FB157690468B37D6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		C9E7D20C998FD69F577FE5C9 /* AppUpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateService.swift; sourceTree = "<group>"; };
 		D60DA727731C6AD9EACB4766 /* ArtworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkTests.swift; sourceTree = "<group>"; };
 		E555A4B198F51ACBAB4B9696 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E58FFE94344196D985D64969 /* BiKenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiKenApp.swift; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 		06BCDF8F58F806CEB66FA43E /* BiKenTests */ = {
 			isa = PBXGroup;
 			children = (
+				52FF60303AC893FCFB2FED7A /* AppUpdateServiceTests.swift */,
 				D60DA727731C6AD9EACB4766 /* ArtworkTests.swift */,
 				6DB5880ADA5A21970A9B6573 /* GenerateQuizTests.swift */,
 				B51F33CE9851DB448327D1DE /* QuizQuestionTests.swift */,
@@ -206,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				39746E22B303658D121EB51A /* AdService.swift */,
+				C9E7D20C998FD69F577FE5C9 /* AppUpdateService.swift */,
 				9B42662B5E0F6D57B75CC942 /* ArtworkCache.swift */,
 				9D91100584F210495B75AA74 /* ArtworkConverter.swift */,
 				870EDA85B4D13C155271F316 /* ImageCache.swift */,
@@ -338,6 +344,7 @@
 			files = (
 				760330EE9CE2C6602FFD8005 /* AboutView.swift in Sources */,
 				6E42F88EBB3BFB7E01925FAE /* AdService.swift in Sources */,
+				021250E9CC86957742E61505 /* AppUpdateService.swift in Sources */,
 				0A283063F3C7B974D90D1002 /* Array+Safe.swift in Sources */,
 				74EB336835D9797AE08C5BF5 /* Artwork.swift in Sources */,
 				AC1D4BC2565BDEE7EF63E292 /* ArtworkCache.swift in Sources */,
@@ -369,6 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EFD7BA8E7B497B8FD2FEFF3 /* AppUpdateServiceTests.swift in Sources */,
 				2058227EA4DB35E245915AC6 /* ArtworkTests.swift in Sources */,
 				42659F0E0EFC5BC69DB18CD4 /* GenerateQuizTests.swift in Sources */,
 				92652BECE3C4F2D1CD3A0942 /* QuizQuestionTests.swift in Sources */,

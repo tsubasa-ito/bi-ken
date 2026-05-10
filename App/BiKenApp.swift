@@ -15,8 +15,41 @@ struct BiKenApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
-                .preferredColorScheme(.light)
+            AppRootView()
+        }
+    }
+}
+
+@MainActor
+private struct AppRootView: View {
+    @State private var appStoreURL: URL?
+
+    var body: some View {
+        HomeView()
+            .preferredColorScheme(.light)
+            .task { await checkForUpdate() }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                Task { await checkForUpdate() }
+            }
+            .alert("アップデートのお知らせ", isPresented: Binding(
+                get: { appStoreURL != nil },
+                set: { if !$0 { appStoreURL = nil } }
+            )) {
+                Button("アップデートする") {
+                    if let url = appStoreURL {
+                        UIApplication.shared.open(url)
+                    }
+                    appStoreURL = nil
+                }
+                Button("後で", role: .cancel) { appStoreURL = nil }
+            } message: {
+                Text("新しいバージョンが利用可能です。\nApp Storeでアップデートしてください。")
+            }
+    }
+
+    private func checkForUpdate() async {
+        if let url = await AppUpdateService.shared.checkForUpdate() {
+            appStoreURL = url
         }
     }
 }
