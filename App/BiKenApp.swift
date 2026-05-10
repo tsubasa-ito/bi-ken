@@ -1,9 +1,13 @@
 import SwiftUI
 import GoogleMobileAds
+import FirebaseCore
 
 @main
 struct BiKenApp: App {
     init() {
+        if Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist") != nil {
+            FirebaseApp.configure()
+        }
         URLCache.shared.memoryCapacity = 50 * 1024 * 1024
         URLCache.shared.diskCapacity  = 200 * 1024 * 1024
         MobileAds.shared.start { _ in

@@ -9,6 +9,9 @@ packages:
   GoogleMobileAds:
     url: https://github.com/googleads/swift-package-manager-google-mobile-ads
     from: "13.3.0"
+  FirebaseSDK:
+    url: https://github.com/firebase/firebase-ios-sdk
+    from: "11.0.0"
 
 schemes:
   BiKen:
@@ -57,9 +60,15 @@ targets:
       - Services
       - ViewModels
       - Views
+    resources:
+      - path: GoogleService-Info.plist
     dependencies:
       - package: GoogleMobileAds
         product: GoogleMobileAds
+      - package: FirebaseSDK
+        product: FirebaseCrashlytics
+      - package: FirebaseSDK
+        product: FirebaseAnalytics
     info:
       path: Info.plist
       properties:
@@ -68,6 +77,12 @@ targets:
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
         GADApplicationIdentifier: $(GAD_APPLICATION_IDENTIFIER)
+    postBuildScripts:
+      - name: Firebase Crashlytics dSYM Upload
+        script: |
+          if [ -f "${SRCROOT}/GoogleService-Info.plist" ]; then
+            "${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run"
+          fi
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.tebasakin.biken

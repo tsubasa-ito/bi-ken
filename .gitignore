@@ -24,3 +24,6 @@ DerivedData/
 
 # MCP config (contains API keys)
 .mcp.json
+
+# Firebase (contains API keys — obtain from Firebase Console)
+GoogleService-Info.plist
