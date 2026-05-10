@@ -40,8 +40,8 @@ final class AdService: NSObject {
 
     static let bannerAdUnitID = AdUnitID.banner
 
-    init(showEvery: Int = 3) {
-        frequencyController = AdFrequencyController(showEvery: showEvery)
+    private override init() {
+        frequencyController = AdFrequencyController(showEvery: 3)
     }
 
     func preload() {
@@ -60,16 +60,16 @@ final class AdService: NSObject {
     }
 
     func showInterstitialIfNeeded(onDismiss: @escaping () -> Void) {
-        guard frequencyController.shouldShow() else {
-            onDismiss()
-            return
-        }
-
         guard
             let ad = interstitialAd,
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
             let rootVC = windowScene.windows.first?.rootViewController
         else {
+            onDismiss()
+            return
+        }
+
+        guard frequencyController.shouldShow() else {
             onDismiss()
             return
         }

@@ -7,8 +7,8 @@ struct BannerAdView: UIViewRepresentable {
         banner.adUnitID = AdService.bannerAdUnitID
         banner.rootViewController = UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
-            .flatMap { $0.windows }
-            .first { $0.isKeyWindow }?
+            .compactMap { $0.windows.first }
+            .first?
             .rootViewController
         banner.load(GADRequest())
         return banner
