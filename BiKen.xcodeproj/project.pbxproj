@@ -17,6 +17,7 @@
 		42659F0E0EFC5BC69DB18CD4 /* GenerateQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB5880ADA5A21970A9B6573 /* GenerateQuizTests.swift */; };
 		42EF9B5E9833DE9F2079DDD8 /* WikipediaImageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58630432D9DD900CD443D37F /* WikipediaImageServiceTests.swift */; };
 		4394CD719B65A18E2C4901AC /* Color+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445AEBCFD0E78A0D71B78AB3 /* Color+Theme.swift */; };
+		48273F22345F923D08E498FA /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5728BA0C8E0479937E565053 /* AppSettings.swift */; };
 		4ECF9D44B1E1A067FC4157AF /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7B2C0FDF8D65B45F84450D /* QuizQuestion.swift */; };
 		4EDE752BAE3D142F50466088 /* WikipediaImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDDC8E13B8667D42B4CC95 /* WikipediaImageService.swift */; };
 		5675A79C496231F1510C9481 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345A715D3E6D10D31B88DE58 /* QuizViewModel.swift */; };
@@ -32,7 +33,9 @@
 		7CE323C0CD1226F437F11DBA /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE59327EC1E3D94A707D6C9 /* QuizView.swift */; };
 		7EFD7BA8E7B497B8FD2FEFF3 /* AppUpdateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF60303AC893FCFB2FED7A /* AppUpdateServiceTests.swift */; };
 		7FA2FBE034F7D07D02549FAF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E555A4B198F51ACBAB4B9696 /* SettingsView.swift */; };
+		8568DDA64FEAD67A4FA903F1 /* AppColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DEFA4AC8368656500BFA04 /* AppColorScheme.swift */; };
 		92652BECE3C4F2D1CD3A0942 /* QuizQuestionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51F33CE9851DB448327D1DE /* QuizQuestionTests.swift */; };
+		97744C4261774EDC6616437F /* AppearanceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9282F09B43EEA56F07F167FD /* AppearanceSettingsView.swift */; };
 		9F0DFCD2D84EC15D594412D0 /* ArtworkConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D91100584F210495B75AA74 /* ArtworkConverter.swift */; };
 		A3ABDF01D36453C168D1B504 /* TextbookArtworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B43A51AFD85974E7B1C8949 /* TextbookArtworkData.swift */; };
 		A3C0E9FD0AD41AF0A69891BA /* UserProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FF9F0D4BCEBED32FB3A745 /* UserProgress.swift */; };
@@ -64,10 +67,12 @@
 		39746E22B303658D121EB51A /* AdService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdService.swift; sourceTree = "<group>"; };
 		3C7E7F0F32F1B2422056F553 /* QuizResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultView.swift; sourceTree = "<group>"; };
 		3D1C877BF011ADB4F71DDB06 /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		40DEFA4AC8368656500BFA04 /* AppColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorScheme.swift; sourceTree = "<group>"; };
 		445AEBCFD0E78A0D71B78AB3 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
 		4EE769C109213ACB14E61801 /* TextbookArtworkDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextbookArtworkDataTests.swift; sourceTree = "<group>"; };
 		4FFDDC8E13B8667D42B4CC95 /* WikipediaImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaImageService.swift; sourceTree = "<group>"; };
 		52FF60303AC893FCFB2FED7A /* AppUpdateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateServiceTests.swift; sourceTree = "<group>"; };
+		5728BA0C8E0479937E565053 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		58630432D9DD900CD443D37F /* WikipediaImageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaImageServiceTests.swift; sourceTree = "<group>"; };
 		6B43A51AFD85974E7B1C8949 /* TextbookArtworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextbookArtworkData.swift; sourceTree = "<group>"; };
 		6D6EFDD8CCB106956FC3FE75 /* MetMuseumAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetMuseumAPIService.swift; sourceTree = "<group>"; };
@@ -77,6 +82,7 @@
 		74B48925BFAEDB6E988E9FC5 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
 		85699C924959A97004BCE570 /* Array+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Safe.swift"; sourceTree = "<group>"; };
 		870EDA85B4D13C155271F316 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		9282F09B43EEA56F07F167FD /* AppearanceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettingsView.swift; sourceTree = "<group>"; };
 		9B42662B5E0F6D57B75CC942 /* ArtworkCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkCache.swift; sourceTree = "<group>"; };
 		9D91100584F210495B75AA74 /* ArtworkConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkConverter.swift; sourceTree = "<group>"; };
 		AEE59327EC1E3D94A707D6C9 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
@@ -204,6 +210,7 @@
 		D0F2F5AB3832651DD8EF9127 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				40DEFA4AC8368656500BFA04 /* AppColorScheme.swift */,
 				74B48925BFAEDB6E988E9FC5 /* Artwork.swift */,
 				1D7B2C0FDF8D65B45F84450D /* QuizQuestion.swift */,
 				73FF9F0D4BCEBED32FB3A745 /* UserProgress.swift */,
@@ -215,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				39746E22B303658D121EB51A /* AdService.swift */,
+				5728BA0C8E0479937E565053 /* AppSettings.swift */,
 				C9E7D20C998FD69F577FE5C9 /* AppUpdateService.swift */,
 				9B42662B5E0F6D57B75CC942 /* ArtworkCache.swift */,
 				9D91100584F210495B75AA74 /* ArtworkConverter.swift */,
@@ -247,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				BF2E8BD1D64190B943296127 /* AboutView.swift */,
+				9282F09B43EEA56F07F167FD /* AppearanceSettingsView.swift */,
 				6DC78CDE96C01267C75C38D5 /* HelpView.swift */,
 				3388FE3B98938BD4F1C12922 /* NotificationSettingsView.swift */,
 				FA2F796256349CA937417915 /* ReminderSettingsView.swift */,
@@ -375,7 +384,10 @@
 			files = (
 				760330EE9CE2C6602FFD8005 /* AboutView.swift in Sources */,
 				6E42F88EBB3BFB7E01925FAE /* AdService.swift in Sources */,
+				8568DDA64FEAD67A4FA903F1 /* AppColorScheme.swift in Sources */,
+				48273F22345F923D08E498FA /* AppSettings.swift in Sources */,
 				021250E9CC86957742E61505 /* AppUpdateService.swift in Sources */,
+				97744C4261774EDC6616437F /* AppearanceSettingsView.swift in Sources */,
 				0A283063F3C7B974D90D1002 /* Array+Safe.swift in Sources */,
 				74EB336835D9797AE08C5BF5 /* Artwork.swift in Sources */,
 				AC1D4BC2565BDEE7EF63E292 /* ArtworkCache.swift in Sources */,

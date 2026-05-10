@@ -24,6 +24,7 @@
 - **ヒートマップ**: 直近28日間の学習履歴を可視化
 
 ### 設定
+- **外観**: ダーク／ライト／デフォルト（システム設定に従う）を選択可能
 - **プロフィール**: ユーザー名の設定 + 推し作品の選択（ホーム画面アイコンに反映）
 - **通知**: プッシュ通知の許可とリマインダー時刻設定
 - **進捗リセット**: 学習履歴・XP・レベル・ブックマークをリセット
@@ -92,9 +93,11 @@ bi-ken/
 │   └── TextbookArtworkData.swift    # 美術検定テキスト掲載100作品
 ├── Models/                          # データモデル
 │   ├── Artwork.swift
+│   ├── AppColorScheme.swift         # 外観設定 enum（system / light / dark）
 │   ├── QuizQuestion.swift
 │   └── UserProgress.swift
 ├── Services/                        # サービス
+│   ├── AppSettings.swift            # 外観設定シングルトン（@Observable）
 │   ├── WikipediaImageService.swift  # Wikipedia画像取得（actor）
 │   ├── AppUpdateService.swift       # アップデート確認（iTunes Search API）
 │   ├── AdService.swift              # Google Mobile Ads ラッパー
@@ -129,6 +132,7 @@ bi-ken/
 └── [右上歯車] → SettingsView（シート）
 
 SettingsView（シート）
+├── 外観 → AppearanceSettingsView（ダーク／ライト／デフォルト）
 ├── 通知 → 許可リクエスト / 学習リマインダー設定
 ├── 進捗をリセット → 確認ダイアログ → UserProgress 全リセット
 ├── アプリについて → アプリ情報・機能紹介

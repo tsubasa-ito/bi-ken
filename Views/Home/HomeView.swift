@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Environment(AppSettings.self) private var settings
     @State private var navigationPath = NavigationPath()
     @State private var showEraSheet = false
     @State private var showRandomSheet = false
@@ -55,6 +56,7 @@ struct HomeView: View {
             }
             .sheet(isPresented: $showSettingsSheet) {
                 SettingsView()
+                    .preferredColorScheme(settings.colorScheme.preferredColorScheme)
             }
         }
     }
