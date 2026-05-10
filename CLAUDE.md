@@ -45,6 +45,20 @@ TextbookArtworkData.swift → ViewModels + WikipediaImageService.swift → Swift
 - `completed: [String: WikiImageResult]` で**恒久的失敗のみ**キャッシュ（ネットワークエラーはキャッシュせず再試行可能にする）
 - キー形式: `"lang:wikiTitle"`
 
+### Services/AdService.swift
+
+- `@MainActor final class AdService` - Google Mobile Ads SDK のラッパー（シングルトン `shared`）
+- `preload()`: インタースティシャル広告を非同期でプリロード。SDK 初期化完了後（`BiKenApp.init`）と広告クローズ後に呼ぶ
+- `showInterstitial(onDismiss:)`: 広告が準備できていれば表示、未準備なら即 `onDismiss()` を呼ぶ
+- `bannerAdUnitID`: バナー広告ユニット ID（`static let`）
+- ObjC delegate は `nonisolated` + `Task { @MainActor [weak self] }` パターンで Swift 6 concurrency に対応
+- **本番リリース前に `AdUnitID` の各値と `Info.plist` の `GADApplicationIdentifier` を実際の AdMob ID に差し替えること**
+
+### Views/Components/BannerAdView.swift
+
+- `GADBannerView` を `UIViewRepresentable` でラップした SwiftUI コンポーネント
+- `HomeView` の `.safeAreaInset(edge: .bottom)` 内に配置し、画面最下部に固定表示
+
 ### ViewModels
 
 - `HomeViewModel`: デイリー作品（日付シードで固定）・フィーチャー作品取得。`TextbookArtworkData.all` からシード選択し、Wikipedia画像を1件フェッチ
@@ -100,6 +114,8 @@ enum QuizMode: Equatable, Hashable {
 - `withThrowingTaskGroup` を `fetchByIDs` など throws 伝搬が必要な箇所で使用
 - `@Environment(\.dismiss)` でナビゲーション dismiss
 - `Array[safe: index]` は `Extensions/Array+Safe.swift` で定義（重複定義禁止）
+- ObjC SDK delegate は `nonisolated func` + `Task { @MainActor [weak self] in }` で MainActor に戻る（GoogleMobileAds 等）
+- `project.yml` 変更後は必ず `xcodegen generate` を実行（SPM パッケージ追加時も同様）
 
 ## Important Patterns
 

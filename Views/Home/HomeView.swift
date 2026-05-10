@@ -24,6 +24,15 @@ struct HomeView: View {
                     .padding(.bottom, 32)
                 }
             }
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                VStack(spacing: 0) {
+                    Divider().overlay(Color.appBorder)
+                    BannerAdView()
+                        .frame(height: 50)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.appBackground)
+                }
+            }
             .background(Color.appBackground.ignoresSafeArea())
             .navigationBarHidden(true)
             .navigationDestination(for: QuizMode.self) { mode in
