@@ -10,6 +10,15 @@ actor AppUpdateService {
     }()
     private static let appStoreBaseURL = "https://apps.apple.com/app/id"
 
+    private struct iTunesLookupResponse: Decodable {
+        let results: [AppInfo]
+
+        struct AppInfo: Decodable {
+            let version: String
+            let trackId: Int
+        }
+    }
+
     private var isChecking = false
 
     func checkForUpdate() async -> URL? {
@@ -25,14 +34,14 @@ actor AppUpdateService {
             let (data, response) = try? await URLSession.shared.data(from: Self.lookupURL),
             let httpResponse = response as? HTTPURLResponse,
             httpResponse.statusCode == 200,
-            let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-            let results = json["results"] as? [[String: Any]],
-            let first = results.first,
-            let storeVersion = first["version"] as? String,
-            let appId = first["trackId"] as? Int
+            let result = try? JSONDecoder().decode(iTunesLookupResponse.self, from: data),
+            let first = result.results.first
         else { return nil }
 
         userDefaults.set(Date(), forKey: Self.lastCheckKey)
+
+        let storeVersion = first.version
+        let appId = first.trackId
 
         let current = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0"
         guard Self.isUpdateAvailable(current: current, store: storeVersion) else { return nil }
