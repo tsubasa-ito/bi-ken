@@ -95,6 +95,7 @@ TextbookArtworkData.swift → ViewModels + WikipediaImageService.swift → Swift
 ### Settings Views（Views/Settings/）
 
 - `SettingsView`: 設定トップ。`HomeView` から `.sheet` で表示。`confirmationDialog` で進捗リセット確認、`@Environment(\.requestReview)` でレビューリクエスト
+- `AppearanceSettingsView`: ダーク／ライト／デフォルト（システム）の外観を選択。`AppSettings.colorScheme` を変更すると `AppRootView` が即座に `preferredColorScheme` を再適用
 - `NotificationSettingsView`: `UNAuthorizationStatus` 表示と許可リクエスト。`didBecomeActiveNotification` で状態を再取得
 - `ReminderSettingsView`: 毎日リマインダーのオン/オフと時刻選択（`UNCalendarNotificationTrigger`）
 - `AboutView`: アプリ情報・機能紹介
@@ -126,10 +127,23 @@ enum QuizMode: Equatable, Hashable {
   - `todayArtworksMet: Int` — 当日回答済み問題数（日付変更でリセット）
   - `todayDateString: String` — 当日の日付文字列（`todayArtworksMet` のリセット判定用）
 
+### Services/AppSettings.swift
+
+- `@MainActor @Observable final class AppSettings` — アプリ全体の外観設定を管理するシングルトン
+- `var colorScheme: AppColorScheme` — 変更時に `UserDefaults` へ自動永続化（`didSet`）
+- `BiKenApp` で `.environment(AppSettings.shared)` としてインジェクトし、各ビューは `@Environment(AppSettings.self)` で取得する
+- **`@Observable` シングルトンを `static let` / `let` で直接参照すると SwiftUI の観測追跡が機能しない**。必ず `@Environment` 経由で受け取ること
+
+### Models/AppColorScheme.swift
+
+- `enum AppColorScheme: String, CaseIterable` — `system` / `light` / `dark` の3値
+- `var preferredColorScheme: ColorScheme?` — SwiftUI の `preferredColorScheme` modifier に渡す値（`system` は `nil`）
+
 ### コーディングルール
 
 - Swift 6 / `@Observable` + `@MainActor` ViewModel
 - `ShapeStyle where Self == Color` extension でドット構文カラーを使用
+- `@Observable` シングルトンは `BiKenApp` で `.environment(Singleton.shared)` としてインジェクトし、ビューでは `@Environment(Type.self)` で受け取る（`static let` 直接参照は SwiftUI 観測が機能しない）
 - `withTaskGroup`（non-throwing）でAPI並列取得
 - `withThrowingTaskGroup` を `fetchByIDs` など throws 伝搬が必要な箇所で使用
 - `@Environment(\.dismiss)` でナビゲーション dismiss

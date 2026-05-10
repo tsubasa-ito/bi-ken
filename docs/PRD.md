@@ -153,6 +153,12 @@
 - FAQ アコーディオン（HelpView）
 - ストアレビューリクエスト（`@Environment(\.requestReview)`）
 
+#### F-20: 外観設定（ダークモード）
+- ダーク／ライト／デフォルト（システムに従う）の3択で外観を切り替え
+- 選択は `UserDefaults` に永続化し、次回起動時も維持
+- `AppSettings`（`@Observable` シングルトン）で管理し、`@Environment` 経由で全画面に伝播
+- `.sheet` 内のビューにも即時反映（`SettingsView` の sheet 呼び出しに `preferredColorScheme` を適用）
+
 ### 3.7 広告
 
 #### F-17: バナー広告
@@ -212,6 +218,7 @@
 | ReminderSettingsView | 毎日リマインダー設定 | SettingsView から |
 | AboutView | アプリ情報・機能紹介 | SettingsView から |
 | HelpView | FAQ | SettingsView から |
+| AppearanceSettingsView | 外観選択（ダーク／ライト／デフォルト） | SettingsView から |
 
 ---
 
