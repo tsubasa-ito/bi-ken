@@ -45,6 +45,17 @@ TextbookArtworkData.swift → ViewModels + WikipediaImageService.swift → Swift
 - `completed: [String: WikiImageResult]` で**恒久的失敗のみ**キャッシュ（ネットワークエラーはキャッシュせず再試行可能にする）
 - キー形式: `"lang:wikiTitle"`
 
+### Services/AppUpdateService.swift
+
+- `actor AppUpdateService` - iTunes Search API でストア最新バージョンを確認し、アップデートが必要なら App Store URL を返す
+- `func checkForUpdate() async -> URL?`: 更新あり→App Store URL、なし/失敗→`nil`
+- **API呼び出し成功後のみ** `lastCheckKey`（`UserDefaults`）を更新（ネットワーク失敗時に1日スキップされるバグを防ぐ）
+- `isChecking: Bool` フラグで二重並行実行を防止（`.task`と`didBecomeActiveNotification`の同時発火対策）
+- `isUpdateAvailable`, `compareVersions`, `shouldCheckToday` を `static` メソッドとして公開しテスト可能にする
+- バージョン比較は `.` 区切りの**数値比較**（辞書順比較は `"1.9" > "1.10"` の誤判定が起きるため禁止）
+- 1日1回のみチェック（当日チェック済みなら即 `nil` を返す）
+- `AppRootView`（`BiKenApp.swift` 内 `private struct`）で `.task` + `didBecomeActiveNotification` の両方でチェックを呼ぶ
+
 ### Services/AdService.swift
 
 - `@MainActor final class AdService` - Google Mobile Ads SDK のラッパー（シングルトン `shared`）
@@ -115,7 +126,7 @@ enum QuizMode: Equatable, Hashable {
 - `@Environment(\.dismiss)` でナビゲーション dismiss
 - `Array[safe: index]` は `Extensions/Array+Safe.swift` で定義（重複定義禁止）
 - ObjC SDK delegate は `nonisolated func` + `Task { @MainActor [weak self] in }` で MainActor に戻る（GoogleMobileAds 等）
-- `project.yml` 変更後は必ず `xcodegen generate` を実行（SPM パッケージ追加時も同様）
+- `project.yml` 変更後は必ず `xcodegen generate` を実行（SPM パッケージ追加・既存ディレクトリへの新規 `.swift` ファイル追加時も同様）
 
 ## Important Patterns
 
