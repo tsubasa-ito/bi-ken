@@ -45,21 +45,18 @@ TextbookArtworkData.swift → ViewModels + WikipediaImageService.swift → Swift
 
 - `HomeViewModel`: デイリー作品（日付シードで固定）・フィーチャー作品取得。`TextbookArtworkData.all` からシード選択し、Wikipedia画像を1件フェッチ
 - `QuizViewModel`: クイズ進行・回答記録。`withTaskGroup` で選択作品の画像を並列フェッチ
-- `CollectionViewModel`: プレースホルダー即時表示 → `withTaskGroup` で画像を逐次更新するプログレッシブロード
 
 ### Navigation
 
-`NavigationStack` + `TabView`:
+`NavigationStack`（タブバーなし）:
 - `HomeView` → `QuizView(mode: QuizMode)` / `ArtworkDetailView(artwork:)`
-- `CollectionView` → `ArtworkDetailView(artwork:)`
+- `HomeView` ヘッダー右上の歯車ボタン → `SettingsView`（`.sheet` で表示）
 - `QuizResultView` → `QuizView(mode: .specificIDs([String]))` で復習クイズへ遷移
 - `SettingsView` → 各サブ設定画面（`NavigationLink` で遷移）
 
 ### Settings Views（Views/Settings/）
 
-- `SettingsView`: 設定トップ。`confirmationDialog` で進捗リセット確認、`@Environment(\.requestReview)` でレビューリクエスト
-- `ProfileSettingsView`: ユーザー名編集（`@FocusState`）+ 推し作品設定。`@AppStorage("oshiArtworkData")` に `Artwork` を JSON エンコードして永続化。`@State + onChange(initial: true)` でデコードキャッシュ
-- `OshiArtworkPickerView`: 推し作品選択シート。`CollectionViewModel` で作品一覧取得、`LazyVGrid` でサムネイル表示。選択作品を `oshiArtworkData` に保存
+- `SettingsView`: 設定トップ。`HomeView` から `.sheet` で表示。`confirmationDialog` で進捗リセット確認、`@Environment(\.requestReview)` でレビューリクエスト
 - `NotificationSettingsView`: `UNAuthorizationStatus` 表示と許可リクエスト。`didBecomeActiveNotification` で状態を再取得
 - `ReminderSettingsView`: 毎日リマインダーのオン/オフと時刻選択（`UNCalendarNotificationTrigger`）
 - `AboutView`: アプリ情報・機能紹介
@@ -86,7 +83,7 @@ enum QuizMode: Equatable, Hashable {
   - `wrongArtworkIDs: [String]` — 間違えた作品IDのリスト（重複なし）
   - `bookmarkedArtworkIDs: [String]` — ブックマークした作品IDのリスト。`toggleBookmark`・`isBookmarked` で操作。`reset()` でクリアされる
   - `studyDateStrings: [String]` — ISO8601日付文字列、最大28件
-  - `userName: String` — プロフィール設定で変更可能
+  - `userName: String` — ユーザー名（現在UIから変更する画面なし）
   - `dailyGoal: Int` — 1日の目標問題数（デフォルト10）
   - `todayArtworksMet: Int` — 当日回答済み問題数（日付変更でリセット）
   - `todayDateString: String` — 当日の日付文字列（`todayArtworksMet` のリセット判定用）
