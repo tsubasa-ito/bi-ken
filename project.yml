@@ -5,6 +5,11 @@ options:
     iOS: "17.0"
   generateEmptyDirectories: true
 
+packages:
+  GoogleMobileAds:
+    url: https://github.com/googleads/swift-package-manager-google-mobile-ads
+    from: "11.0.0"
+
 schemes:
   BiKen:
     build:
@@ -52,6 +57,9 @@ targets:
       - Services
       - ViewModels
       - Views
+    dependencies:
+      - package: GoogleMobileAds
+        product: GoogleMobileAds
     info:
       path: Info.plist
       properties:
@@ -59,6 +67,7 @@ targets:
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
+        GADApplicationIdentifier: ca-app-pub-3940256099942544~1458002511
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.tebasakin.biken

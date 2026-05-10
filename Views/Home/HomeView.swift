@@ -22,6 +22,10 @@ struct HomeView: View {
                     .padding(.horizontal, 20)
                     .padding(.top, 16)
                     .padding(.bottom, 32)
+
+                    BannerAdView()
+                        .frame(height: 50)
+                        .frame(maxWidth: .infinity)
                 }
             }
             .background(Color.appBackground.ignoresSafeArea())

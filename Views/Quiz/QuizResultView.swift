@@ -239,7 +239,9 @@ struct QuizResultView: View {
                 }
                 .buttonStyle(.plain)
 
-                Button(action: onDismiss) {
+                Button {
+                    AdService.shared.showInterstitialIfNeeded(onDismiss: onDismiss)
+                } label: {
                     Text("ホームへ")
                         .font(.system(size: 14, weight: .medium))
                         .foregroundStyle(.white)

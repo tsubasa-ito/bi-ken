@@ -20,9 +20,11 @@
 		4EDE752BAE3D142F50466088 /* WikipediaImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDDC8E13B8667D42B4CC95 /* WikipediaImageService.swift */; };
 		5675A79C496231F1510C9481 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345A715D3E6D10D31B88DE58 /* QuizViewModel.swift */; };
 		584D6DED12CBB86A003F913D /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C97A13FE12DBD88C166171 /* CachedAsyncImage.swift */; };
+		6E42F88EBB3BFB7E01925FAE /* AdService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39746E22B303658D121EB51A /* AdService.swift */; };
 		743745D1D5E714C8FCAFA57E /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870EDA85B4D13C155271F316 /* ImageCache.swift */; };
 		74EB336835D9797AE08C5BF5 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B48925BFAEDB6E988E9FC5 /* Artwork.swift */; };
 		754DBF5A184EC6B1E1A89517 /* BiKenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FFE94344196D985D64969 /* BiKenApp.swift */; };
+		75CE85124A481A005DA9F1EC /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 3A7CDDC19AFA85013D4286E4 /* GoogleMobileAds */; };
 		760330EE9CE2C6602FFD8005 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2E8BD1D64190B943296127 /* AboutView.swift */; };
 		7CAE7D32D4A7EDDD6F7B85AB /* UserProgressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE8011ECA3295BDB8699CA6 /* UserProgressTests.swift */; };
 		7CE323C0CD1226F437F11DBA /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE59327EC1E3D94A707D6C9 /* QuizView.swift */; };
@@ -35,8 +37,10 @@
 		C00F9139E8901E6E037DD036 /* TextbookArtworkDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE769C109213ACB14E61801 /* TextbookArtworkDataTests.swift */; };
 		D29BB5CD0A14EC09EED93FCE /* ArtworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA2F1CC7A94B679D07E0449 /* ArtworkDetailView.swift */; };
 		DF414878CF233180333A5E59 /* ReminderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F796256349CA937417915 /* ReminderSettingsView.swift */; };
+		E36B09E8B680DE79B5F792DB /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1C877BF011ADB4F71DDB06 /* BannerAdView.swift */; };
 		F1E300F42B7871DA098142BF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436BCF75D474D537EB8DB93 /* HomeView.swift */; };
 		F986207F1E35B392C959700C /* QuizResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7E7F0F32F1B2422056F553 /* QuizResultView.swift */; };
+		FD06A84B2CD78AD36D62F2FE /* AdServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B01377EC23724A50AC1FE6 /* AdServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +58,9 @@
 		1D7B2C0FDF8D65B45F84450D /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
 		3388FE3B98938BD4F1C12922 /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
 		345A715D3E6D10D31B88DE58 /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
+		39746E22B303658D121EB51A /* AdService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdService.swift; sourceTree = "<group>"; };
 		3C7E7F0F32F1B2422056F553 /* QuizResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultView.swift; sourceTree = "<group>"; };
+		3D1C877BF011ADB4F71DDB06 /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		445AEBCFD0E78A0D71B78AB3 /* Color+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Theme.swift"; sourceTree = "<group>"; };
 		4EE769C109213ACB14E61801 /* TextbookArtworkDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextbookArtworkDataTests.swift; sourceTree = "<group>"; };
 		4FFDDC8E13B8667D42B4CC95 /* WikipediaImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaImageService.swift; sourceTree = "<group>"; };
@@ -65,6 +71,7 @@
 		6DC78CDE96C01267C75C38D5 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		73FF9F0D4BCEBED32FB3A745 /* UserProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProgress.swift; sourceTree = "<group>"; };
 		74B48925BFAEDB6E988E9FC5 /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
+		80B01377EC23724A50AC1FE6 /* AdServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdServiceTests.swift; sourceTree = "<group>"; };
 		85699C924959A97004BCE570 /* Array+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Safe.swift"; sourceTree = "<group>"; };
 		870EDA85B4D13C155271F316 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		9B42662B5E0F6D57B75CC942 /* ArtworkCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkCache.swift; sourceTree = "<group>"; };
@@ -84,10 +91,22 @@
 		FFA2F1CC7A94B679D07E0449 /* ArtworkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFrameworksBuildPhase section */
+		C64C322938D0507884401CEA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75CE85124A481A005DA9F1EC /* GoogleMobileAds in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
 		06BCDF8F58F806CEB66FA43E /* BiKenTests */ = {
 			isa = PBXGroup;
 			children = (
+				80B01377EC23724A50AC1FE6 /* AdServiceTests.swift */,
 				D60DA727731C6AD9EACB4766 /* ArtworkTests.swift */,
 				6DB5880ADA5A21970A9B6573 /* GenerateQuizTests.swift */,
 				B51F33CE9851DB448327D1DE /* QuizQuestionTests.swift */,
@@ -189,6 +208,7 @@
 		D52F9159CD7FB6DF3A8D57E3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				39746E22B303658D121EB51A /* AdService.swift */,
 				9B42662B5E0F6D57B75CC942 /* ArtworkCache.swift */,
 				9D91100584F210495B75AA74 /* ArtworkConverter.swift */,
 				870EDA85B4D13C155271F316 /* ImageCache.swift */,
@@ -231,6 +251,7 @@
 		FE07E885866BF2636159461A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				3D1C877BF011ADB4F71DDB06 /* BannerAdView.swift */,
 				F1C97A13FE12DBD88C166171 /* CachedAsyncImage.swift */,
 			);
 			path = Components;
@@ -262,6 +283,7 @@
 			buildConfigurationList = 4DA67E98CCAEA74BA1950A1D /* Build configuration list for PBXNativeTarget "BiKen" */;
 			buildPhases = (
 				03687BFCD219B183585691A0 /* Sources */,
+				C64C322938D0507884401CEA /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -269,6 +291,7 @@
 			);
 			name = BiKen;
 			packageProductDependencies = (
+				3A7CDDC19AFA85013D4286E4 /* GoogleMobileAds */,
 			);
 			productName = BiKen;
 			productReference = C06E37D258CAB6ECF24C592F /* BiKen.app */;
@@ -297,6 +320,9 @@
 			);
 			mainGroup = 727ED6BA24189D607BDF9A75;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E06B717626919EFE7CD54440 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5E32489225D63D293C6D830B /* Products */;
 			projectDirPath = "";
@@ -314,11 +340,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				760330EE9CE2C6602FFD8005 /* AboutView.swift in Sources */,
+				6E42F88EBB3BFB7E01925FAE /* AdService.swift in Sources */,
 				0A283063F3C7B974D90D1002 /* Array+Safe.swift in Sources */,
 				74EB336835D9797AE08C5BF5 /* Artwork.swift in Sources */,
 				AC1D4BC2565BDEE7EF63E292 /* ArtworkCache.swift in Sources */,
 				9F0DFCD2D84EC15D594412D0 /* ArtworkConverter.swift in Sources */,
 				D29BB5CD0A14EC09EED93FCE /* ArtworkDetailView.swift in Sources */,
+				E36B09E8B680DE79B5F792DB /* BannerAdView.swift in Sources */,
 				754DBF5A184EC6B1E1A89517 /* BiKenApp.swift in Sources */,
 				584D6DED12CBB86A003F913D /* CachedAsyncImage.swift in Sources */,
 				4394CD719B65A18E2C4901AC /* Color+Theme.swift in Sources */,
@@ -344,6 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD06A84B2CD78AD36D62F2FE /* AdServiceTests.swift in Sources */,
 				2058227EA4DB35E245915AC6 /* ArtworkTests.swift in Sources */,
 				42659F0E0EFC5BC69DB18CD4 /* GenerateQuizTests.swift in Sources */,
 				92652BECE3C4F2D1CD3A0942 /* QuizQuestionTests.swift in Sources */,
@@ -598,6 +627,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E06B717626919EFE7CD54440 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3A7CDDC19AFA85013D4286E4 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E06B717626919EFE7CD54440 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E7CBBE1FFC7F5151BD9A7865 /* Project object */;
 }
