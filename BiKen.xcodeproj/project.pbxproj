@@ -21,6 +21,7 @@
 		4EDE752BAE3D142F50466088 /* WikipediaImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFDDC8E13B8667D42B4CC95 /* WikipediaImageService.swift */; };
 		5675A79C496231F1510C9481 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345A715D3E6D10D31B88DE58 /* QuizViewModel.swift */; };
 		584D6DED12CBB86A003F913D /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C97A13FE12DBD88C166171 /* CachedAsyncImage.swift */; };
+		5A5A1CF09628038F113B1192 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 66B9C305D655AA6B1E9A6C3D /* FirebaseAnalytics */; };
 		6E42F88EBB3BFB7E01925FAE /* AdService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39746E22B303658D121EB51A /* AdService.swift */; };
 		743745D1D5E714C8FCAFA57E /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870EDA85B4D13C155271F316 /* ImageCache.swift */; };
 		74EB336835D9797AE08C5BF5 /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B48925BFAEDB6E988E9FC5 /* Artwork.swift */; };
@@ -40,6 +41,7 @@
 		D29BB5CD0A14EC09EED93FCE /* ArtworkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA2F1CC7A94B679D07E0449 /* ArtworkDetailView.swift */; };
 		DF414878CF233180333A5E59 /* ReminderSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2F796256349CA937417915 /* ReminderSettingsView.swift */; };
 		E36B09E8B680DE79B5F792DB /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1C877BF011ADB4F71DDB06 /* BannerAdView.swift */; };
+		E9648F9180669B967F7185A3 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4CE2F43D8EBA4678A83F47D6 /* FirebaseCrashlytics */; };
 		F1E300F42B7871DA098142BF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1436BCF75D474D537EB8DB93 /* HomeView.swift */; };
 		F986207F1E35B392C959700C /* QuizResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7E7F0F32F1B2422056F553 /* QuizResultView.swift */; };
 /* End PBXBuildFile section */
@@ -99,6 +101,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				75CE85124A481A005DA9F1EC /* GoogleMobileAds in Frameworks */,
+				E9648F9180669B967F7185A3 /* FirebaseCrashlytics in Frameworks */,
+				5A5A1CF09628038F113B1192 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +291,7 @@
 			buildPhases = (
 				03687BFCD219B183585691A0 /* Sources */,
 				C64C322938D0507884401CEA /* Frameworks */,
+				4F21BA1572247D4B9B499865 /* Firebase Crashlytics dSYM Upload */,
 			);
 			buildRules = (
 			);
@@ -295,6 +300,8 @@
 			name = BiKen;
 			packageProductDependencies = (
 				3A7CDDC19AFA85013D4286E4 /* GoogleMobileAds */,
+				4CE2F43D8EBA4678A83F47D6 /* FirebaseCrashlytics */,
+				66B9C305D655AA6B1E9A6C3D /* FirebaseAnalytics */,
 			);
 			productName = BiKen;
 			productReference = C06E37D258CAB6ECF24C592F /* BiKen.app */;
@@ -324,6 +331,7 @@
 			mainGroup = 727ED6BA24189D607BDF9A75;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				BAAF46DA5A1065F90FBAA168 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				E06B717626919EFE7CD54440 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -336,6 +344,29 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4F21BA1572247D4B9B499865 /* Firebase Crashlytics dSYM Upload */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}",
+			);
+			name = "Firebase Crashlytics dSYM Upload";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] && [ -f \"${SRCROOT}/GoogleService-Info.plist\" ]; then\n  GOOGLE_APP_ID=$(/usr/libexec/PlistBuddy -c \"Print :GOOGLE_APP_ID\" \"${SRCROOT}/GoogleService-Info.plist\")\n  export GOOGLE_APP_ID\n  \"${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		03687BFCD219B183585691A0 /* Sources */ = {
@@ -527,7 +558,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tebasakin.BiKenTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tebasaki.BiKenTests;
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
@@ -551,7 +582,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tebasakin.biken;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tebasaki.biken;
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
@@ -574,7 +605,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tebasakin.biken;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tebasaki.biken;
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
@@ -593,7 +624,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tebasakin.BiKenTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tebasaki.BiKenTests;
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
@@ -635,6 +666,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BAAF46DA5A1065F90FBAA168 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
 		E06B717626919EFE7CD54440 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
@@ -650,6 +689,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E06B717626919EFE7CD54440 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
 			productName = GoogleMobileAds;
+		};
+		4CE2F43D8EBA4678A83F47D6 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BAAF46DA5A1065F90FBAA168 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		66B9C305D655AA6B1E9A6C3D /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BAAF46DA5A1065F90FBAA168 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
