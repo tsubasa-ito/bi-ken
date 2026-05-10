@@ -23,16 +23,20 @@ final class GenerateQuizTests: XCTestCase {
         )
     }
 
-    func testGenerateQuiz_withEmptyArtworks_throwsLocalizedError() {
+    func testGenerateQuiz_withEmptyArtworks_throwsQuizDomainError() {
         XCTAssertThrowsError(try generateQuiz(from: [], count: 1)) { error in
-            XCTAssertEqual(error.localizedDescription, "十分な作品を取得できませんでした")
+            let nsError = error as NSError
+            XCTAssertEqual(nsError.domain, "Quiz")
+            XCTAssertEqual(nsError.code, 0)
         }
     }
 
-    func testGenerateQuiz_withSingleArtwork_throwsLocalizedError() {
+    func testGenerateQuiz_withSingleArtwork_throwsQuizDomainError() {
         let artwork = makeArtwork()
         XCTAssertThrowsError(try generateQuiz(from: [artwork], count: 1)) { error in
-            XCTAssertEqual(error.localizedDescription, "十分な作品を取得できませんでした")
+            let nsError = error as NSError
+            XCTAssertEqual(nsError.domain, "Quiz")
+            XCTAssertEqual(nsError.code, 0)
         }
     }
 
