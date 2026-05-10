@@ -62,6 +62,7 @@ targets:
       - Views
     resources:
       - path: GoogleService-Info.plist
+        optional: true
     dependencies:
       - package: GoogleMobileAds
         product: GoogleMobileAds
@@ -83,6 +84,10 @@ targets:
           if [ -f "${SRCROOT}/GoogleService-Info.plist" ]; then
             "${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run"
           fi
+        inputFiles:
+          - "${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}"
+          - "${SRCROOT}/GoogleService-Info.plist"
+          - "${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}"
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.tebasakin.biken
