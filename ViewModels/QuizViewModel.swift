@@ -112,7 +112,8 @@ final class QuizViewModel {
         do {
             questions = try generateQuiz(from: artworks, count: min(10, artworks.count))
         } catch {
-            self.error = "問題の生成に失敗しました"
+            self.error = "問題の生成に失敗しました（\(error.localizedDescription)）"
+            print("[QuizViewModel] generateQuiz 失敗 mode=\(mode) artworksCount=\(artworks.count) error=\(error)")
         }
     }
 
