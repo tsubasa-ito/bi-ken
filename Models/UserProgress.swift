@@ -7,6 +7,7 @@ final class UserProgress {
     static let shared = UserProgress()
 
     private let userDefaults: UserDefaults
+    private let now: () -> Date
     private(set) var level: Int
     private(set) var currentXP: Int
     private(set) var totalArtworksMet: Int
@@ -65,8 +66,9 @@ final class UserProgress {
         self.init(userDefaults: .standard)
     }
 
-    init(userDefaults: UserDefaults) {
+    init(userDefaults: UserDefaults, now: @escaping () -> Date = { Date() }) {
         self.userDefaults = userDefaults
+        self.now = now
         level                = (userDefaults.value(forKey: "level")                as? Int) ?? 1
         currentXP            = (userDefaults.value(forKey: "currentXP")            as? Int) ?? 0
         totalArtworksMet     = (userDefaults.value(forKey: "totalArtworksMet")     as? Int) ?? 0
@@ -81,7 +83,7 @@ final class UserProgress {
         todayDateString      = userDefaults.string(forKey: "todayDateString") ?? ""
         bookmarkedArtworkIDs = userDefaults.stringArray(forKey: "bookmarkedArtworkIDs") ?? []
 
-        let today = UserProgress.dateFormatter.string(from: Date())
+        let today = UserProgress.dateFormatter.string(from: now())
         if todayDateString != today {
             todayArtworksMet = 0
             todayDateString = today
@@ -91,7 +93,7 @@ final class UserProgress {
     }
 
     func recordQuizResult(correct: Int, total: Int) {
-        let today = UserProgress.dateFormatter.string(from: Date())
+        let today = UserProgress.dateFormatter.string(from: now())
         if todayDateString == today {
             todayArtworksMet += total
         } else {
@@ -159,7 +161,7 @@ final class UserProgress {
     }
 
     private func updateStreak() {
-        let today = Calendar.current.startOfDay(for: Date())
+        let today = Calendar.current.startOfDay(for: now())
         if let last = userDefaults.object(forKey: "lastStudyDate") as? Date {
             let lastDay = Calendar.current.startOfDay(for: last)
             if lastDay == today { return }
@@ -169,11 +171,11 @@ final class UserProgress {
         } else {
             currentStreak = 1
         }
-        userDefaults.set(Date(), forKey: "lastStudyDate")
+        userDefaults.set(now(), forKey: "lastStudyDate")
     }
 
     private func recordStudyDate() {
-        let todayStr = UserProgress.dateFormatter.string(from: Date())
+        let todayStr = UserProgress.dateFormatter.string(from: now())
         guard !studyDateStrings.contains(todayStr) else { return }
         studyDateStrings.append(todayStr)
         if studyDateStrings.count > 28 {

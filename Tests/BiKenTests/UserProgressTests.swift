@@ -40,20 +40,22 @@ final class UserProgressTests: XCTestCase {
     }
 
     func testStreak_incrementsOnConsecutiveDays() {
-        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+        let fixedToday = Calendar.current.startOfDay(for: Date())
+        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: fixedToday)!
         userDefaults.set(3, forKey: "currentStreak")
         userDefaults.set(yesterday, forKey: "lastStudyDate")
-        sut = UserProgress(userDefaults: userDefaults)
+        sut = UserProgress(userDefaults: userDefaults, now: { fixedToday })
 
         sut.recordQuizResult(correct: 1, total: 1)
         XCTAssertEqual(sut.currentStreak, 4)
     }
 
     func testStreak_resetsOnMissedDay() {
-        let twoDaysAgo = Calendar.current.date(byAdding: .day, value: -2, to: Date())!
+        let fixedToday = Calendar.current.startOfDay(for: Date())
+        let twoDaysAgo = Calendar.current.date(byAdding: .day, value: -2, to: fixedToday)!
         userDefaults.set(5, forKey: "currentStreak")
         userDefaults.set(twoDaysAgo, forKey: "lastStudyDate")
-        sut = UserProgress(userDefaults: userDefaults)
+        sut = UserProgress(userDefaults: userDefaults, now: { fixedToday })
 
         sut.recordQuizResult(correct: 1, total: 1)
         XCTAssertEqual(sut.currentStreak, 1)
