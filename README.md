@@ -84,6 +84,8 @@ bi-ken/
 │   └── UserProgress.swift
 ├── Services/                        # サービス
 │   ├── WikipediaImageService.swift  # Wikipedia画像取得（actor）
+│   ├── AppUpdateService.swift       # アップデート確認（iTunes Search API）
+│   ├── AdService.swift              # Google Mobile Ads ラッパー
 │   ├── ImageCache.swift             # 画像キャッシュ
 │   ├── ArtworkCache.swift           # 作品データキャッシュ
 │   └── ArtworkConverter.swift       # クイズ生成ロジック
