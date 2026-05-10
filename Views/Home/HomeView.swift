@@ -70,6 +70,7 @@ struct HomeView: View {
                     .font(.system(size: 20))
                     .foregroundStyle(.appTextSecondary)
                     .frame(width: 38, height: 38)
+                    .accessibilityLabel("設定")
             }
         }
         .padding(.horizontal, 20)
