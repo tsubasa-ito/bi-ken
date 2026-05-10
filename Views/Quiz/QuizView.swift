@@ -287,7 +287,7 @@ struct QuizView: View {
 
     private func choiceState(_ option: String, question: QuizQuestion) -> ChoiceStyle {
         guard vm.showResult else {
-            return .init(bgColor: .white, badgeFill: .appCardBG, borderColor: .appBorder, textColor: .appText)
+            return .init(bgColor: .appCardBG, badgeFill: .appCardBG, borderColor: .appBorder, textColor: .appText)
         }
         if option == question.correctAnswer {
             return .init(bgColor: .appCorrectBG, badgeFill: .appCorrect, borderColor: .appCorrect, textColor: .appCorrect)
