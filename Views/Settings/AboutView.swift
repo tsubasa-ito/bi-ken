@@ -11,7 +11,6 @@ struct AboutView: View {
             Section("このアプリについて") {
                 infoRow(label: "対象", value: "美術検定4級")
                 infoRow(label: "データソース", value: "美術検定テキスト・Wikipedia")
-                infoRow(label: "開発者", value: "tsubasa-ito")
             }
             .listRowBackground(Color.appCardBG)
 
