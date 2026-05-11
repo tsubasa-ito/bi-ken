@@ -1,10 +1,10 @@
 import SwiftUI
-import UIKit
 
 struct QuizView: View {
     let mode: QuizMode
     @State private var vm = QuizViewModel()
     @Environment(\.dismiss) private var dismiss
+    @AccessibilityFocusState private var isExplanationFocused: Bool
 
     var body: some View {
         Group {
@@ -88,8 +88,9 @@ struct QuizView: View {
                     if vm.showResult {
                         explanationPanel(question: question)
                             .padding(.top, 12)
+                            .accessibilityFocused($isExplanationFocused)
                             .onAppear {
-                                UIAccessibility.post(notification: .screenChanged, argument: nil)
+                                isExplanationFocused = true
                             }
                         nextButton
                             .padding(.top, 12)
