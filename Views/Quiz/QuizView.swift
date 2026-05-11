@@ -254,6 +254,7 @@ struct QuizView: View {
                 .disabled(vm.showResult)
                 .buttonStyle(.plain)
                 .animation(.easeInOut(duration: 0.2), value: vm.showResult)
+                .accessibilityElement(children: .ignore)
                 .accessibilityLabel(choiceAccessibilityLabel(option: option, label: label, question: question))
             }
         }
