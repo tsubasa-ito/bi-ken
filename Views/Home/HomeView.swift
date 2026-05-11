@@ -122,7 +122,8 @@ struct HomeView: View {
             RoundedRectangle(cornerRadius: 6)
                 .stroke(Color.appBorder, lineWidth: 1.5)
         )
-        .accessibilityElement(children: .combine)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(value == "—" ? "\(label): データなし" : "\(value) \(label)")
     }
 
     // MARK: Mode Section
