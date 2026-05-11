@@ -367,7 +367,7 @@ struct QuizView: View {
                     .frame(width: 44, height: 44)
             }
             .buttonStyle(.plain)
-            .accessibilityLabel(bookmarked ? "ブックマーク済み" : "ブックマークに追加")
+            .accessibilityLabel(bookmarked ? "ブックマークを解除" : "ブックマークに追加")
             .padding(.trailing, 4)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
