@@ -151,6 +151,17 @@ enum QuizMode: Equatable, Hashable {
 - ObjC SDK delegate は `nonisolated func` + `Task { @MainActor [weak self] in }` で MainActor に戻る（GoogleMobileAds 等）
 - `project.yml` 変更後は必ず `xcodegen generate` を実行（SPM パッケージ追加・既存ディレクトリへの新規 `.swift` ファイル追加時も同様）
 
+### アクセシビリティルール（VoiceOver対応）
+
+新規ビューを追加する際は以下のパターンに従う：
+
+- **アイコンのみのボタン**: `.accessibilityLabel("動詞形のラベル")` を付与（例: `"戻る"`, `"設定を開く"`, `"ブックマークを解除"` / `"ブックマークに追加"`）
+- **装飾要素（区切り線・絵文字バッジ等）**: `.accessibilityHidden(true)` で読み上げ対象から除外
+- **複数テキストのカード**: `.accessibilityElement(children: .ignore)` + `.accessibilityLabel("値 ラベル")` でひとまとめに読み上げ。プレースホルダー（`"—"` など）は `"ラベル: データなし"` に置換
+- **進捗バー・数値状態**: `.accessibilityElement(children: .ignore)` + `.accessibilityLabel` + `.accessibilityValue` を併用
+- **動的に表示される要素**（解説パネル等）: `@AccessibilityFocusState` と `.accessibilityFocused($flag)` で表示時にフォーカスを移動する（`UIAccessibility.post` は使わない）
+- **選択肢ボタンなど、子テキストと異なるラベルを設定する場合**: `.accessibilityElement(children: .ignore)` を必ず併用してラベルの二重読みを防ぐ
+
 ## Important Patterns
 
 ### 作品データの管理
