@@ -10,13 +10,13 @@ struct AboutView: View {
 
             Section("このアプリについて") {
                 infoRow(label: "対象", value: "美術検定4級")
-                infoRow(label: "データソース", value: "Metropolitan Museum of Art")
+                infoRow(label: "データソース", value: "美術検定テキスト・Wikipedia")
                 infoRow(label: "開発者", value: "tsubasa-ito")
             }
             .listRowBackground(Color.appCardBG)
 
             Section("機能") {
-                featureRow(icon: "paintpalette.fill", color: .appPrimary, text: "ニューヨーク・メトロポリタン美術館の作品データを使用")
+                featureRow(icon: "paintpalette.fill", color: .appPrimary, text: "美術検定テキスト掲載の名作100点を収録")
                 featureRow(icon: "brain.head.profile", color: .purple, text: "4択クイズで美術知識をトレーニング")
                 featureRow(icon: "chart.bar.fill", color: .appCorrect, text: "XPシステムでレベルアップを実感")
                 featureRow(icon: "flame.fill", color: .orange, text: "ストリーク機能で継続学習をサポート")
@@ -24,8 +24,7 @@ struct AboutView: View {
             .listRowBackground(Color.appCardBG)
 
             Section("データ") {
-                infoRow(label: "API", value: "Met Museum Collection API")
-                infoRow(label: "ライセンス", value: "CC0 1.0")
+                infoRow(label: "画像", value: "Wikipedia（各作品のライセンスに準拠）")
             }
             .listRowBackground(Color.appCardBG)
         }
