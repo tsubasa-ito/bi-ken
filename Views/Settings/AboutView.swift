@@ -17,7 +17,6 @@ struct AboutView: View {
             Section("機能") {
                 featureRow(icon: "paintpalette.fill", color: .appPrimary, text: "美術検定テキスト掲載の名作\(TextbookArtworkData.all.count)点を収録")
                 featureRow(icon: "brain.head.profile", color: .purple, text: "4択クイズで美術知識をトレーニング")
-                featureRow(icon: "chart.bar.fill", color: .appCorrect, text: "XPシステムでレベルアップを実感")
                 featureRow(icon: "flame.fill", color: .orange, text: "ストリーク機能で継続学習をサポート")
             }
             .listRowBackground(Color.appCardBG)
