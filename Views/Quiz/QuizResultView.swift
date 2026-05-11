@@ -57,6 +57,7 @@ struct QuizResultView: View {
                         .frame(width: 36, height: 36)
                 }
                 .padding(.leading, 12)
+                .accessibilityLabel("閉じる")
 
                 Spacer()
 
@@ -118,12 +119,13 @@ struct QuizResultView: View {
             statCard(
                 value: "🔥 \(UserProgress.shared.currentStreak)日",
                 label: "本日のストリーク",
-                bg: Color.appStreakBG
+                bg: Color.appStreakBG,
+                accessibilityLabel: "\(UserProgress.shared.currentStreak)日連続、本日のストリーク"
             )
         }
     }
 
-    private func statCard(value: String, label: String, bg: Color) -> some View {
+    private func statCard(value: String, label: String, bg: Color, accessibilityLabel: String? = nil) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(value)
                 .font(.system(size: 18, weight: .bold, design: .serif))
@@ -140,6 +142,8 @@ struct QuizResultView: View {
             RoundedRectangle(cornerRadius: 6)
                 .stroke(Color.appBorder, lineWidth: 1.5)
         )
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilityLabel ?? "\(value) \(label)")
     }
 
     // MARK: Result Grid
@@ -168,6 +172,7 @@ struct QuizResultView: View {
                 .font(.system(size: 18, weight: .bold))
                 .foregroundStyle(record.isCorrect ? .appCorrect : .appIncorrect)
                 .frame(width: 24)
+                .accessibilityLabel(record.isCorrect ? "正解" : "不正解")
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(artwork.displayTitle)
@@ -191,6 +196,7 @@ struct QuizResultView: View {
                     .frame(width: 36, height: 36)
             }
             .buttonStyle(.plain)
+            .accessibilityLabel(bookmarked ? "ブックマーク済み" : "ブックマークに追加")
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)

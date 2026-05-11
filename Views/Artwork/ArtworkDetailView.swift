@@ -26,6 +26,7 @@ struct ArtworkDetailView: View {
                     .background(Color.appCardBG, in: Circle())
                     .overlay(Circle().stroke(Color.appBorder, lineWidth: 1))
             }
+            .accessibilityLabel("戻る")
             .padding(16)
             .padding(.top, 40)
         }
@@ -41,6 +42,7 @@ struct ArtworkDetailView: View {
                     .background(Color.appCardBG, in: Circle())
                     .overlay(Circle().stroke(Color.appBorder, lineWidth: 1))
             }
+            .accessibilityLabel(bookmarked ? "ブックマークを解除" : "ブックマークに追加")
             .padding(16)
             .padding(.top, 40)
         }
@@ -49,6 +51,7 @@ struct ArtworkDetailView: View {
     private var artworkImage: some View {
         CachedAsyncImage(url: artwork.imageURL) { image in
             image.resizable().scaledToFit()
+                .accessibilityLabel("\(artwork.displayTitle)の画像")
         } placeholder: {
             Color.appCardBG
                 .frame(height: 300)
@@ -86,6 +89,7 @@ struct ArtworkDetailView: View {
         }
         .padding(20)
         .background(Color.appBackground)
+        .accessibilityElement(children: .combine)
     }
 
     private var descriptionSection: some View {
