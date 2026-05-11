@@ -10,12 +10,12 @@ struct AboutView: View {
 
             Section("このアプリについて") {
                 infoRow(label: "対象", value: "美術検定4級")
-                infoRow(label: "データソース", value: "美術検定テキスト・Wikipedia")
+                infoRow(label: "データソース", value: "Wikipedia")
             }
             .listRowBackground(Color.appCardBG)
 
             Section("機能") {
-                featureRow(icon: "paintpalette.fill", color: .appPrimary, text: "美術検定テキスト掲載の名作\(TextbookArtworkData.all.count)点を収録")
+                featureRow(icon: "paintpalette.fill", color: .appPrimary, text: "名作\(TextbookArtworkData.all.count)点を収録")
                 featureRow(icon: "brain.head.profile", color: .purple, text: "4択クイズで美術知識をトレーニング")
                 featureRow(icon: "flame.fill", color: .orange, text: "ストリーク機能で継続学習をサポート")
             }
