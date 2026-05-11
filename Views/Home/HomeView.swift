@@ -81,8 +81,8 @@ struct HomeView: View {
                     .font(.system(size: 20))
                     .foregroundStyle(.appTextSecondary)
                     .frame(width: 38, height: 38)
-                    .accessibilityLabel("設定")
             }
+            .accessibilityLabel("設定を開く")
         }
         .padding(.horizontal, 20)
         .padding(.top, 52)
@@ -122,6 +122,8 @@ struct HomeView: View {
             RoundedRectangle(cornerRadius: 6)
                 .stroke(Color.appBorder, lineWidth: 1.5)
         )
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(value == "—" ? "\(label): データなし" : "\(value) \(label)")
     }
 
     // MARK: Mode Section
@@ -195,12 +197,14 @@ struct HomeView: View {
             Rectangle()
                 .fill(Color.appTextTertiary.opacity(0.5))
                 .frame(height: 0.5)
+                .accessibilityHidden(true)
             Text(title)
                 .font(.system(size: 11))
                 .foregroundStyle(.appTextTertiary)
             Rectangle()
                 .fill(Color.appTextTertiary.opacity(0.5))
                 .frame(height: 0.5)
+                .accessibilityHidden(true)
         }
     }
 
@@ -227,6 +231,7 @@ struct HomeView: View {
                         .foregroundStyle(.appText)
                 }
                 .padding(.leading, 14)
+                .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title)
@@ -254,6 +259,7 @@ struct HomeView: View {
             )
         }
         .buttonStyle(.plain)
+        .accessibilityLabel("\(title)、\(subtitle)")
     }
 }
 

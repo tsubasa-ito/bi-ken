@@ -4,6 +4,7 @@ struct QuizView: View {
     let mode: QuizMode
     @State private var vm = QuizViewModel()
     @Environment(\.dismiss) private var dismiss
+    @AccessibilityFocusState private var isExplanationFocused: Bool
 
     var body: some View {
         Group {
@@ -87,6 +88,10 @@ struct QuizView: View {
                     if vm.showResult {
                         explanationPanel(question: question)
                             .padding(.top, 12)
+                            .accessibilityFocused($isExplanationFocused)
+                            .onAppear {
+                                isExplanationFocused = true
+                            }
                         nextButton
                             .padding(.top, 12)
                     }
@@ -115,6 +120,7 @@ struct QuizView: View {
                     }
                 }
                 .padding(.leading, 12)
+                .accessibilityLabel("クイズを閉じる")
 
                 Spacer()
 
@@ -140,6 +146,9 @@ struct QuizView: View {
                     }
                     .frame(width: 180, height: 8)
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("問題の進捗")
+                .accessibilityValue("\(vm.currentIndex + 1) / \(vm.totalQuestions)")
 
                 Spacer()
 
@@ -174,6 +183,8 @@ struct QuizView: View {
             RoundedRectangle(cornerRadius: 14)
                 .stroke(Color.appBorder, lineWidth: 1.5)
         )
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(UserProgress.shared.currentStreak)日連続学習中")
     }
 
     // MARK: Art Frame
@@ -196,6 +207,8 @@ struct QuizView: View {
                 .frame(height: vm.showResult ? 180 : 240)
                 .clipShape(RoundedRectangle(cornerRadius: 4))
                 .padding(10)
+                .accessibilityLabel("作品の画像")
+                .accessibilityHint("この作品の作者を選んでください")
             } else {
                 Text("『\(question.artwork.displayTitle)』")
                     .font(.system(size: 22, weight: .semibold, design: .serif))
@@ -203,6 +216,8 @@ struct QuizView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 24)
                     .padding(.vertical, 32)
+                    .accessibilityLabel("作品のタイトル: \(question.artwork.displayTitle)")
+                    .accessibilityHint("この作品の作者を選んでください")
             }
         }
         .frame(minHeight: vm.showResult ? 160 : 220)
@@ -240,9 +255,18 @@ struct QuizView: View {
                 .disabled(vm.showResult)
                 .buttonStyle(.plain)
                 .animation(.easeInOut(duration: 0.2), value: vm.showResult)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(choiceAccessibilityLabel(option: option, label: label, question: question))
             }
         }
         .padding(.horizontal, 20)
+    }
+
+    private func choiceAccessibilityLabel(option: String, label: String, question: QuizQuestion) -> String {
+        guard vm.showResult else { return "選択肢\(label): \(option)" }
+        if option == question.correctAnswer { return "正解: 選択肢\(label), \(option)" }
+        if vm.selectedAnswer == option { return "不正解: 選択肢\(label), \(option)" }
+        return "選択肢\(label): \(option)"
     }
 
     private func choiceRow(option: String, label: String, question: QuizQuestion) -> some View {
@@ -343,6 +367,7 @@ struct QuizView: View {
                     .frame(width: 44, height: 44)
             }
             .buttonStyle(.plain)
+            .accessibilityLabel(bookmarked ? "ブックマークを解除" : "ブックマークに追加")
             .padding(.trailing, 4)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -399,6 +424,7 @@ struct QuizView: View {
             }
         }
         .padding(.horizontal, 20)
+        .accessibilityLabel(vm.currentIndex < vm.totalQuestions - 1 ? "次の問題へ" : "結果を見る")
         .transition(.move(edge: .bottom).combined(with: .opacity))
         .animation(.spring(duration: 0.3), value: vm.showResult)
     }
